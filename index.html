@@ -120,7 +120,7 @@
             border-radius: 30px;
             transition: var(--transition);
             font-weight: 600;
-            font-size: 18px;
+            font-size: 16px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -264,7 +264,7 @@
             border-radius: var(--border-radius);
             transition: var(--transition);
             font-weight: 700;
-            font-size: 19px;
+            font-size: 16px;
         }
         
         .mobile-nav-link:hover, .mobile-nav-link.active {
@@ -467,7 +467,7 @@
             color: var(--text-color);
             font-weight: 700;
             transition: var(--transition);
-            font-size: 18px;
+            font-size: 16px;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -704,7 +704,7 @@
             background-color: var(--card-bg);
             border-radius: var(--border-radius);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            padding: 50px 40px;
+            padding: 40px 30px;
             border: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
@@ -722,9 +722,9 @@
         
         .admin-login-box h2 {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             color: var(--primary-color);
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 800;
             display: flex;
             align-items: center;
@@ -760,7 +760,7 @@
         }
         
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .form-group label {
@@ -770,11 +770,12 @@
             margin-bottom: 10px;
             font-weight: 600;
             color: var(--text-color);
+            font-size: 16px;
         }
         
         .form-control {
             width: 100%;
-            padding: 18px 20px;
+            padding: 16px 20px;
             border: 2px solid var(--border-color);
             border-radius: var(--border-radius);
             font-size: 16px;
@@ -792,12 +793,12 @@
         
         .login-btn {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             border: none;
             border-radius: var(--border-radius);
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
@@ -946,7 +947,7 @@
         
         .form-select {
             width: 100%;
-            padding: 18px 20px;
+            padding: 16px 20px;
             border: 2px solid var(--border-color);
             border-radius: var(--border-radius);
             font-size: 16px;
@@ -1262,7 +1263,7 @@
             
             .category-link {
                 padding: 14px 26px;
-                font-size: 17px;
+                font-size: 16px;
                 min-width: 130px;
             }
             
@@ -1273,8 +1274,8 @@
             
             /* کارتەکان لە مۆبایل */
             .apps-grid, .games-grid, .all-grid, .featured-grid, .admin-apps-grid, .admin-games-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 20px;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 15px;
             }
             
             .app-card, .game-card, .featured-card, .admin-app-card, .admin-game-card {
@@ -1283,12 +1284,12 @@
             }
             
             .app-info-overlay, .game-info-overlay, .featured-info-overlay {
-                padding: 20px;
+                padding: 15px;
             }
             
             .app-info-overlay-title, .game-info-overlay-title, .featured-info-overlay-title {
-                font-size: 18px;
-                margin-bottom: 12px;
+                font-size: 16px;
+                margin-bottom: 10px;
             }
             
             .app-info-overlay-desc, .game-info-overlay-desc, .featured-info-overlay-desc {
@@ -1297,12 +1298,34 @@
             }
             
             .download-overlay-btn {
-                padding: 12px 20px;
+                padding: 10px 15px;
                 font-size: 14px;
+                margin-top: 10px;
             }
             
+            /* چاکسازی بۆ فۆرمی چوونەژوورەوەی ئەدمین */
             .admin-login-box {
-                padding: 35px 25px;
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+            
+            .admin-login-box h2 {
+                font-size: 1.8rem;
+                margin-bottom: 25px;
+            }
+            
+            .form-group {
+                margin-bottom: 18px;
+            }
+            
+            .form-control {
+                padding: 14px 18px;
+                font-size: 16px;
+            }
+            
+            .login-btn {
+                padding: 14px 16px;
+                font-size: 16px;
             }
             
             .admin-tabs {
@@ -1314,7 +1337,7 @@
                 text-align: center;
                 justify-content: center;
                 padding: 14px 20px;
-                font-size: 17px;
+                font-size: 16px;
             }
             
             .admin-search-box {
@@ -1326,12 +1349,12 @@
             .admin-search-input {
                 border-radius: var(--border-radius) var(--border-radius) 0 0;
                 border-bottom: 1px solid var(--border-color);
-                padding: 16px 20px;
+                padding: 14px 18px;
             }
             
             .admin-search-btn {
                 border-radius: 0 0 var(--border-radius) var(--border-radius);
-                padding: 16px 20px;
+                padding: 14px 18px;
                 justify-content: center;
             }
             
@@ -1342,18 +1365,18 @@
             }
             
             .admin-btn {
-                padding: 16px 20px;
+                padding: 14px 18px;
                 font-size: 16px;
                 width: 100%;
             }
             
             .admin-form-container {
-                padding: 25px;
+                padding: 25px 20px;
             }
             
             .theme-toggle {
-                width: 52px;
-                height: 52px;
+                width: 50px;
+                height: 50px;
                 bottom: 20px;
                 left: 20px;
                 font-size: 20px;
@@ -1404,10 +1427,10 @@
                 min-width: 110px;
             }
             
-            /* 2 کارت لە هەر ڕیزێک بۆ مۆبایل */
+            /* 3 کارت لە هەر ڕیزێک بۆ مۆبایل */
             .apps-grid, .games-grid, .all-grid, .featured-grid, .admin-apps-grid, .admin-games-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 15px;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 12px;
             }
             
             .app-card, .game-card, .featured-card, .admin-app-card, .admin-game-card {
@@ -1415,20 +1438,34 @@
             }
             
             .app-info-overlay, .game-info-overlay, .featured-info-overlay {
-                padding: 18px;
+                padding: 12px;
             }
             
             .app-info-overlay-title, .game-info-overlay-title, .featured-info-overlay-title {
-                font-size: 16px;
+                font-size: 14px;
             }
             
             .app-info-overlay-desc, .game-info-overlay-desc, .featured-info-overlay-desc {
-                font-size: 13px;
+                font-size: 12px;
             }
             
             .download-overlay-btn {
-                padding: 11px 18px;
-                font-size: 13px;
+                padding: 8px 12px;
+                font-size: 12px;
+                margin-top: 8px;
+            }
+            
+            /* چاککردنی فۆرمی چوونەژوورەوە بۆ مۆبایلی بچووک */
+            .admin-login-box {
+                padding: 25px 15px;
+            }
+            
+            .admin-login-box h2 {
+                font-size: 1.6rem;
+            }
+            
+            .form-group label {
+                font-size: 16px;
             }
             
             .footer-content {
@@ -1458,12 +1495,24 @@
             }
             
             .admin-btn {
-                padding: 15px 18px;
+                padding: 12px 15px;
                 font-size: 15px;
             }
             
             .admin-form-container {
-                padding: 22px;
+                padding: 20px 15px;
+            }
+        }
+        
+        /* زۆر بچووک (مۆبایلێکی زۆر بچووک) */
+        @media (max-width: 400px) {
+            .apps-grid, .games-grid, .all-grid, .featured-grid, .admin-apps-grid, .admin-games-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px;
+            }
+            
+            .admin-login-box {
+                padding: 20px 12px;
             }
         }
     </style>
@@ -3326,8 +3375,4 @@
             });
         </script>
     </body>
-    </html>1- بەرنامەکان یاری و ئەپ    زۆر گەورەیە بچووکی بکەرەوە بە ڕادەیەک بچووکی بکەرەوە کە گونجاو بێ بۆ بەکارهێنەران
-شێوەی با ئاوابێ Rounded Square
-size 1.1 بێ
-
-2-بەرنامەکان بەشێوەی3 ڕیز پشان دا لەسەر هەموو ئامێرێک
+    </html>
