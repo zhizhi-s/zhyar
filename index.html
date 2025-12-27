@@ -1018,7 +1018,7 @@
             background-color: var(--border-color);
         }
         
-        /* Admin Cards */
+        /* Admin Cards - دیزاینی نوێ بۆ دووگمەکانی دەستکاری و سڕینەوە */
         .admin-app-card, .admin-game-card {
             position: relative;
         }
@@ -1027,15 +1027,17 @@
             position: absolute;
             top: 15px;
             left: 15px;
+            right: 15px;
             display: flex;
-            gap: 10px;
-            z-index: 2;
+            gap: 8px;
+            z-index: 4;
+            justify-content: center;
         }
         
         .admin-action-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
+            flex: 1;
+            padding: 10px 12px;
+            border-radius: 30px;
             border: none;
             color: white;
             cursor: pointer;
@@ -1043,19 +1045,30 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
             font-size: 14px;
+            font-weight: 600;
+            min-width: 0;
+            max-width: 120px;
         }
         
         .admin-action-btn.edit {
             background: linear-gradient(135deg, #2a9d8f, #1a7566);
+            box-shadow: 0 4px 10px rgba(42, 157, 143, 0.3);
         }
         
         .admin-action-btn.delete {
             background: linear-gradient(135deg, #e63946, #c1121f);
+            box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
         }
         
         .admin-action-btn:hover {
-            transform: scale(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .admin-action-btn:active {
+            transform: translateY(0);
         }
         
         /* Firebase Alert */
@@ -1304,6 +1317,21 @@
                 margin-top: 10px;
             }
             
+            /* چاککردنی دووگمەکانی بەڕێوەبەری لە مۆبایل */
+            .admin-app-actions, .admin-game-actions {
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                gap: 5px;
+            }
+            
+            .admin-action-btn {
+                padding: 8px 10px;
+                font-size: 12px;
+                gap: 5px;
+                max-width: 100px;
+            }
+            
             /* چاکسازی بۆ فۆرمی چوونەژوورەوەی ئەدمین */
             .admin-login-box {
                 padding: 30px 20px;
@@ -1457,6 +1485,21 @@
                 margin-top: 8px;
             }
             
+            /* چاککردنی دووگمەکانی بەڕێوەبەری لە مۆبایلی بچووک */
+            .admin-app-actions, .admin-game-actions {
+                top: 8px;
+                left: 8px;
+                right: 8px;
+                gap: 4px;
+            }
+            
+            .admin-action-btn {
+                padding: 6px 8px;
+                font-size: 11px;
+                gap: 4px;
+                max-width: 90px;
+            }
+            
             /* چاککردنی فۆرمی چوونەژوورەوە بۆ مۆبایلی بچووک */
             .admin-login-box {
                 padding: 25px 15px;
@@ -1527,6 +1570,21 @@
             
             .admin-login-box {
                 padding: 20px 12px;
+            }
+            
+            /* چاککردنی دووگمەکانی بەڕێوەبەری لە مۆبایلی زۆر بچووک */
+            .admin-app-actions, .admin-game-actions {
+                top: 6px;
+                left: 6px;
+                right: 6px;
+                gap: 3px;
+            }
+            
+            .admin-action-btn {
+                padding: 5px 6px;
+                font-size: 10px;
+                gap: 3px;
+                max-width: 80px;
             }
         }
     </style>
@@ -1863,7 +1921,6 @@
                             <form id="edit-app-form">
                                 <input type="hidden" id="edit-app-id" name="id">
                                 <input type="hidden" id="edit-app-type" name="type">
-                                <input type="hidden" id="edit-app-doc-id" name="docId">
                                 
                                 <div class="admin-form-row">
                                     <div class="admin-form-group">
@@ -2056,7 +2113,6 @@
             let isAdminLoggedIn = false;
             let unsubscribeApps = null;
             let unsubscribeGames = null;
-            let holdTimeout = null;
 
             // نیشاندانی پەیوەندی
             function showConnectionStatus(message, isSuccess) {
@@ -2682,7 +2738,7 @@
                 });
             }
 
-            // نیشاندانی ئەپەکان لە بەڕێوەبردنی
+            // نیشاندانی ئەپەکان لە بەڕێوەبردنی - بە دیزاینی نوێ
             function displayAdminApps() {
                 const adminAppsGrid = document.getElementById('admin-apps-grid');
                 if (!adminAppsGrid) return;
@@ -2704,11 +2760,11 @@
                     
                     appCard.innerHTML = `
                         <div class="admin-app-actions">
-                            <button class="admin-action-btn edit" onclick="editApp('${app.id}', 'app')">
-                                <i class="fas fa-edit"></i>
+                            <button class="admin-action-btn edit" data-id="${app.id}" data-type="app">
+                                <i class="fas fa-edit"></i> دەستکاری
                             </button>
-                            <button class="admin-action-btn delete" onclick="deleteApp('${app.id}', 'app')">
-                                <i class="fas fa-trash"></i>
+                            <button class="admin-action-btn delete" data-id="${app.id}" data-type="app">
+                                <i class="fas fa-trash"></i> سڕینەوە
                             </button>
                         </div>
                         <div class="admin-app-image">
@@ -2724,18 +2780,47 @@
                             <div class="admin-app-info-overlay-downloads">
                                 <i class="fas fa-download"></i> ${app.downloads || 0} داگرتن
                             </div>
-                            <button class="download-overlay-btn" onclick="viewAppDetails('${app.id}', 'app')">
-                                <i class="fas fa-eye"></i> بینین
+                            <button class="download-overlay-btn view-details-btn" data-id="${app.id}" data-type="app">
+                                <i class="fas fa-eye"></i> بینینی وردەکاری
                             </button>
                         </div>
                     `;
                     adminAppsGrid.appendChild(appCard);
                     
+                    // زیادکردنی Event Listeners بۆ دووگمەکانی دەستکاری و سڕینەوە
+                    const editBtn = appCard.querySelector('.edit');
+                    const deleteBtn = appCard.querySelector('.delete');
+                    const viewBtn = appCard.querySelector('.view-details-btn');
+                    
+                    editBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const appId = this.getAttribute('data-id');
+                        const type = this.getAttribute('data-type');
+                        editApp(appId, type);
+                    });
+                    
+                    deleteBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const appId = this.getAttribute('data-id');
+                        const type = this.getAttribute('data-type');
+                        deleteApp(appId, type);
+                    });
+                    
+                    viewBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const appId = this.getAttribute('data-id');
+                        const type = this.getAttribute('data-type');
+                        viewAppDetails(appId, type);
+                    });
+                    
                     setupCardHoldEvents(appCard, app);
                 });
             }
 
-            // نیشاندانی یاریەکان لە بەڕێوەبردنی
+            // نیشاندانی یاریەکان لە بەڕێوەبردنی - بە دیزاینی نوێ
             function displayAdminGames() {
                 const adminGamesGrid = document.getElementById('admin-games-grid');
                 if (!adminGamesGrid) return;
@@ -2757,11 +2842,11 @@
                     
                     gameCard.innerHTML = `
                         <div class="admin-game-actions">
-                            <button class="admin-action-btn edit" onclick="editApp('${game.id}', 'game')">
-                                <i class="fas fa-edit"></i>
+                            <button class="admin-action-btn edit" data-id="${game.id}" data-type="game">
+                                <i class="fas fa-edit"></i> دەستکاری
                             </button>
-                            <button class="admin-action-btn delete" onclick="deleteApp('${game.id}', 'game')">
-                                <i class="fas fa-trash"></i>
+                            <button class="admin-action-btn delete" data-id="${game.id}" data-type="game">
+                                <i class="fas fa-trash"></i> سڕینەوە
                             </button>
                         </div>
                         <div class="admin-game-image">
@@ -2777,54 +2862,133 @@
                             <div class="admin-game-info-overlay-downloads">
                                 <i class="fas fa-download"></i> ${game.downloads || 0} داگرتن
                             </div>
-                            <button class="download-overlay-btn" onclick="viewAppDetails('${game.id}', 'game')">
-                                <i class="fas fa-eye"></i> بینین
+                            <button class="download-overlay-btn view-details-btn" data-id="${game.id}" data-type="game">
+                                <i class="fas fa-eye"></i> بینینی وردەکاری
                             </button>
                         </div>
                     `;
                     adminGamesGrid.appendChild(gameCard);
                     
+                    // زیادکردنی Event Listeners بۆ دووگمەکانی دەستکاری و سڕینەوە
+                    const editBtn = gameCard.querySelector('.edit');
+                    const deleteBtn = gameCard.querySelector('.delete');
+                    const viewBtn = gameCard.querySelector('.view-details-btn');
+                    
+                    editBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const appId = this.getAttribute('data-id');
+                        const type = this.getAttribute('data-type');
+                        editApp(appId, type);
+                    });
+                    
+                    deleteBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const appId = this.getAttribute('data-id');
+                        const type = this.getAttribute('data-type');
+                        deleteApp(appId, type);
+                    });
+                    
+                    viewBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const appId = this.getAttribute('data-id');
+                        const type = this.getAttribute('data-type');
+                        viewAppDetails(appId, type);
+                    });
+                    
                     setupCardHoldEvents(gameCard, game);
                 });
             }
 
-            // زیادکردنی بەرنامەی نوێ
-            function addNewApp(appData) {
-                if (!db) return;
+            // سڕینەوەی بەرنامە - کاریگەر
+            function deleteApp(appId, type) {
+                if (!db) {
+                    showFirebaseAlert("پەیوەندی Firebase دروست نیە!", false);
+                    return;
+                }
                 
-                const appToAdd = {
-                    name: appData.name,
-                    description: appData.description,
-                    type: appData.type,
-                    imgurl: appData.image || "",
-                    downloadurl: appData.downloadLink,
-                    downloads: 0,
-                    featured: appData.featured || false,
-                    createdAt: new Date().toISOString()
-                };
-                
-                db.collection("zhi-zhi").add(appToAdd)
-                    .then((docRef) => {
-                        console.log("✅ بەرنامە زیادکرا بە سەرکەوتوویی، ID:", docRef.id);
-                        showFirebaseAlert("بەرنامە زیادکرا بە سەرکەوتوویی!", true);
-                        
-                        document.getElementById("add-app-form").reset();
-                        
-                        if (appData.type === "app") {
-                            loadApps();
-                        } else {
-                            loadGames();
-                        }
-                    })
-                    .catch((error) => {
-                        console.error("❌ هەڵە لە زیادکردنی بەرنامە:", error);
-                        showFirebaseAlert("هەڵە لە زیادکردنی بەرنامە: " + error.message, false);
-                    });
+                if (confirm("دڵنیایت دەتەوێت ئەم بەرنامەیە بسڕیتەوە؟")) {
+                    // یەکسەر سڕینەوە لە Firebase
+                    db.collection("zhi-zhi").doc(appId).delete()
+                        .then(() => {
+                            console.log("✅ بەرنامە سڕایەوە بە سەرکەوتوویی");
+                            showFirebaseAlert("بەرنامە سڕایەوە بە سەرکەوتوویی!", true);
+                            
+                            // یەکسەر سڕینەوە لە لیستەکانی ناوەوە
+                            if (type === "app") {
+                                apps = apps.filter(app => app.id !== appId);
+                                displayAdminApps(); // دووبارە نیشاندانی لیستەکە
+                            } else {
+                                games = games.filter(game => game.id !== appId);
+                                displayAdminGames(); // دووبارە نیشاندانی لیستەکە
+                            }
+                            
+                            // دووبارە بارکردنی داتا لە Firebase
+                            setTimeout(() => {
+                                if (type === "app") {
+                                    loadApps();
+                                } else {
+                                    loadGames();
+                                }
+                            }, 500);
+                        })
+                        .catch((error) => {
+                            console.error("❌ هەڵە لە سڕینەوەی بەرنامە:", error);
+                            showFirebaseAlert("هەڵە لە سڕینەوەی بەرنامە: " + error.message, false);
+                        });
+                }
             }
 
-            // نوێکردنەوەی بەرنامە
+            // دەستکاری بەرنامە - کاریگەر
+            function editApp(appId, type) {
+                console.log("دەستکاری بەرنامە:", appId, type);
+                
+                // گەڕان بەدوای بەرنامە لە لیستەکان
+                let appToEdit;
+                
+                if (type === 'app') {
+                    appToEdit = apps.find(item => item.id === appId);
+                } else {
+                    appToEdit = games.find(item => item.id === appId);
+                }
+                
+                if (appToEdit) {
+                    // نیشاندانی فۆڕمی دەستکاری
+                    document.getElementById("edit-form-container").style.display = "block";
+                    
+                    // گۆڕین بۆ تابەکەی زیادکردنی بەرنامە
+                    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    document.querySelector('.admin-tab[data-tab="add-app"]').classList.add('active');
+                    document.getElementById('add-app-tab').classList.add('active');
+                    
+                    // پڕکردنەوەی فۆڕم بە زانیارییەکانی بەرنامە
+                    document.getElementById("edit-app-id").value = appId;
+                    document.getElementById("edit-app-type").value = type;
+                    document.getElementById("edit-app-name").value = appToEdit.name || "";
+                    document.getElementById("edit-app-description").value = appToEdit.description || "";
+                    document.getElementById("edit-app-image").value = appToEdit.imgurl || "";
+                    document.getElementById("edit-app-download").value = appToEdit.downloadurl || "";
+                    document.getElementById("edit-app-featured").value = appToEdit.featured ? "true" : "false";
+                    
+                    // هێنانە خوارەوەی فۆڕم
+                    document.getElementById("edit-form-container").scrollIntoView({behavior: 'smooth'});
+                    
+                } else {
+                    console.error("بەرنامە نەدۆزرایەوە لە لیستەکان");
+                    showFirebaseAlert("بەرنامە نەدۆزرایەوە! تکایە پەڕەکە دووبارە بار بکەرەوە.", false);
+                }
+            }
+
+            // نوێکردنەوەی بەرنامە - کاریگەر
             function updateApp(appId, appData) {
-                if (!db) return;
+                if (!db) {
+                    showFirebaseAlert("پەیوەندی Firebase دروست نیە!", false);
+                    return;
+                }
                 
                 const appToUpdate = {
                     name: appData.name,
@@ -2834,70 +2998,29 @@
                     featured: appData.featured === "true"
                 };
                 
+                console.log("نوێکردنەوەی بەرنامە:", appId, appToUpdate);
+                
                 db.collection("zhi-zhi").doc(appId).update(appToUpdate)
                     .then(() => {
                         console.log("✅ بەرنامە نوێکرایەوە بە سەرکەوتوویی");
                         showFirebaseAlert("بەرنامە نوێکرایەوە بە سەرکەوتوویی!", true);
                         
+                        // حاشێکردنی فۆڕمی دەستکاری
                         document.getElementById("edit-form-container").style.display = "none";
+                        document.getElementById("edit-app-form").reset();
                         
+                        // دووبارە بارکردنی داتا لە Firebase
                         if (appData.type === "app") {
                             loadApps();
-                            displayAdminApps();
                         } else {
                             loadGames();
-                            displayAdminGames();
                         }
+                        
                     })
                     .catch((error) => {
                         console.error("❌ هەڵە لە نوێکردنەوەی بەرنامە:", error);
                         showFirebaseAlert("هەڵە لە نوێکردنەوەی بەرنامە: " + error.message, false);
                     });
-            }
-
-            // سڕینەوەی بەرنامە
-            function deleteApp(appId, type) {
-                if (!db) return;
-                
-                if (confirm("دڵنیایت دەتەوێت ئەم بەرنامەیە بسڕیتەوە؟")) {
-                    db.collection("zhi-zhi").doc(appId).delete()
-                        .then(() => {
-                            console.log("✅ بەرنامە سڕایەوە بە سەرکەوتوویی");
-                            showFirebaseAlert("بەرنامە سڕایەوە بە سەرکەوتوویی!", true);
-                            
-                            if (type === "app") {
-                                loadApps();
-                                displayAdminApps();
-                            } else {
-                                loadGames();
-                                displayAdminGames();
-                            }
-                        })
-                        .catch((error) => {
-                            console.error("❌ هەڵە لە سڕینەوەی بەرنامە:", error);
-                            showFirebaseAlert("هەڵە لە سڕینەوەی بەرنامە: " + error.message, false);
-                        });
-                }
-            }
-
-            // دەستکاری بەرنامە
-            function editApp(appId, type) {
-                const allItems = [...apps, ...games];
-                const appToEdit = allItems.find(item => item.id === appId);
-                
-                if (appToEdit) {
-                    document.getElementById("edit-form-container").style.display = "block";
-                    document.getElementById("edit-app-tab").scrollIntoView({behavior: 'smooth'});
-                    
-                    document.getElementById("edit-app-id").value = appId;
-                    document.getElementById("edit-app-doc-id").value = appId;
-                    document.getElementById("edit-app-type").value = type;
-                    document.getElementById("edit-app-name").value = appToEdit.name;
-                    document.getElementById("edit-app-description").value = appToEdit.description || "";
-                    document.getElementById("edit-app-image").value = appToEdit.imgurl || "";
-                    document.getElementById("edit-app-download").value = appToEdit.downloadurl || "";
-                    document.getElementById("edit-app-featured").value = appToEdit.featured ? "true" : "false";
-                }
             }
 
             // بینینی وردەکاری بەرنامە
@@ -2935,315 +3058,6 @@
                         alertDiv.parentNode.removeChild(alertDiv);
                     }
                 }, 5000);
-            }
-
-            // Setup Search AutoComplete
-            function setupSearchAutoComplete() {
-                const searchInputs = ['main-search', 'apps-search', 'games-search'];
-                
-                searchInputs.forEach(inputId => {
-                    const input = document.getElementById(inputId);
-                    if (!input) return;
-                    
-                    input.addEventListener('input', function() {
-                        const searchTerm = this.value.toLowerCase().trim();
-                        const autocompleteId = `${inputId.replace('-search', '')}-autocomplete`;
-                        const autocomplete = document.getElementById(autocompleteId);
-                        
-                        if (searchTerm.length < 1) {
-                            autocomplete.style.display = 'none';
-                            return;
-                        }
-                        
-                        let results = [];
-                        
-                        if (inputId === 'apps-search') {
-                            results = apps.filter(item => 
-                                item.name.toLowerCase().includes(searchTerm) ||
-                                item.description.toLowerCase().includes(searchTerm)
-                            );
-                        } else if (inputId === 'games-search') {
-                            results = games.filter(item => 
-                                item.name.toLowerCase().includes(searchTerm) ||
-                                item.description.toLowerCase().includes(searchTerm)
-                            );
-                        } else {
-                            results = [...apps, ...games].filter(item => 
-                                item.name.toLowerCase().includes(searchTerm) ||
-                                item.description.toLowerCase().includes(searchTerm)
-                            );
-                        }
-                        
-                        autocomplete.innerHTML = '';
-                        
-                        if (results.length === 0) {
-                            autocomplete.innerHTML = `
-                                <div class="autocomplete-item">
-                                    <i class="fas fa-search autocomplete-item-icon"></i>
-                                    نەدۆزرایەوە: "${searchTerm}"
-                                </div>
-                            `;
-                        } else {
-                            results.slice(0, 5).forEach(item => {
-                                const div = document.createElement('div');
-                                div.className = 'autocomplete-item';
-                                div.innerHTML = `
-                                    <i class="fas ${item.type === 'app' ? 'fa-mobile-alt' : 'fa-gamepad'} autocomplete-item-icon"></i>
-                                    <div>
-                                        <strong>${item.name}</strong><br>
-                                        <small>${item.type === 'app' ? 'ئەپ' : 'یاری'}</small>
-                                    </div>
-                                `;
-                                div.addEventListener('click', function() {
-                                    input.value = item.name;
-                                    autocomplete.style.display = 'none';
-                                    
-                                    if (inputId === 'apps-search') {
-                                        searchApps(item.name);
-                                    } else if (inputId === 'games-search') {
-                                        searchGames(item.name);
-                                    } else {
-                                        searchAll(item.name);
-                                    }
-                                });
-                                autocomplete.appendChild(div);
-                            });
-                        }
-                        
-                        autocomplete.style.display = 'block';
-                    });
-                    
-                    input.addEventListener('focus', function() {
-                        const searchTerm = this.value.toLowerCase().trim();
-                        if (searchTerm.length > 0) {
-                            const autocompleteId = `${inputId.replace('-search', '')}-autocomplete`;
-                            const autocomplete = document.getElementById(autocompleteId);
-                            autocomplete.style.display = 'block';
-                        }
-                    });
-                    
-                    document.addEventListener('click', function(e) {
-                        if (!input.contains(e.target)) {
-                            const autocompleteId = `${inputId.replace('-search', '')}-autocomplete`;
-                            const autocomplete = document.getElementById(autocompleteId);
-                            autocomplete.style.display = 'none';
-                        }
-                    });
-                });
-                
-                // Setup search buttons
-                document.getElementById('main-search-btn')?.addEventListener('click', function() {
-                    const term = document.getElementById('main-search').value;
-                    searchAll(term);
-                });
-                
-                document.getElementById('apps-search-btn')?.addEventListener('click', function() {
-                    const term = document.getElementById('apps-search').value;
-                    searchApps(term);
-                });
-                
-                document.getElementById('games-search-btn')?.addEventListener('click', function() {
-                    const term = document.getElementById('games-search').value;
-                    searchGames(term);
-                });
-                
-                // Setup admin search buttons
-                document.getElementById('admin-apps-search-btn')?.addEventListener('click', function() {
-                    const term = document.getElementById('admin-apps-search').value;
-                    adminSearchApps(term);
-                });
-                
-                document.getElementById('admin-games-search-btn')?.addEventListener('click', function() {
-                    const term = document.getElementById('admin-games-search').value;
-                    adminSearchGames(term);
-                });
-                
-                // Admin search on input
-                document.getElementById('admin-apps-search')?.addEventListener('input', function() {
-                    const term = this.value;
-                    if (term.trim() === '') {
-                        displayAdminApps();
-                    }
-                });
-                
-                document.getElementById('admin-games-search')?.addEventListener('input', function() {
-                    const term = this.value;
-                    if (term.trim() === '') {
-                        displayAdminGames();
-                    }
-                });
-            }
-            
-            // Admin search functions
-            function adminSearchApps(term) {
-                if (!term.trim()) {
-                    displayAdminApps();
-                    return;
-                }
-                
-                const filtered = apps.filter(item => 
-                    item.name.toLowerCase().includes(term.toLowerCase()) ||
-                    item.description.toLowerCase().includes(term.toLowerCase())
-                );
-                
-                displayAdminFilteredItems(filtered, 'admin-apps-grid', 'app');
-            }
-            
-            function adminSearchGames(term) {
-                if (!term.trim()) {
-                    displayAdminGames();
-                    return;
-                }
-                
-                const filtered = games.filter(item => 
-                    item.name.toLowerCase().includes(term.toLowerCase()) ||
-                    item.description.toLowerCase().includes(term.toLowerCase())
-                );
-                
-                displayAdminFilteredItems(filtered, 'admin-games-grid', 'game');
-            }
-            
-            function displayAdminFilteredItems(items, gridId, type) {
-                const grid = document.getElementById(gridId);
-                if (!grid) return;
-                
-                grid.innerHTML = '';
-                
-                if (items.length === 0) {
-                    grid.innerHTML = '<div class="no-items"><i class="fas fa-search fa-2x"></i><br><br>هیچ ئەنجامێک نەدۆزرایەوە</div>';
-                    return;
-                }
-                
-                items.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = type === 'app' ? 'admin-app-card' : 'admin-game-card';
-                    
-                    if (item.featured) {
-                        card.innerHTML += `<div class="featured-badge">پاڵێوراو</div>`;
-                    }
-                    
-                    card.innerHTML = `
-                        <div class="${type === 'app' ? 'admin-app' : 'admin-game'}-actions">
-                            <button class="admin-action-btn edit" onclick="editApp('${item.id}', '${type}')">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="admin-action-btn delete" onclick="deleteApp('${item.id}', '${type}')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                        <div class="${type === 'app' ? 'admin-app' : 'admin-game'}-image">
-                            ${item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}" loading="lazy">` : 
-                                `<i class="fas ${type === 'app' ? 'fa-mobile-alt' : 'fa-gamepad'} fa-3x"></i>`}
-                        </div>
-                        <div class="${type === 'app' ? 'admin-app' : 'admin-game'}-info-overlay">
-                            <h3 class="${type === 'app' ? 'admin-app' : 'admin-game'}-info-overlay-title">
-                                ${item.name}
-                            </h3>
-                            <p class="${type === 'app' ? 'admin-app' : 'admin-game'}-info-overlay-desc">
-                                ${item.description || 'بێ وەسف'}
-                            </p>
-                            <div class="${type === 'app' ? 'admin-app' : 'admin-game'}-info-overlay-downloads">
-                                <i class="fas fa-download"></i> ${item.downloads || 0} داگرتن
-                            </div>
-                            <button class="download-overlay-btn" onclick="viewAppDetails('${item.id}', '${type}')">
-                                <i class="fas fa-eye"></i> بینین
-                            </button>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                    
-                    setupCardHoldEvents(card, item);
-                });
-            }
-            
-            function searchAll(term) {
-                if (!term.trim()) {
-                    displayAllItems();
-                    return;
-                }
-                
-                const allItems = [...apps, ...games];
-                const filtered = allItems.filter(item => 
-                    item.name.toLowerCase().includes(term.toLowerCase()) ||
-                    item.description.toLowerCase().includes(term.toLowerCase())
-                );
-                
-                displayFilteredItems(filtered, 'all-grid');
-            }
-            
-            function searchApps(term) {
-                if (!term.trim()) {
-                    displayApps();
-                    return;
-                }
-                
-                const filtered = apps.filter(item => 
-                    item.name.toLowerCase().includes(term.toLowerCase()) ||
-                    item.description.toLowerCase().includes(term.toLowerCase())
-                );
-                
-                displayFilteredItems(filtered, 'apps-grid', 'app');
-            }
-            
-            function searchGames(term) {
-                if (!term.trim()) {
-                    displayGames();
-                    return;
-                }
-                
-                const filtered = games.filter(item => 
-                    item.name.toLowerCase().includes(term.toLowerCase()) ||
-                    item.description.toLowerCase().includes(term.toLowerCase())
-                );
-                
-                displayFilteredItems(filtered, 'games-grid', 'game');
-            }
-            
-            function displayFilteredItems(items, gridId, type = null) {
-                const grid = document.getElementById(gridId);
-                if (!grid) return;
-                
-                grid.innerHTML = '';
-                
-                if (items.length === 0) {
-                    grid.innerHTML = '<div class="no-items"><i class="fas fa-search fa-2x"></i><br><br>هیچ ئەنجامێک نەدۆزرایەوە</div>';
-                    return;
-                }
-                
-                items.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = type ? (type === 'app' ? 'app-card' : 'game-card') : 
-                                        (item.type === 'app' ? 'app-card' : 'game-card');
-                    
-                    if (item.featured) {
-                        card.innerHTML += `<div class="featured-badge">پاڵێوراو</div>`;
-                    }
-                    
-                    card.innerHTML = `
-                        <div class="${type ? (type === 'app' ? 'app' : 'game') : item.type}-image">
-                            ${item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}" loading="lazy">` : 
-                                `<i class="fas ${type ? (type === 'app' ? 'fa-mobile-alt' : 'fa-gamepad') : 
-                                        (item.type === 'app' ? 'fa-mobile-alt' : 'fa-gamepad')} fa-3x"></i>`}
-                        </div>
-                        <div class="${type ? (type === 'app' ? 'app' : 'game') : item.type}-info-overlay">
-                            <h3 class="${type ? (type === 'app' ? 'app' : 'game') : item.type}-info-overlay-title">
-                                ${item.name}
-                            </h3>
-                            <p class="${type ? (type === 'app' ? 'app' : 'game') : item.type}-info-overlay-desc">
-                                ${item.description || 'بێ وەسف'}
-                            </p>
-                            <div class="${type ? (type === 'app' ? 'app' : 'game') : item.type}-info-overlay-downloads">
-                                <i class="fas fa-download"></i> ${item.downloads || 0} داگرتن
-                            </div>
-                            <a href="${item.downloadurl || '#'}" target="_blank" class="download-overlay-btn" data-id="${item.id}" data-type="${item.type || type}">
-                                <i class="fas fa-download"></i> دابەزاندن
-                            </a>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                    
-                    setupCardHoldEvents(card, item);
-                });
             }
 
             // بارکردنی سەرەتا
@@ -3328,7 +3142,42 @@
                             return;
                         }
                         
-                        addNewApp(formData);
+                        // فەنکشنی زیادکردنی بەرنامە
+                        if (!db) {
+                            showFirebaseAlert("پەیوەندی Firebase دروست نیە!", false);
+                            return;
+                        }
+                        
+                        const appToAdd = {
+                            name: formData.name,
+                            description: formData.description,
+                            type: formData.type,
+                            imgurl: formData.image || "",
+                            downloadurl: formData.downloadLink,
+                            downloads: 0,
+                            featured: formData.featured || false,
+                            createdAt: new Date().toISOString()
+                        };
+                        
+                        db.collection("zhi-zhi").add(appToAdd)
+                            .then((docRef) => {
+                                console.log("✅ بەرنامە زیادکرا بە سەرکەوتوویی، ID:", docRef.id);
+                                showFirebaseAlert("بەرنامە زیادکرا بە سەرکەوتوویی!", true);
+                                
+                                document.getElementById("add-app-form").reset();
+                                
+                                // دووبارە بارکردنی داتا
+                                if (formData.type === "app") {
+                                    loadApps();
+                                } else {
+                                    loadGames();
+                                }
+                                
+                            })
+                            .catch((error) => {
+                                console.error("❌ هەڵە لە زیادکردنی بەرنامە:", error);
+                                showFirebaseAlert("هەڵە لە زیادکردنی بەرنامە: " + error.message, false);
+                            });
                     });
                 }
                 
@@ -3356,6 +3205,7 @@
                 if (cancelEditBtn) {
                     cancelEditBtn.addEventListener('click', function() {
                         document.getElementById('edit-form-container').style.display = 'none';
+                        document.getElementById('edit-app-form').reset();
                     });
                 }
                 
@@ -3384,9 +3234,7 @@
                         showConnectionStatus("Firebase پەیوەندی دروست نەکرا", false);
                     }
                 }, 2000);
-                
-                setupSearchAutoComplete();
             });
         </script>
     </body>
-    </html>
+</html>
