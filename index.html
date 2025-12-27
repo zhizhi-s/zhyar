@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Zhi Zhi - دابەزاندنی یاری و ئەپ</title>
     <style>
-        /* === فۆنتی Noto Sans Arabic زیادکردن === */
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap');
         
-        /* === فۆنتی سەرەکی وێبسایت === */
         * { 
             box-sizing: border-box; 
             margin: 0; 
@@ -71,7 +69,6 @@
             flex: 1;
         }
         
-        /* Header */
         header {
             background: var(--header-bg);
             color: white;
@@ -107,25 +104,23 @@
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
         
-        /* Navigation - چاکسازی بۆ مۆبایل */
         .desktop-nav ul {
             display: flex;
             list-style: none;
-            gap: 4px;
+            gap: 12px;
         }
         
         .nav-link {
             color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
-            padding: 8px 14px;
+            padding: 14px 24px;
             border-radius: 30px;
             transition: var(--transition);
             font-weight: 600;
-            font-size: 13px;
+            font-size: 15px;
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-weight: 500;
+            gap: 8px;
         }
         
         .nav-link:hover {
@@ -141,7 +136,6 @@
             font-weight: 600;
         }
         
-        /* Theme Toggle */
         .theme-toggle {
             position: fixed;
             bottom: 20px;
@@ -167,7 +161,6 @@
             box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
         }
         
-        /* Mobile Menu */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -275,7 +268,6 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
         
-        /* Hero Section */
         .hero {
             text-align: center;
             padding: 30px 10px;
@@ -348,7 +340,6 @@
             z-index: 1;
         }
         
-        /* Search */
         .search-container {
             max-width: 100%;
             margin: 15px auto;
@@ -458,7 +449,6 @@
             color: var(--primary-color);
         }
         
-        /* Categories - تابەکانی ناوەڕاست */
         .categories-nav {
             display: flex;
             justify-content: center;
@@ -499,7 +489,6 @@
             font-weight: 700;
         }
         
-        /* Sections */
         .content-section {
             display: none;
             animation: fadeIn 0.5s ease;
@@ -539,7 +528,6 @@
             border-radius: 2px;
         }
         
-        /* Grid Layouts - چاکسازی بۆ مۆبایل: 3 columns */
         .featured-grid, .all-grid, .apps-grid, .games-grid, .admin-apps-grid, .admin-games-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -547,7 +535,6 @@
             margin-top: 15px;
         }
         
-        /* Cards - چاکسازی بۆ مۆبایل: کارتەکان بچووکتر */
         .app-card, .game-card, .featured-card, .admin-app-card, .admin-game-card {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -597,7 +584,6 @@
             transform: scale(1.05);
         }
         
-        /* Info Overlay - کاتێک هۆڵد دەکرێت */
         .app-info-overlay, .game-info-overlay, .featured-info-overlay, .admin-app-info-overlay, .admin-game-info-overlay {
             position: absolute;
             top: 0;
@@ -623,7 +609,7 @@
         }
         
         .app-info-overlay-title, .game-info-overlay-title, .featured-info-overlay-title {
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 6px;
             color: white;
             font-weight: 700;
@@ -631,7 +617,7 @@
         }
         
         .app-info-overlay-desc, .game-info-overlay-desc, .featured-info-overlay-desc {
-            font-size: 11px;
+            font-size: 10px;
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 8px;
             line-height: 1.4;
@@ -642,7 +628,7 @@
         }
         
         .app-info-overlay-downloads, .game-info-overlay-downloads, .featured-info-overlay-downloads {
-            font-size: 10px;
+            font-size: 9px;
             color: var(--accent-color);
             display: flex;
             align-items: center;
@@ -650,7 +636,6 @@
             margin-bottom: 8px;
         }
         
-        /* Download Button - کاتێک هۆڵد دەکرێت */
         .download-overlay-btn {
             display: inline-flex;
             align-items: center;
@@ -676,7 +661,6 @@
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
         }
         
-        /* Featured Badge */
         .featured-badge {
             position: absolute;
             top: 8px;
@@ -691,7 +675,6 @@
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
         }
         
-        /* Admin Login */
         .admin-login-full {
             display: flex;
             justify-content: center;
@@ -820,7 +803,6 @@
             box-shadow: 0 6px 20px rgba(67, 97, 238, 0.3);
         }
         
-        /* Admin Panel */
         .admin-panel-container {
             margin-top: 15px;
         }
@@ -885,7 +867,6 @@
             font-weight: 800;
         }
         
-        /* Search in Admin Panel */
         .admin-search-container {
             margin-bottom: 20px;
         }
@@ -1030,7 +1011,6 @@
             background-color: var(--border-color);
         }
         
-        /* Admin Cards - دیزاینی نوێ بۆ دووگمەکانی دەستکاری و سڕینەوە */
         .admin-app-card, .admin-game-card {
             position: relative;
         }
@@ -1083,7 +1063,6 @@
             transform: translateY(0);
         }
         
-        /* Firebase Alert */
         .firebase-alert {
             position: fixed;
             top: 70px;
@@ -1107,7 +1086,6 @@
             background: linear-gradient(135deg, var(--danger-color), #dc2626) !important;
         }
         
-        /* Footer */
         footer {
             background-color: var(--footer-bg);
             color: white;
@@ -1172,7 +1150,6 @@
             font-size: 13px;
         }
         
-        /* Loading Animation */
         .loading {
             text-align: center;
             padding: 30px 15px;
@@ -1188,7 +1165,6 @@
             color: var(--primary-color);
         }
         
-        /* Connection Status */
         .connection-status {
             position: fixed;
             top: 12px;
@@ -1217,7 +1193,6 @@
             to { transform: translateX(0); opacity: 1; }
         }
         
-        /* =================== چاکسازیەکانی تابلێت =================== */
         @media (min-width: 768px) {
             .container {
                 padding: 0 20px;
@@ -1310,18 +1285,19 @@
                 border-radius: 50px;
             }
             
-            /* چاکسازی Navbar بۆ تابلێت */
-            .desktop-nav ul {
-                gap: 6px;
+            .app-info-overlay-title, .game-info-overlay-title, .featured-info-overlay-title {
+                font-size: 16px;
             }
             
-            .nav-link {
-                padding: 10px 18px;
-                font-size: 14px;
+            .app-info-overlay-desc, .game-info-overlay-desc, .featured-info-overlay-desc {
+                font-size: 12px;
+            }
+            
+            .app-info-overlay-downloads, .game-info-overlay-downloads, .featured-info-overlay-downloads {
+                font-size: 11px;
             }
         }
         
-        /* =================== چاکسازیەکانی دەسکتۆپ =================== */
         @media (min-width: 992px) {
             .desktop-nav {
                 display: block;
@@ -1339,13 +1315,12 @@
                 font-size: 26px;
             }
             
-            /* Navbar بۆ دەسکتۆپ */
             .desktop-nav ul {
-                gap: 8px;
+                gap: 12px;
             }
             
             .nav-link {
-                padding: 12px 22px;
+                padding: 14px 24px;
                 font-size: 15px;
                 gap: 8px;
             }
@@ -1372,7 +1347,6 @@
             }
         }
         
-        /* =================== چاکسازیەکانی مۆبایلی زۆر بچووک =================== */
         @media (max-width: 360px) {
             .container {
                 padding: 0 10px;
@@ -1407,7 +1381,6 @@
                 font-size: 9px;
             }
             
-            /* Navbar لەسەر مۆبایلی زۆر بچووک */
             .mobile-menu-btn {
                 display: block;
             }
@@ -1415,9 +1388,20 @@
             .desktop-nav {
                 display: none;
             }
+            
+            .app-info-overlay-title, .game-info-overlay-title, .featured-info-overlay-title {
+                font-size: 13px;
+            }
+            
+            .app-info-overlay-desc, .game-info-overlay-desc, .featured-info-overlay-desc {
+                font-size: 10px;
+            }
+            
+            .app-info-overlay-downloads, .game-info-overlay-downloads, .featured-info-overlay-downloads {
+                font-size: 9px;
+            }
         }
         
-        /* چاکسازیەکانی سەرۆک بۆ مۆبایل */
         @media (max-width: 768px) {
             .mobile-menu-btn {
                 display: block;
@@ -1436,7 +1420,6 @@
             }
         }
         
-        /* دڵنیایی لە شێوەی رێک لەسەر هەموو ئامێرەکان */
         img {
             max-width: 100%;
             height: auto;
@@ -1469,18 +1452,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- نیشاندانی پەیوەندی -->
     <div id="connection-status" class="connection-status" style="display: none;">
         <i class="fas fa-wifi"></i>
         <span>پەیوەندی بە Firebase دروست کرا</span>
     </div>
 
-    <!-- تەگەری دەرک مۆد -->
     <button class="theme-toggle" id="theme-toggle">
         <i class="fas fa-moon"></i>
     </button>
 
-    <!-- سەرپەڕە -->
     <header>
         <div class="container header-content">
             <div class="logo">
@@ -1511,7 +1491,6 @@
         </div>
     </header>
 
-    <!-- مێنیوی مۆبایل -->
     <div class="mobile-overlay" id="mobile-overlay"></div>
     <div class="mobile-nav" id="mobile-nav">
         <div class="mobile-nav-header">
@@ -1544,11 +1523,8 @@
         </ul>
     </div>
 
-    <!-- سەرەکی -->
     <main class="container">
-        <!-- پەڕەی سەرەکی -->
         <section id="home-page" class="content-section active">
-            <!-- پێشەنگ - دیزاینی نوێ -->
             <section class="hero">
                 <div class="hero-bg-pattern"></div>
                 <div class="hero-shape"></div>
@@ -1572,7 +1548,6 @@
                 </div>
             </section>
 
-            <!-- خەتە شینەکە (ئەپەکان و یاریەکان) -->
             <div class="categories-nav">
                 <a href="#" class="category-link active" data-category="all">
                     <i class="fas fa-th-large"></i> هەموو
@@ -1585,7 +1560,6 @@
                 </a>
             </div>
 
-            <!-- پێشەنگی پاڵێوراوەکان -->
             <section class="featured-section">
                 <h2 class="section-title">
                     <i class="fas fa-crown"></i> پاڵێوراوەکان
@@ -1598,7 +1572,6 @@
                 </div>
             </section>
 
-            <!-- بەشی هەموو ئەپ و یاریەکان -->
             <section class="all-section">
                 <h2 class="section-title">
                     <i class="fas fa-th-list"></i> هەموو ئەپ و یاریەکان
@@ -1612,7 +1585,6 @@
             </section>
         </section>
 
-        <!-- پەڕەی ئەپەکان -->
         <section id="apps-page" class="content-section">
             <h1 class="section-title">
                 <i class="fas fa-mobile-alt"></i> هەموو ئەپەکان
@@ -1636,7 +1608,6 @@
             </div>
         </section>
 
-        <!-- پەڕەی یاریەکان -->
         <section id="games-page" class="content-section">
             <h1 class="section-title">
                 <i class="fas fa-gamepad"></i> هەموو یاریەکان
@@ -1660,7 +1631,6 @@
             </div>
         </section>
 
-        <!-- پەڕەی چوونە ژوورەوەی ئەدمین -->
         <section id="admin-login-page" class="content-section">
             <div class="admin-login-full">
                 <div class="admin-login-container">
@@ -1697,7 +1667,6 @@
             </div>
         </section>
 
-        <!-- پەڕەی بەڕێوەبەری -->
         <section id="admin-panel-page" class="content-section">
             <div class="admin-panel-container">
                 <h1 class="section-title">
@@ -1716,7 +1685,6 @@
                     </div>
                 </div>
                 
-                <!-- تاب: زیادکردنی بەرنامە -->
                 <div class="admin-tab-content active" id="add-app-tab">
                     <div class="admin-form-container">
                         <h2 class="admin-form-title">
@@ -1856,13 +1824,11 @@
                     </div>
                 </div>
                 
-                <!-- تاب: بەڕێوەبردنی ئەپەکان -->
                 <div class="admin-tab-content" id="manage-apps-tab">
                     <h2 class="admin-form-title">
                         <i class="fas fa-mobile-alt"></i> بەڕێوەبردنی ئەپەکان
                     </h2>
                     
-                    <!-- گەڕان لە بەڕێوەبردنی ئەپەکان -->
                     <div class="admin-search-container">
                         <div class="autocomplete-container" id="admin-apps-autocomplete-container">
                             <div class="admin-search-box">
@@ -1883,13 +1849,11 @@
                     </div>
                 </div>
                 
-                <!-- تاب: بەڕێوەبردنی یاریەکان -->
                 <div class="admin-tab-content" id="manage-games-tab">
                     <h2 class="admin-form-title">
                         <i class="fas fa-gamepad"></i> بەڕێوەبردنی یاریەکان
                     </h2>
                     
-                    <!-- گەڕان لە بەڕێوەبردنی یاریەکان -->
                     <div class="admin-search-container">
                         <div class="autocomplete-container" id="admin-games-autocomplete-container">
                             <div class="admin-search-box">
@@ -1913,7 +1877,6 @@
         </section>
     </main>
 
-    <!-- پەڕەوەر -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1959,12 +1922,10 @@
         </div>
     </footer>
 
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     
     <script>
-        // Firebase کۆنفیگ
         const firebaseConfig = {
             apiKey: "AIzaSyDf8v2t0GzChcIc1wP6vmNdTZsI5Y-rCfU",
             authDomain: "zhi-zhii.firebaseapp.com",
@@ -1975,7 +1936,6 @@
             measurementId: "G-WLGWYNH6L4"
         };
 
-        // Firebase دەستپێکردن
         let app, db;
         try {
             app = firebase.initializeApp(firebaseConfig);
@@ -1989,7 +1949,6 @@
             showConnectionStatus("هەڵە لە پەیوەندی Firebase", false);
         }
         
-        // زانیارییەکان
         let apps = [];
         let games = [];
         let featured = [];
@@ -1998,7 +1957,6 @@
         let unsubscribeApps = null;
         let unsubscribeGames = null;
 
-        // نیشاندانی پەیوەندی
         function showConnectionStatus(message, isSuccess) {
             const statusDiv = document.getElementById('connection-status');
             if (statusDiv) {
@@ -2017,7 +1975,6 @@
             }
         }
 
-        // تاقیکردنەوەی پەیوەندی Firebase
         function testFirebaseConnection() {
             db.collection("zhi-zhi").limit(1).get()
                 .then(() => {
@@ -2031,7 +1988,6 @@
                 });
         }
 
-        // نیشاندانی پەڕەیەک
         function showPage(pageId) {
             document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('active');
@@ -2073,7 +2029,6 @@
             }
         }
 
-        // بارکردنی هەموو داتا لە Firebase
         function loadAllData() {
             if (!db) {
                 console.error("Firebase Firestore بەردەست نیە");
@@ -2084,7 +2039,6 @@
             loadGames();
         }
 
-        // بارکردنی ئەپەکان
         function loadApps() {
             if (!db) return;
             
@@ -2122,7 +2076,6 @@
                 });
         }
 
-        // بارکردنی یاریەکان
         function loadGames() {
             if (!db) return;
             
@@ -2160,7 +2113,6 @@
                 });
         }
 
-        // چاودێریکردنی گۆڕانکاریەکان (Real-time)
         function setupRealtimeListeners() {
             if (!db) return;
             
@@ -2192,7 +2144,6 @@
                 });
         }
 
-        // نیشاندانی هەموو ئایتمەکان
         function displayAllItems() {
             const allGrid = document.getElementById('all-grid');
             if (!allGrid) return;
@@ -2248,7 +2199,6 @@
             });
         }
 
-        // نیشاندانی ئەپەکان
         function displayApps() {
             const appsGrid = document.getElementById('apps-grid');
             if (!appsGrid) return;
@@ -2293,7 +2243,6 @@
             });
         }
 
-        // نیشاندانی یاریەکان
         function displayGames() {
             const gamesGrid = document.getElementById('games-grid');
             if (!gamesGrid) return;
@@ -2338,19 +2287,17 @@
             });
         }
 
-        // Setup hold events for cards
         function setupCardHoldEvents(card, item) {
             let holdTimer = null;
             let isHolding = false;
             
-            // For mouse devices
             card.addEventListener('mousedown', function(e) {
-                if (e.button !== 0) return; // Only left click
+                if (e.button !== 0) return;
                 
                 holdTimer = setTimeout(() => {
                     isHolding = true;
                     card.classList.add('show-info');
-                }, 500); // 0.5 seconds hold
+                }, 500);
             });
             
             card.addEventListener('mouseup', function(e) {
@@ -2376,23 +2323,19 @@
                     return;
                 }
                 
-                // Normal click - toggle info
                 if (card.classList.contains('show-info')) {
                     card.classList.remove('show-info');
                 } else {
-                    // Only show on click if not already showing
                     setTimeout(() => {
                         card.classList.add('show-info');
                     }, 10);
                     
-                    // Hide after 3 seconds
                     setTimeout(() => {
                         card.classList.remove('show-info');
                     }, 3000);
                 }
             });
             
-            // For touch devices
             card.addEventListener('touchstart', function(e) {
                 holdTimer = setTimeout(() => {
                     isHolding = true;
@@ -2417,7 +2360,6 @@
                 isHolding = false;
             });
             
-            // داگرتن button event
             const downloadBtn = card.querySelector('.download-overlay-btn');
             if (downloadBtn) {
                 downloadBtn.addEventListener('click', function(e) {
@@ -2438,7 +2380,6 @@
             }
         }
 
-        // زیادکردنی ژمارەی داگرتن
         function incrementDownloadCount(appId, type) {
             if (!db) return;
             
@@ -2462,7 +2403,6 @@
                 });
         }
 
-        // نوێکردنەوەی پاڵێوراوەکان
         function updateFeatured() {
             featured = [];
             
@@ -2481,7 +2421,6 @@
             displayFeatured();
         }
 
-        // نیشاندانی پاڵێوراوەکان
         function displayFeatured() {
             const featuredGrid = document.getElementById('featured-grid');
             if (!featuredGrid) return;
@@ -2524,7 +2463,6 @@
             });
         }
 
-        // چوونەژوورەوەی ئەدمین
         function adminLogin(username, password) {
             const correctUsername = "zhyasndi12";
             const correctPassword = "zhizhisun2022";
@@ -2547,7 +2485,6 @@
             }
         }
 
-        // زیادکردنی بەستەری بەڕێوەبەری لە مێنیو
         function addAdminLinkToMenu() {
             const nav = document.querySelector('nav.desktop-nav ul');
             const existingAdminLink = document.querySelector('nav.desktop-nav ul li a[data-page="admin-panel"]');
@@ -2568,7 +2505,6 @@
             }
         }
 
-        // دەرک مۆد تەگەر
         function toggleTheme() {
             const body = document.body;
             const themeToggle = document.getElementById('theme-toggle');
@@ -2584,7 +2520,6 @@
             }
         }
 
-        // مێنیوی مۆبایل
         function openMobileMenu() {
             document.getElementById('mobile-nav').classList.add('active');
             document.getElementById('mobile-overlay').classList.add('active');
@@ -2597,7 +2532,6 @@
             document.body.style.overflow = '';
         }
 
-        // Setup Admin Tabs
         function setupAdminTabs() {
             const tabs = document.querySelectorAll('.admin-tab');
             tabs.forEach(tab => {
@@ -2610,7 +2544,6 @@
                     this.classList.add('active');
                     document.getElementById(`${tabId}-tab`).classList.add('active');
                     
-                    // Reset search when switching tabs
                     if (tabId === 'manage-apps') {
                         document.getElementById('admin-apps-search').value = '';
                         displayAdminApps();
@@ -2622,7 +2555,6 @@
             });
         }
 
-        // نیشاندانی ئەپەکان لە بەڕێوەبردنی - بە دیزاینی نوێ
         function displayAdminApps() {
             const adminAppsGrid = document.getElementById('admin-apps-grid');
             if (!adminAppsGrid) return;
@@ -2671,7 +2603,6 @@
                 `;
                 adminAppsGrid.appendChild(appCard);
                 
-                // زیادکردنی Event Listeners بۆ دووگمەکانی دەستکاری و سڕینەوە
                 const editBtn = appCard.querySelector('.edit');
                 const deleteBtn = appCard.querySelector('.delete');
                 const viewBtn = appCard.querySelector('.view-details-btn');
@@ -2704,7 +2635,6 @@
             });
         }
 
-        // نیشاندانی یاریەکان لە بەڕێوەبردنی - بە دیزاینی نوێ
         function displayAdminGames() {
             const adminGamesGrid = document.getElementById('admin-games-grid');
             if (!adminGamesGrid) return;
@@ -2753,7 +2683,6 @@
                 `;
                 adminGamesGrid.appendChild(gameCard);
                 
-                // زیادکردنی Event Listeners بۆ دووگمەکانی دەستکاری و سڕینەوە
                 const editBtn = gameCard.querySelector('.edit');
                 const deleteBtn = gameCard.querySelector('.delete');
                 const viewBtn = gameCard.querySelector('.view-details-btn');
@@ -2786,7 +2715,6 @@
             });
         }
 
-        // سڕینەوەی بەرنامە - کاریگەر
         function deleteApp(appId, type) {
             if (!db) {
                 showFirebaseAlert("پەیوەندی Firebase دروست نیە!", false);
@@ -2794,22 +2722,19 @@
             }
             
             if (confirm("دڵنیایت دەتەوێت ئەم بەرنامەیە بسڕیتەوە؟")) {
-                // یەکسەر سڕینەوە لە Firebase
                 db.collection("zhi-zhi").doc(appId).delete()
                     .then(() => {
                         console.log("✅ بەرنامە سڕایەوە بە سەرکەوتوویی");
                         showFirebaseAlert("بەرنامە سڕایەوە بە سەرکەوتوویی!", true);
                         
-                        // یەکسەر سڕینەوە لە لیستەکانی ناوەوە
                         if (type === "app") {
                             apps = apps.filter(app => app.id !== appId);
-                            displayAdminApps(); // دووبارە نیشاندانی لیستەکە
+                            displayAdminApps();
                         } else {
                             games = games.filter(game => game.id !== appId);
-                            displayAdminGames(); // دووبارە نیشاندانی لیستەکە
+                            displayAdminGames();
                         }
                         
-                        // دووبارە بارکردنی داتا لە Firebase
                         setTimeout(() => {
                             if (type === "app") {
                                 loadApps();
@@ -2825,11 +2750,9 @@
             }
         }
 
-        // دەستکاری بەرنامە - کاریگەر
         function editApp(appId, type) {
             console.log("دەستکاری بەرنامە:", appId, type);
             
-            // گەڕان بەدوای بەرنامە لە لیستەکان
             let appToEdit;
             
             if (type === 'app') {
@@ -2839,17 +2762,14 @@
             }
             
             if (appToEdit) {
-                // نیشاندانی فۆڕمی دەستکاری
                 document.getElementById("edit-form-container").style.display = "block";
                 
-                // گۆڕین بۆ تابەکەی زیادکردنی بەرنامە
                 document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
                 
                 document.querySelector('.admin-tab[data-tab="add-app"]').classList.add('active');
                 document.getElementById('add-app-tab').classList.add('active');
                 
-                // پڕکردنەوەی فۆڕم بە زانیارییەکانی بەرنامە
                 document.getElementById("edit-app-id").value = appId;
                 document.getElementById("edit-app-type").value = type;
                 document.getElementById("edit-app-name").value = appToEdit.name || "";
@@ -2858,7 +2778,6 @@
                 document.getElementById("edit-app-download").value = appToEdit.downloadurl || "";
                 document.getElementById("edit-app-featured").value = appToEdit.featured ? "true" : "false";
                 
-                // هێنانە خوارەوەی فۆڕم
                 document.getElementById("edit-form-container").scrollIntoView({behavior: 'smooth'});
                 
             } else {
@@ -2867,7 +2786,6 @@
             }
         }
 
-        // نوێکردنەوەی بەرنامە - کاریگەر
         function updateApp(appId, appData) {
             if (!db) {
                 showFirebaseAlert("پەیوەندی Firebase دروست نیە!", false);
@@ -2889,11 +2807,9 @@
                     console.log("✅ بەرنامە نوێکرایەوە بە سەرکەوتوویی");
                     showFirebaseAlert("بەرنامە نوێکرایەوە بە سەرکەوتوویی!", true);
                     
-                    // حاشێکردنی فۆڕمی دەستکاری
                     document.getElementById("edit-form-container").style.display = "none";
                     document.getElementById("edit-app-form").reset();
                     
-                    // دووبارە بارکردنی داتا لە Firebase
                     if (appData.type === "app") {
                         loadApps();
                     } else {
@@ -2907,7 +2823,6 @@
                 });
         }
 
-        // بینینی وردەکاری بەرنامە
         function viewAppDetails(appId, type) {
             const allItems = [...apps, ...games];
             const app = allItems.find(item => item.id === appId);
@@ -2926,7 +2841,6 @@
             }
         }
 
-        // نیشاندانی هەڵە یان سەرکەوتوویی Firebase
         function showFirebaseAlert(message, isSuccess) {
             const alertDiv = document.createElement('div');
             alertDiv.className = `firebase-alert ${isSuccess ? '' : 'firebase-error'}`;
@@ -2944,9 +2858,6 @@
             }, 5000);
         }
 
-        // ============ فەنکشنەکانی گەڕان و ئۆپشنی گەڕان ============
-        
-        // گەڕان لە هەموو ئایتمەکاندا
         function searchItems(query, items) {
             if (!query || query.trim() === '') {
                 return items;
@@ -2959,7 +2870,6 @@
             );
         }
         
-        // نیشاندانی ئەنجامی گەڕان
         function displaySearchResults(query, itemsToSearch, gridId, cardType) {
             const grid = document.getElementById(gridId);
             if (!grid) return;
@@ -3013,7 +2923,6 @@
             });
         }
         
-        // دروستکردنی ئۆپشنی گەڕان (Autocomplete)
         function showAutocompleteResults(query, containerId, allItems) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -3028,7 +2937,7 @@
             const filteredItems = allItems.filter(item => 
                 item.name.toLowerCase().includes(searchTerm) || 
                 item.description.toLowerCase().includes(searchTerm)
-            ).slice(0, 8); // تەنها 8 ئایتم پیشان بدە
+            ).slice(0, 8);
             
             if (filteredItems.length === 0) {
                 container.innerHTML = `
@@ -3053,14 +2962,12 @@
                 `;
                 
                 itemDiv.addEventListener('click', function() {
-                    // پڕکردنەوەی بۆکسەکە بە ناوی هەڵبژێردراو
                     const input = container.previousElementSibling.querySelector('.search-input') || 
                                  container.previousElementSibling.querySelector('.admin-search-input');
                     if (input) {
                         input.value = item.name;
                     }
                     
-                    // نیشاندانی ئەنجامەکە
                     if (containerId === 'main-autocomplete') {
                         displaySearchResults(item.name, [...apps, ...games], 'all-grid', 'app-card');
                     } else if (containerId === 'apps-autocomplete') {
@@ -3082,9 +2989,7 @@
             container.classList.add('show');
         }
         
-        // Setup for search functionality
         function setupSearchFunctionality() {
-            // Main search
             const mainSearchInput = document.getElementById('main-search');
             const mainSearchBtn = document.getElementById('main-search-btn');
             const mainAutocomplete = document.getElementById('main-autocomplete');
@@ -3119,7 +3024,6 @@
                 });
             }
             
-            // Apps search
             const appsSearchInput = document.getElementById('apps-search');
             const appsSearchBtn = document.getElementById('apps-search-btn');
             const appsAutocomplete = document.getElementById('apps-autocomplete');
@@ -3154,7 +3058,6 @@
                 });
             }
             
-            // Games search
             const gamesSearchInput = document.getElementById('games-search');
             const gamesSearchBtn = document.getElementById('games-search-btn');
             const gamesAutocomplete = document.getElementById('games-autocomplete');
@@ -3189,7 +3092,6 @@
                 });
             }
             
-            // Admin apps search - ئێستا ئۆپشنی گەڕانی هەیە
             const adminAppsSearchInput = document.getElementById('admin-apps-search');
             const adminAppsSearchBtn = document.getElementById('admin-apps-search-btn');
             const adminAppsAutocomplete = document.getElementById('admin-apps-autocomplete');
@@ -3222,7 +3124,6 @@
                 });
             }
             
-            // Admin games search - ئێستا ئۆپشنی گەڕانی هەیە
             const adminGamesSearchInput = document.getElementById('admin-games-search');
             const adminGamesSearchBtn = document.getElementById('admin-games-search-btn');
             const adminGamesAutocomplete = document.getElementById('admin-games-autocomplete');
@@ -3255,7 +3156,6 @@
                 });
             }
             
-            // Hide autocomplete when clicking outside
             document.addEventListener('click', function(e) {
                 if (!e.target.closest('.autocomplete-container')) {
                     document.querySelectorAll('.autocomplete-results').forEach(container => {
@@ -3265,7 +3165,6 @@
             });
         }
 
-        // بارکردنی سەرەتا
         document.addEventListener('DOMContentLoaded', function() {
             const savedTheme = localStorage.getItem('zhizhi_theme');
             if (savedTheme === 'dark') {
@@ -3347,7 +3246,6 @@
                         return;
                     }
                     
-                    // فەنکشنی زیادکردنی بەرنامە
                     if (!db) {
                         showFirebaseAlert("پەیوەندی Firebase دروست نیە!", false);
                         return;
@@ -3371,7 +3269,6 @@
                             
                             document.getElementById("add-app-form").reset();
                             
-                            // دووبارە بارکردنی داتا
                             if (formData.type === "app") {
                                 loadApps();
                             } else {
@@ -3434,7 +3331,6 @@
                 mobileOverlay.addEventListener('click', closeMobileMenu);
             }
             
-            // Setup search functionality after data is loaded
             setTimeout(() => {
                 setupSearchFunctionality();
             }, 1000);
