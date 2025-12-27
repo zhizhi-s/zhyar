@@ -25,8 +25,8 @@
             --danger-color: #e63946;
             --success-color: #2a9d8f;
             --warning-color: #f4a261;
-            --border-radius: 12px;
-            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-radius: 16px;
+            --box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --bg-color: #f8fafc;
             --text-color: #1e293b;
@@ -52,13 +52,13 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.5;
+            line-height: 1.6;
             transition: var(--transition);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 400;
             -webkit-tap-highlight-color: transparent;
         }
@@ -67,7 +67,7 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 12px;
+            padding: 0 15px;
             flex: 1;
         }
         
@@ -76,7 +76,7 @@
             background: var(--header-bg);
             color: white;
             padding: 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -88,26 +88,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
+            padding: 15px 0;
         }
         
         .logo {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 8px;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-            letter-spacing: -0.3px;
+            gap: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: -0.5px;
         }
         
         .logo-icon {
             color: #4cc9f0;
-            font-size: 20px;
-            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+            font-size: 24px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
         
-        /* Navigation - قەڵەوکراوە بۆ شاشە گەورەکان */
+        /* Navigation - چاکسازی بۆ مۆبایل */
         .desktop-nav ul {
             display: flex;
             list-style: none;
@@ -118,7 +118,7 @@
             color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             padding: 8px 14px;
-            border-radius: 20px;
+            border-radius: 30px;
             transition: var(--transition);
             font-weight: 600;
             font-size: 13px;
@@ -130,29 +130,29 @@
         
         .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
             color: white;
         }
         
         .nav-link.active {
             background-color: white;
             color: var(--primary-color);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             font-weight: 600;
         }
         
         /* Theme Toggle */
         .theme-toggle {
             position: fixed;
-            bottom: 15px;
-            left: 15px;
-            width: 45px;
-            height: 45px;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             border: none;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
             box-shadow: var(--box-shadow);
             z-index: 100;
@@ -163,8 +163,8 @@
         }
         
         .theme-toggle:hover {
-            transform: scale(1.08) rotate(15deg);
-            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.3);
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
         }
         
         /* Mobile Menu */
@@ -173,10 +173,10 @@
             background: none;
             border: none;
             color: white;
-            font-size: 22px;
+            font-size: 24px;
             cursor: pointer;
-            padding: 6px;
-            border-radius: 6px;
+            padding: 8px;
+            border-radius: 8px;
             transition: var(--transition);
         }
         
@@ -187,11 +187,11 @@
         .mobile-nav {
             position: fixed;
             top: 0;
-            right: -280px;
-            width: 260px;
+            right: -320px;
+            width: 300px;
             height: 100%;
             background-color: var(--card-bg);
-            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.12);
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
             transition: var(--transition);
             z-index: 1001;
             display: flex;
@@ -220,7 +220,7 @@
         }
         
         .mobile-nav-header {
-            padding: 18px;
+            padding: 20px;
             background: var(--header-bg);
             color: white;
             display: flex;
@@ -233,10 +233,10 @@
             background: none;
             border: none;
             color: white;
-            font-size: 22px;
+            font-size: 24px;
             cursor: pointer;
-            padding: 4px;
-            border-radius: 6px;
+            padding: 5px;
+            border-radius: 8px;
             transition: var(--transition);
         }
         
@@ -246,41 +246,41 @@
         
         .mobile-nav-links {
             list-style: none;
-            padding: 18px;
+            padding: 20px;
             flex: 1;
             overflow-y: auto;
         }
         
         .mobile-nav-links li {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         
         .mobile-nav-link {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 14px 16px;
+            gap: 12px;
+            padding: 16px 20px;
             color: var(--text-color);
             text-decoration: none;
             border-radius: var(--border-radius);
             transition: var(--transition);
             font-weight: 700;
-            font-size: 14px;
+            font-size: 15px;
         }
         
         .mobile-nav-link:hover, .mobile-nav-link.active {
             background: linear-gradient(135deg, rgba(76, 201, 240, 0.1), rgba(67, 97, 238, 0.1));
             color: var(--primary-color);
-            transform: translateX(-4px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
         
-        /* Hero Section - بچووککراوە */
+        /* Hero Section */
         .hero {
             text-align: center;
-            padding: 30px 12px;
+            padding: 30px 10px;
             margin-bottom: 20px;
-            border-radius: 16px;
+            border-radius: 15px;
             margin-top: 10px;
             position: relative;
             overflow: hidden;
@@ -310,27 +310,28 @@
             margin-bottom: 12px;
             color: white;
             font-weight: 800;
-            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             line-height: 1.3;
+            letter-spacing: -0.5px;
         }
         
         .hero p {
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 22px;
-            max-width: 800px;
+            margin-bottom: 20px;
+            max-width: 100%;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.5;
+            line-height: 1.6;
             font-weight: 400;
         }
         
         .hero-shape {
             position: absolute;
-            bottom: -40px;
-            left: -40px;
-            width: 150px;
-            height: 150px;
+            bottom: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 50%;
             z-index: 1;
@@ -338,10 +339,10 @@
         
         .hero-shape-2 {
             position: absolute;
-            top: -40px;
-            right: -40px;
-            width: 120px;
-            height: 120px;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
             background: rgba(76, 201, 240, 0.1);
             border-radius: 50%;
             z-index: 1;
@@ -349,7 +350,7 @@
         
         /* Search */
         .search-container {
-            max-width: 700px;
+            max-width: 100%;
             margin: 15px auto;
         }
         
@@ -359,15 +360,15 @@
             background: white;
             border-radius: var(--border-radius);
             padding: 0;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             transition: var(--transition);
         }
         
         .search-box:focus-within {
             border-color: white;
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
-            transform: translateY(-1px);
+            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
         
         .search-input {
@@ -402,8 +403,8 @@
         }
         
         .search-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 15px rgba(58, 134, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(58, 134, 255, 0.4);
         }
         
         .autocomplete-container {
@@ -423,7 +424,7 @@
             overflow-y: auto;
             display: none;
             z-index: 100;
-            margin-top: 8px;
+            margin-top: 5px;
         }
         
         .autocomplete-results.show {
@@ -440,7 +441,7 @@
             gap: 8px;
             color: var(--autocomplete-text);
             font-weight: 400;
-            font-size: 13px;
+            font-size: 14px;
         }
         
         .autocomplete-item:last-child {
@@ -449,7 +450,7 @@
         
         .autocomplete-item:hover {
             background-color: rgba(76, 201, 240, 0.1);
-            padding-right: 16px;
+            padding-right: 15px;
         }
         
         .autocomplete-item-icon {
@@ -457,36 +458,36 @@
             color: var(--primary-color);
         }
         
-        /* Categories - بچووککراوە */
+        /* Categories - تابەکانی ناوەڕاست */
         .categories-nav {
             display: flex;
             justify-content: center;
             gap: 8px;
             margin-bottom: 20px;
             flex-wrap: wrap;
-            padding: 0 4px;
+            padding: 0 5px;
         }
         
         .category-link {
-            padding: 10px 14px;
+            padding: 10px 15px;
             background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
             text-decoration: none;
             color: var(--text-color);
             font-weight: 700;
             transition: var(--transition);
-            font-size: 12px;
+            font-size: 13px;
             display: flex;
             align-items: center;
             gap: 6px;
-            min-width: 85px;
+            min-width: 80px;
             justify-content: center;
         }
         
         .category-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             border-color: var(--primary-color);
         }
         
@@ -494,19 +495,19 @@
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             border-color: var(--primary-color);
-            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.18);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.2);
             font-weight: 700;
         }
         
         /* Sections */
         .content-section {
             display: none;
-            animation: fadeIn 0.4s ease;
-            padding-bottom: 15px;
+            animation: fadeIn 0.5s ease;
+            padding-bottom: 20px;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
@@ -524,6 +525,7 @@
             font-weight: 800;
             position: relative;
             padding-bottom: 8px;
+            letter-spacing: -0.5px;
         }
         
         .section-title::after {
@@ -537,15 +539,15 @@
             border-radius: 2px;
         }
         
-        /* Grid Layouts - کارتەکان بچووککراون بۆ 2 columns */
+        /* Grid Layouts - چاکسازی بۆ مۆبایل: 3 columns */
         .featured-grid, .all-grid, .apps-grid, .games-grid, .admin-apps-grid, .admin-games-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 12px;
             margin-top: 15px;
         }
         
-        /* Cards - بچووککراون بەبێ گۆڕینی دیزاین */
+        /* Cards - چاکسازی بۆ مۆبایل: کارتەکان بچووکتر */
         .app-card, .game-card, .featured-card, .admin-app-card, .admin-game-card {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -556,12 +558,12 @@
             position: relative;
             cursor: pointer;
             aspect-ratio: 3/4;
-            height: 180px; /* بچووککراوە */
+            width: 100%;
         }
         
         .app-card:hover, .game-card:hover, .featured-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             border-color: var(--primary-color);
         }
         
@@ -592,10 +594,10 @@
         .app-card:hover .app-image img,
         .game-card:hover .game-image img,
         .featured-card:hover .featured-image img {
-            transform: scale(1.04);
+            transform: scale(1.05);
         }
         
-        /* Info Overlay - بچووککراوە */
+        /* Info Overlay - کاتێک هۆڵد دەکرێت */
         .app-info-overlay, .game-info-overlay, .featured-info-overlay, .admin-app-info-overlay, .admin-game-info-overlay {
             position: absolute;
             top: 0;
@@ -621,7 +623,7 @@
         }
         
         .app-info-overlay-title, .game-info-overlay-title, .featured-info-overlay-title {
-            font-size: 13px;
+            font-size: 14px;
             margin-bottom: 6px;
             color: white;
             font-weight: 700;
@@ -629,7 +631,7 @@
         }
         
         .app-info-overlay-desc, .game-info-overlay-desc, .featured-info-overlay-desc {
-            font-size: 10px;
+            font-size: 11px;
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 8px;
             line-height: 1.4;
@@ -648,7 +650,7 @@
             margin-bottom: 8px;
         }
         
-        /* Download Button - بچووککراوە */
+        /* Download Button - کاتێک هۆڵد دەکرێت */
         .download-overlay-btn {
             display: inline-flex;
             align-items: center;
@@ -664,13 +666,13 @@
             border: none;
             cursor: pointer;
             width: 100%;
-            font-size: 11px;
+            font-size: 12px;
             margin-top: 6px;
         }
         
         .download-overlay-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
         }
         
@@ -686,28 +688,28 @@
             font-size: 9px;
             font-weight: 600;
             z-index: 3;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
         }
         
-        /* Admin Login - بچووککراوە */
+        /* Admin Login */
         .admin-login-full {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 60vh;
-            padding: 15px 10px;
+            min-height: 70vh;
+            padding: 20px 10px;
         }
         
         .admin-login-container {
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
         }
         
         .admin-login-box {
             background-color: var(--card-bg);
             border-radius: var(--border-radius);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-            padding: 22px 18px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            padding: 20px 15px;
             border: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
@@ -738,13 +740,13 @@
         .alert {
             padding: 10px 12px;
             border-radius: var(--border-radius);
-            margin-bottom: 18px;
+            margin-bottom: 15px;
             display: none;
             align-items: center;
             gap: 8px;
             font-weight: 600;
             transition: var(--transition);
-            font-size: 13px;
+            font-size: 14px;
         }
         
         .alert.show {
@@ -753,7 +755,7 @@
         }
         
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-8px); }
+            from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
@@ -764,7 +766,7 @@
         }
         
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 15px;
         }
         
         .form-group label {
@@ -774,15 +776,15 @@
             margin-bottom: 6px;
             font-weight: 600;
             color: var(--text-color);
-            font-size: 13px;
+            font-size: 14px;
         }
         
         .form-control {
             width: 100%;
             padding: 12px 14px;
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             border-radius: var(--border-radius);
-            font-size: 13px;
+            font-size: 14px;
             background-color: var(--input-bg);
             color: var(--text-color);
             transition: var(--transition);
@@ -792,7 +794,7 @@
         
         .form-control:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.1);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
         }
         
         .login-btn {
@@ -802,7 +804,7 @@
             color: white;
             border: none;
             border-radius: var(--border-radius);
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
@@ -814,11 +816,11 @@
         }
         
         .login-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.3);
         }
         
-        /* Admin Panel - بچووککراوە */
+        /* Admin Panel */
         .admin-panel-container {
             margin-top: 15px;
         }
@@ -827,35 +829,37 @@
             display: flex;
             gap: 6px;
             margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
             padding-bottom: 6px;
             flex-wrap: wrap;
+            overflow-x: auto;
         }
         
         .admin-tab {
             padding: 10px 14px;
             background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             border-radius: var(--border-radius) var(--border-radius) 0 0;
             cursor: pointer;
             font-weight: 600;
             transition: var(--transition);
-            font-size: 12px;
+            font-size: 13px;
             display: flex;
             align-items: center;
             gap: 6px;
+            white-space: nowrap;
         }
         
         .admin-tab:hover, .admin-tab.active {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             border-color: var(--primary-color);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
         }
         
         .admin-tab-content {
             display: none;
-            animation: fadeIn 0.4s ease;
+            animation: fadeIn 0.5s ease;
         }
         
         .admin-tab-content.active {
@@ -866,13 +870,13 @@
             background-color: var(--card-bg);
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            padding: 20px 16px;
+            padding: 20px 15px;
             border: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
         
         .admin-form-title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 20px;
             color: var(--primary-color);
             display: flex;
@@ -892,14 +896,14 @@
             background: var(--card-bg);
             border-radius: var(--border-radius);
             padding: 0;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--border-color);
             transition: var(--transition);
         }
         
         .admin-search-box:focus-within {
             border-color: var(--primary-color);
-            box-shadow: 0 3px 15px rgba(67, 97, 238, 0.15);
+            box-shadow: 0 4px 20px rgba(67, 97, 238, 0.2);
         }
         
         .admin-search-input {
@@ -907,7 +911,7 @@
             padding: 12px 14px;
             border: none;
             border-radius: var(--border-radius) var(--border-radius) 0 0;
-            font-size: 13px;
+            font-size: 14px;
             background-color: var(--input-bg);
             color: var(--text-color);
             outline: none;
@@ -928,19 +932,19 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            font-size: 13px;
+            font-size: 14px;
         }
         
         .admin-search-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 5px 12px rgba(67, 97, 238, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
         }
         
         .admin-form-row {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-bottom: 18px;
+            margin-bottom: 15px;
         }
         
         .admin-form-group {
@@ -955,9 +959,9 @@
         .form-select {
             width: 100%;
             padding: 12px 14px;
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             border-radius: var(--border-radius);
-            font-size: 13px;
+            font-size: 14px;
             background-color: var(--input-bg);
             color: var(--text-color);
             transition: var(--transition);
@@ -968,7 +972,7 @@
         
         .form-select:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.1);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
         }
         
         .form-checkbox {
@@ -976,7 +980,6 @@
             align-items: center;
             gap: 8px;
             cursor: pointer;
-            font-size: 13px;
         }
         
         .form-checkbox input[type="checkbox"] {
@@ -993,7 +996,7 @@
         }
         
         .admin-btn {
-            padding: 12px 14px;
+            padding: 12px 15px;
             border-radius: var(--border-radius);
             font-weight: 600;
             cursor: pointer;
@@ -1002,7 +1005,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 13px;
+            font-size: 14px;
             width: 100%;
             justify-content: center;
         }
@@ -1013,21 +1016,21 @@
         }
         
         .admin-btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.3);
         }
         
         .admin-btn-secondary {
             background-color: var(--card-bg);
             color: var(--text-color);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
         }
         
         .admin-btn-secondary:hover {
             background-color: var(--border-color);
         }
         
-        /* Admin Cards - بچووککراوە */
+        /* Admin Cards - دیزاینی نوێ بۆ دووگمەکانی دەستکاری و سڕینەوە */
         .admin-app-card, .admin-game-card {
             position: relative;
         }
@@ -1063,17 +1066,17 @@
         
         .admin-action-btn.edit {
             background: linear-gradient(135deg, #2a9d8f, #1a7566);
-            box-shadow: 0 2px 8px rgba(42, 157, 143, 0.25);
+            box-shadow: 0 3px 8px rgba(42, 157, 143, 0.3);
         }
         
         .admin-action-btn.delete {
             background: linear-gradient(135deg, #e63946, #c1121f);
-            box-shadow: 0 2px 8px rgba(230, 57, 70, 0.25);
+            box-shadow: 0 3px 8px rgba(230, 57, 70, 0.3);
         }
         
         .admin-action-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
         
         .admin-action-btn:active {
@@ -1084,27 +1087,27 @@
         .firebase-alert {
             position: fixed;
             top: 70px;
-            right: 12px;
+            right: 10px;
             background: linear-gradient(135deg, var(--success-color), #34d399);
             color: white;
-            padding: 12px 16px;
+            padding: 12px 15px;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             z-index: 9999;
             display: flex;
             align-items: center;
             gap: 10px;
-            max-width: 280px;
-            animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1), fadeOut 0.4s ease 4s forwards;
+            max-width: 250px;
+            animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1), fadeOut 0.5s ease 4.5s forwards;
             border-left: 4px solid rgba(255, 255, 255, 0.5);
-            font-size: 13px;
+            font-size: 14px;
         }
         
         .firebase-error {
             background: linear-gradient(135deg, var(--danger-color), #dc2626) !important;
         }
         
-        /* Footer - بچووککراوە */
+        /* Footer */
         footer {
             background-color: var(--footer-bg);
             color: white;
@@ -1152,13 +1155,13 @@
             color: #cbd5e1;
             text-decoration: none;
             transition: var(--transition);
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 400;
         }
         
         .footer-links a:hover {
             color: var(--accent-color);
-            transform: translateX(-4px);
+            transform: translateX(-3px);
         }
         
         .copyright {
@@ -1166,7 +1169,7 @@
             padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #94a3b8;
-            font-size: 12px;
+            font-size: 13px;
         }
         
         /* Loading Animation */
@@ -1175,12 +1178,13 @@
             padding: 30px 15px;
             color: var(--primary-color);
             grid-column: 1 / -1;
+            font-size: 14px;
         }
         
         .loading i {
             animation: spin 1s linear infinite;
-            margin-bottom: 12px;
-            font-size: 25px;
+            margin-bottom: 10px;
+            font-size: 24px;
             color: var(--primary-color);
         }
         
@@ -1199,9 +1203,9 @@
             align-items: center;
             gap: 6px;
             font-weight: 600;
-            animation: slideInLeft 0.4s ease;
+            animation: slideInLeft 0.5s ease;
             max-width: calc(100% - 24px);
-            font-size: 12px;
+            font-size: 13px;
         }
         
         .connection-status.error {
@@ -1215,68 +1219,39 @@
         
         /* =================== چاکسازیەکانی تابلێت =================== */
         @media (min-width: 768px) {
-            body {
-                font-size: 15px;
-            }
-            
             .container {
                 padding: 0 20px;
             }
             
-            .header-content {
-                padding: 15px 0;
-            }
-            
-            .logo {
-                font-size: 22px;
-                gap: 10px;
-            }
-            
-            .logo-icon {
-                font-size: 24px;
-            }
-            
-            .nav-link {
-                padding: 10px 18px;
-                font-size: 14px;
-                gap: 8px;
-                border-radius: 25px;
-            }
-            
             .hero {
-                padding: 40px 20px;
+                padding: 40px 15px;
                 margin-top: 15px;
-                margin-bottom: 25px;
             }
             
             .hero h1 {
-                font-size: 1.8rem;
-                margin-bottom: 15px;
+                font-size: 2rem;
             }
             
             .hero p {
                 font-size: 1rem;
-                margin-bottom: 25px;
             }
             
             .search-box {
                 flex-direction: row;
-                border-radius: 30px;
+                border-radius: 50px;
                 padding: 4px;
-                border: 1px solid rgba(255, 255, 255, 0.3);
+                border: 2px solid rgba(255, 255, 255, 0.3);
             }
             
             .search-input {
-                border-radius: 30px;
+                border-radius: 50px;
                 border-bottom: none;
-                padding: 14px 20px;
-                font-size: 15px;
+                padding: 16px 20px;
             }
             
             .search-btn {
-                border-radius: 30px;
-                padding: 14px 25px;
-                font-size: 14px;
+                border-radius: 50px;
+                padding: 16px 30px;
             }
             
             .categories-nav {
@@ -1285,13 +1260,12 @@
             
             .category-link {
                 padding: 12px 20px;
-                font-size: 13px;
+                font-size: 14px;
                 min-width: 100px;
             }
             
             .section-title {
-                font-size: 1.5rem;
-                margin-bottom: 18px;
+                font-size: 1.6rem;
             }
             
             .featured-grid, .all-grid, .apps-grid, .games-grid, .admin-apps-grid, .admin-games-grid {
@@ -1300,8 +1274,7 @@
             }
             
             .app-card, .game-card, .featured-card, .admin-app-card, .admin-game-card {
-                height: 200px;
-                border-radius: 14px;
+                aspect-ratio: 3/4;
             }
             
             .footer-content {
@@ -1324,18 +1297,26 @@
             
             .admin-search-box {
                 flex-direction: row;
-                border-radius: 30px;
+                border-radius: 50px;
                 padding: 4px;
             }
             
             .admin-search-input {
-                border-radius: 30px;
+                border-radius: 50px;
                 border-bottom: none;
-                font-size: 14px;
             }
             
             .admin-search-btn {
-                border-radius: 30px;
+                border-radius: 50px;
+            }
+            
+            /* چاکسازی Navbar بۆ تابلێت */
+            .desktop-nav ul {
+                gap: 6px;
+            }
+            
+            .nav-link {
+                padding: 10px 18px;
                 font-size: 14px;
             }
         }
@@ -1358,15 +1339,19 @@
                 font-size: 26px;
             }
             
+            /* Navbar بۆ دەسکتۆپ */
+            .desktop-nav ul {
+                gap: 8px;
+            }
+            
             .nav-link {
                 padding: 12px 22px;
                 font-size: 15px;
                 gap: 8px;
-                border-radius: 30px;
             }
             
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.4rem;
             }
             
             .hero p {
@@ -1379,39 +1364,11 @@
             
             .featured-grid, .all-grid, .apps-grid, .games-grid, .admin-apps-grid, .admin-games-grid {
                 grid-template-columns: repeat(4, 1fr);
-                gap: 20px;
-            }
-            
-            .app-card, .game-card, .featured-card, .admin-app-card, .admin-game-card {
-                height: 220px;
+                gap: 22px;
             }
             
             .footer-content {
                 grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .theme-toggle {
-                bottom: 20px;
-                left: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-            }
-        }
-        
-        /* =================== دەسکتۆپی گەورە =================== */
-        @media (min-width: 1200px) {
-            .nav-link {
-                padding: 14px 26px;
-                font-size: 16px;
-            }
-            
-            .logo {
-                font-size: 26px;
-            }
-            
-            .logo-icon {
-                font-size: 28px;
             }
         }
         
@@ -1422,26 +1379,60 @@
             }
             
             .hero h1 {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
             }
             
             .hero p {
                 font-size: 0.85rem;
             }
             
-            .featured-grid, .all-grid, .apps-grid, .games-grid, .admin-apps-grid, .admin-games-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
+            .categories-nav {
+                gap: 6px;
             }
             
-            .app-card, .game-card, .featured-card, .admin-app-card, .admin-game-card {
-                height: 160px;
+            .category-link {
+                padding: 8px 12px;
+                font-size: 12px;
+                min-width: 70px;
+            }
+            
+            .featured-grid, .all-grid, .apps-grid, .games-grid, .admin-apps-grid, .admin-games-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
             }
             
             .admin-action-btn {
                 max-width: 70px;
                 padding: 5px 7px;
                 font-size: 9px;
+            }
+            
+            /* Navbar لەسەر مۆبایلی زۆر بچووک */
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+        }
+        
+        /* چاکسازیەکانی سەرۆک بۆ مۆبایل */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+            
+            .logo-icon {
+                font-size: 22px;
             }
         }
         
@@ -1557,7 +1548,7 @@
     <main class="container">
         <!-- پەڕەی سەرەکی -->
         <section id="home-page" class="content-section active">
-            <!-- پێشەنگ -->
+            <!-- پێشەنگ - دیزاینی نوێ -->
             <section class="hero">
                 <div class="hero-bg-pattern"></div>
                 <div class="hero-shape"></div>
@@ -1929,8 +1920,8 @@
                 <div class="footer-section">
                     <h3>Zhi Zhi</h3>
                     <p>وێبسایتێکە بۆ دابەزاندنی یاری و ئەپەکان. هەموو مافەکان پارێزراون.</p>
-                    <div style="margin-top: 15px;">
-                        <a href="#" class="download-btn" style="width: auto; padding: 8px 15px; font-size: 12px;">
+                    <div style="margin-top: 20px;">
+                        <a href="#" class="download-btn" style="width: auto; padding: 10px 20px;">
                             <i class="fas fa-star"></i> پێداچوونەوە بنووسە
                         </a>
                     </div>
@@ -1953,11 +1944,11 @@
                         <li><i class="fas fa-phone"></i> ٠٧٧٠ ١٢٣ ٤٥٦٧</li>
                         <li><i class="fas fa-map-marker-alt"></i> هەولێر، کوردستان</li>
                     </ul>
-                    <div style="margin-top: 15px; display: flex; gap: 12px;">
-                        <a href="#" style="color: #4cc9f0; font-size: 18px;"><i class="fab fa-telegram"></i></a>
-                        <a href="#" style="color: #4cc9f0; font-size: 18px;"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" style="color: #4cc9f0; font-size: 18px;"><i class="fab fa-facebook"></i></a>
-                        <a href="#" style="color: #4cc9f0; font-size: 18px;"><i class="fab fa-instagram"></i></a>
+                    <div style="margin-top: 20px; display: flex; gap: 15px;">
+                        <a href="#" style="color: #4cc9f0; font-size: 20px;"><i class="fab fa-telegram"></i></a>
+                        <a href="#" style="color: #4cc9f0; font-size: 20px;"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" style="color: #4cc9f0; font-size: 20px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: #4cc9f0; font-size: 20px;"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -2234,7 +2225,7 @@
                 itemCard.innerHTML += `
                     <div class="${item.type === 'app' ? 'app' : 'game'}-image">
                         ${item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}" loading="lazy">` : 
-                            `<i class="fas ${item.type === 'app' ? 'fa-mobile-alt' : 'fa-gamepad'} fa-2x"></i>`}
+                            `<i class="fas ${item.type === 'app' ? 'fa-mobile-alt' : 'fa-gamepad'} fa-3x"></i>`}
                     </div>
                     <div class="${item.type === 'app' ? 'app' : 'game'}-info-overlay">
                         <h3 class="${item.type === 'app' ? 'app' : 'game'}-info-overlay-title">
@@ -2279,7 +2270,7 @@
                 
                 appCard.innerHTML = `
                     <div class="app-image">
-                        ${app.imgurl ? `<img src="${app.imgurl}" alt="${app.name}" loading="lazy">` : `<i class="fas fa-mobile-alt fa-2x"></i>`}
+                        ${app.imgurl ? `<img src="${app.imgurl}" alt="${app.name}" loading="lazy">` : `<i class="fas fa-mobile-alt fa-3x"></i>`}
                     </div>
                     <div class="app-info-overlay">
                         <h3 class="app-info-overlay-title">
@@ -2324,7 +2315,7 @@
                 
                 gameCard.innerHTML = `
                     <div class="game-image">
-                        ${game.imgurl ? `<img src="${game.imgurl}" alt="${game.name}" loading="lazy">` : `<i class="fas fa-gamepad fa-2x"></i>`}
+                        ${game.imgurl ? `<img src="${game.imgurl}" alt="${game.name}" loading="lazy">` : `<i class="fas fa-gamepad fa-3x"></i>`}
                     </div>
                     <div class="game-info-overlay">
                         <h3 class="game-info-overlay-title">
@@ -2510,7 +2501,7 @@
                     <div class="featured-badge">پاڵێوراو</div>
                     <div class="featured-image">
                         ${item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}" loading="lazy">` : 
-                            `<i class="fas ${item.featuredType === 'app' ? 'fa-mobile-alt' : 'fa-gamepad'} fa-2x"></i>`}
+                            `<i class="fas ${item.featuredType === 'app' ? 'fa-mobile-alt' : 'fa-gamepad'} fa-3x"></i>`}
                     </div>
                     <div class="featured-info-overlay">
                         <h3 class="featured-info-overlay-title">
@@ -2631,7 +2622,7 @@
             });
         }
 
-        // نیشاندانی ئەپەکان لە بەڕێوەبردنی
+        // نیشاندانی ئەپەکان لە بەڕێوەبردنی - بە دیزاینی نوێ
         function displayAdminApps() {
             const adminAppsGrid = document.getElementById('admin-apps-grid');
             if (!adminAppsGrid) return;
@@ -2661,7 +2652,7 @@
                         </button>
                     </div>
                     <div class="admin-app-image">
-                        ${app.imgurl ? `<img src="${app.imgurl}" alt="${app.name}" loading="lazy">` : `<i class="fas fa-mobile-alt fa-2x"></i>`}
+                        ${app.imgurl ? `<img src="${app.imgurl}" alt="${app.name}" loading="lazy">` : `<i class="fas fa-mobile-alt fa-3x"></i>`}
                     </div>
                     <div class="admin-app-info-overlay">
                         <h3 class="admin-app-info-overlay-title">
@@ -2713,7 +2704,7 @@
             });
         }
 
-        // نیشاندانی یاریەکان لە بەڕێوەبردنی
+        // نیشاندانی یاریەکان لە بەڕێوەبردنی - بە دیزاینی نوێ
         function displayAdminGames() {
             const adminGamesGrid = document.getElementById('admin-games-grid');
             if (!adminGamesGrid) return;
@@ -2743,7 +2734,7 @@
                         </button>
                     </div>
                     <div class="admin-game-image">
-                        ${game.imgurl ? `<img src="${game.imgurl}" alt="${game.name}" loading="lazy">` : `<i class="fas fa-gamepad fa-2x"></i>`}
+                        ${game.imgurl ? `<img src="${game.imgurl}" alt="${game.name}" loading="lazy">` : `<i class="fas fa-gamepad fa-3x"></i>`}
                     </div>
                     <div class="admin-game-info-overlay">
                         <h3 class="admin-game-info-overlay-title">
@@ -2795,7 +2786,7 @@
             });
         }
 
-        // سڕینەوەی بەرنامە
+        // سڕینەوەی بەرنامە - کاریگەر
         function deleteApp(appId, type) {
             if (!db) {
                 showFirebaseAlert("پەیوەندی Firebase دروست نیە!", false);
@@ -2803,19 +2794,22 @@
             }
             
             if (confirm("دڵنیایت دەتەوێت ئەم بەرنامەیە بسڕیتەوە؟")) {
+                // یەکسەر سڕینەوە لە Firebase
                 db.collection("zhi-zhi").doc(appId).delete()
                     .then(() => {
                         console.log("✅ بەرنامە سڕایەوە بە سەرکەوتوویی");
                         showFirebaseAlert("بەرنامە سڕایەوە بە سەرکەوتوویی!", true);
                         
+                        // یەکسەر سڕینەوە لە لیستەکانی ناوەوە
                         if (type === "app") {
                             apps = apps.filter(app => app.id !== appId);
-                            displayAdminApps();
+                            displayAdminApps(); // دووبارە نیشاندانی لیستەکە
                         } else {
                             games = games.filter(game => game.id !== appId);
-                            displayAdminGames();
+                            displayAdminGames(); // دووبارە نیشاندانی لیستەکە
                         }
                         
+                        // دووبارە بارکردنی داتا لە Firebase
                         setTimeout(() => {
                             if (type === "app") {
                                 loadApps();
@@ -2831,10 +2825,11 @@
             }
         }
 
-        // دەستکاری بەرنامە
+        // دەستکاری بەرنامە - کاریگەر
         function editApp(appId, type) {
             console.log("دەستکاری بەرنامە:", appId, type);
             
+            // گەڕان بەدوای بەرنامە لە لیستەکان
             let appToEdit;
             
             if (type === 'app') {
@@ -2844,14 +2839,17 @@
             }
             
             if (appToEdit) {
+                // نیشاندانی فۆڕمی دەستکاری
                 document.getElementById("edit-form-container").style.display = "block";
                 
+                // گۆڕین بۆ تابەکەی زیادکردنی بەرنامە
                 document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
                 
                 document.querySelector('.admin-tab[data-tab="add-app"]').classList.add('active');
                 document.getElementById('add-app-tab').classList.add('active');
                 
+                // پڕکردنەوەی فۆڕم بە زانیارییەکانی بەرنامە
                 document.getElementById("edit-app-id").value = appId;
                 document.getElementById("edit-app-type").value = type;
                 document.getElementById("edit-app-name").value = appToEdit.name || "";
@@ -2860,6 +2858,7 @@
                 document.getElementById("edit-app-download").value = appToEdit.downloadurl || "";
                 document.getElementById("edit-app-featured").value = appToEdit.featured ? "true" : "false";
                 
+                // هێنانە خوارەوەی فۆڕم
                 document.getElementById("edit-form-container").scrollIntoView({behavior: 'smooth'});
                 
             } else {
@@ -2868,7 +2867,7 @@
             }
         }
 
-        // نوێکردنەوەی بەرنامە
+        // نوێکردنەوەی بەرنامە - کاریگەر
         function updateApp(appId, appData) {
             if (!db) {
                 showFirebaseAlert("پەیوەندی Firebase دروست نیە!", false);
@@ -2890,9 +2889,11 @@
                     console.log("✅ بەرنامە نوێکرایەوە بە سەرکەوتوویی");
                     showFirebaseAlert("بەرنامە نوێکرایەوە بە سەرکەوتوویی!", true);
                     
+                    // حاشێکردنی فۆڕمی دەستکاری
                     document.getElementById("edit-form-container").style.display = "none";
                     document.getElementById("edit-app-form").reset();
                     
+                    // دووبارە بارکردنی داتا لە Firebase
                     if (appData.type === "app") {
                         loadApps();
                     } else {
@@ -2969,7 +2970,7 @@
             
             if (filteredItems.length === 0) {
                 grid.innerHTML = `
-                    <div class="no-items" style="grid-column: 1 / -1; text-align: center; padding: 30px;">
+                    <div class="no-items" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
                         <i class="fas fa-search fa-2x"></i><br><br>
                         <h3>هیچ ئەنجامێک نەدۆزرایەوە بۆ "${query}"</h3>
                         <p>تکایە گەڕانەکەت بگۆڕە یان وشەیەکی تر هەوڵ بدە</p>
@@ -2989,7 +2990,7 @@
                 card.innerHTML = `
                     <div class="${item.type === 'app' ? 'app' : 'game'}-image">
                         ${item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}" loading="lazy">` : 
-                            `<i class="fas ${item.type === 'app' ? 'fa-mobile-alt' : 'fa-gamepad'} fa-2x"></i>`}
+                            `<i class="fas ${item.type === 'app' ? 'fa-mobile-alt' : 'fa-gamepad'} fa-3x"></i>`}
                     </div>
                     <div class="${item.type === 'app' ? 'app' : 'game'}-info-overlay">
                         <h3 class="${item.type === 'app' ? 'app' : 'game'}-info-overlay-title">
@@ -3027,7 +3028,7 @@
             const filteredItems = allItems.filter(item => 
                 item.name.toLowerCase().includes(searchTerm) || 
                 item.description.toLowerCase().includes(searchTerm)
-            ).slice(0, 8);
+            ).slice(0, 8); // تەنها 8 ئایتم پیشان بدە
             
             if (filteredItems.length === 0) {
                 container.innerHTML = `
@@ -3052,12 +3053,14 @@
                 `;
                 
                 itemDiv.addEventListener('click', function() {
+                    // پڕکردنەوەی بۆکسەکە بە ناوی هەڵبژێردراو
                     const input = container.previousElementSibling.querySelector('.search-input') || 
                                  container.previousElementSibling.querySelector('.admin-search-input');
                     if (input) {
                         input.value = item.name;
                     }
                     
+                    // نیشاندانی ئەنجامەکە
                     if (containerId === 'main-autocomplete') {
                         displaySearchResults(item.name, [...apps, ...games], 'all-grid', 'app-card');
                     } else if (containerId === 'apps-autocomplete') {
@@ -3186,7 +3189,7 @@
                 });
             }
             
-            // Admin apps search
+            // Admin apps search - ئێستا ئۆپشنی گەڕانی هەیە
             const adminAppsSearchInput = document.getElementById('admin-apps-search');
             const adminAppsSearchBtn = document.getElementById('admin-apps-search-btn');
             const adminAppsAutocomplete = document.getElementById('admin-apps-autocomplete');
@@ -3219,7 +3222,7 @@
                 });
             }
             
-            // Admin games search
+            // Admin games search - ئێستا ئۆپشنی گەڕانی هەیە
             const adminGamesSearchInput = document.getElementById('admin-games-search');
             const adminGamesSearchBtn = document.getElementById('admin-games-search-btn');
             const adminGamesAutocomplete = document.getElementById('admin-games-autocomplete');
@@ -3344,6 +3347,7 @@
                         return;
                     }
                     
+                    // فەنکشنی زیادکردنی بەرنامە
                     if (!db) {
                         showFirebaseAlert("پەیوەندی Firebase دروست نیە!", false);
                         return;
@@ -3367,6 +3371,7 @@
                             
                             document.getElementById("add-app-form").reset();
                             
+                            // دووبارە بارکردنی داتا
                             if (formData.type === "app") {
                                 loadApps();
                             } else {
