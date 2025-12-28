@@ -34,6 +34,7 @@
             --input-bg: white;
             --border-color: #e2e8f0;
             --autocomplete-text: #1e293b;
+            --ios-color: #000000;
         }
         
         body.dark-mode {
@@ -45,6 +46,7 @@
             --input-bg: #334155;
             --border-color: #475569;
             --autocomplete-text: #f1f5f9;
+            --ios-color: #ffffff;
         }
         
         body {
@@ -528,14 +530,14 @@
             border-radius: 2px;
         }
         
-        .featured-grid, .all-grid, .apps-grid, .games-grid, .admin-apps-grid, .admin-games-grid {
+        .featured-grid, .all-grid, .apps-grid, .games-grid, .ios-grid, .admin-apps-grid, .admin-games-grid, .admin-ios-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 12px;
             margin-top: 15px;
         }
         
-        .app-card, .game-card, .featured-card, .admin-app-card, .admin-game-card {
+        .app-card, .game-card, .ios-card, .featured-card, .admin-app-card, .admin-game-card, .admin-ios-card {
             background-color: var(--card-bg);
             border-radius: 12px;
             box-shadow: var(--box-shadow);
@@ -548,13 +550,17 @@
             width: 100%;
         }
         
-        .app-card:hover, .game-card:hover, .featured-card:hover {
+        .app-card:hover, .game-card:hover, .ios-card:hover, .featured-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             border-color: var(--primary-color);
         }
         
-        .app-image, .game-image, .featured-image, .admin-app-image, .admin-game-image {
+        .ios-card:hover {
+            border-color: var(--ios-color);
+        }
+        
+        .app-image, .game-image, .ios-image, .featured-image, .admin-app-image, .admin-game-image, .admin-ios-image {
             height: 100%;
             width: 100%;
             display: flex;
@@ -567,11 +573,12 @@
         
         body.dark-mode .app-image,
         body.dark-mode .game-image,
+        body.dark-mode .ios-image,
         body.dark-mode .featured-image {
             background: linear-gradient(135deg, #1e293b, #334155);
         }
         
-        .app-image img, .game-image img, .featured-image img {
+        .app-image img, .game-image img, .ios-image img, .featured-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -580,11 +587,12 @@
         
         .app-card:hover .app-image img,
         .game-card:hover .game-image img,
+        .ios-card:hover .ios-image img,
         .featured-card:hover .featured-image img {
             transform: scale(1.05);
         }
         
-        .app-info-overlay, .game-info-overlay, .featured-info-overlay, .admin-app-info-overlay, .admin-game-info-overlay {
+        .app-info-overlay, .game-info-overlay, .ios-info-overlay, .featured-info-overlay, .admin-app-info-overlay, .admin-game-info-overlay, .admin-ios-info-overlay {
             position: absolute;
             top: 0;
             right: 0;
@@ -604,11 +612,12 @@
         
         .app-card.show-info .app-info-overlay,
         .game-card.show-info .game-info-overlay,
+        .ios-card.show-info .ios-info-overlay,
         .featured-card.show-info .featured-info-overlay {
             opacity: 1;
         }
         
-        .app-info-overlay-title, .game-info-overlay-title, .featured-info-overlay-title {
+        .app-info-overlay-title, .game-info-overlay-title, .ios-info-overlay-title, .featured-info-overlay-title {
             font-size: 13px;
             margin-bottom: 6px;
             color: white;
@@ -616,7 +625,7 @@
             line-height: 1.3;
         }
         
-        .app-info-overlay-desc, .game-info-overlay-desc, .featured-info-overlay-desc {
+        .app-info-overlay-desc, .game-info-overlay-desc, .ios-info-overlay-desc, .featured-info-overlay-desc {
             font-size: 10px;
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 8px;
@@ -627,13 +636,17 @@
             overflow: hidden;
         }
         
-        .app-info-overlay-downloads, .game-info-overlay-downloads, .featured-info-overlay-downloads {
+        .app-info-overlay-downloads, .game-info-overlay-downloads, .ios-info-overlay-downloads, .featured-info-overlay-downloads {
             font-size: 9px;
             color: var(--accent-color);
             display: flex;
             align-items: center;
             gap: 5px;
             margin-bottom: 8px;
+        }
+        
+        .ios-info-overlay-downloads {
+            color: var(--ios-color);
         }
         
         .download-overlay-btn {
@@ -655,10 +668,19 @@
             margin-top: 6px;
         }
         
+        .ios-download-overlay-btn {
+            background: linear-gradient(135deg, var(--ios-color), #666666);
+        }
+        
         .download-overlay-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+        
+        .ios-download-overlay-btn:hover {
+            background: linear-gradient(135deg, #666666, var(--ios-color));
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
         
         .featured-badge {
@@ -673,6 +695,10 @@
             font-weight: 600;
             z-index: 3;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .ios-badge {
+            background: linear-gradient(135deg, var(--ios-color), #666666);
         }
         
         .admin-login-full {
@@ -1011,11 +1037,11 @@
             background-color: var(--border-color);
         }
         
-        .admin-app-card, .admin-game-card {
+        .admin-app-card, .admin-game-card, .admin-ios-card {
             position: relative;
         }
         
-        .admin-app-actions, .admin-game-actions {
+        .admin-app-actions, .admin-game-actions, .admin-ios-actions {
             position: absolute;
             top: 8px;
             left: 8px;
@@ -1243,12 +1269,12 @@
                 font-size: 1.6rem;
             }
             
-            .featured-grid, .all-grid, .apps-grid, .games-grid, .admin-apps-grid, .admin-games-grid {
+            .featured-grid, .all-grid, .apps-grid, .games-grid, .ios-grid, .admin-apps-grid, .admin-games-grid, .admin-ios-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 18px;
             }
             
-            .app-card, .game-card, .featured-card, .admin-app-card, .admin-game-card {
+            .app-card, .game-card, .ios-card, .featured-card, .admin-app-card, .admin-game-card, .admin-ios-card {
                 aspect-ratio: 3/4;
             }
             
@@ -1285,15 +1311,15 @@
                 border-radius: 50px;
             }
             
-            .app-info-overlay-title, .game-info-overlay-title, .featured-info-overlay-title {
+            .app-info-overlay-title, .game-info-overlay-title, .ios-info-overlay-title, .featured-info-overlay-title {
                 font-size: 16px;
             }
             
-            .app-info-overlay-desc, .game-info-overlay-desc, .featured-info-overlay-desc {
+            .app-info-overlay-desc, .game-info-overlay-desc, .ios-info-overlay-desc, .featured-info-overlay-desc {
                 font-size: 12px;
             }
             
-            .app-info-overlay-downloads, .game-info-overlay-downloads, .featured-info-overlay-downloads {
+            .app-info-overlay-downloads, .game-info-overlay-downloads, .ios-info-overlay-downloads, .featured-info-overlay-downloads {
                 font-size: 11px;
             }
         }
@@ -1337,7 +1363,7 @@
                 font-size: 1.8rem;
             }
             
-            .featured-grid, .all-grid, .apps-grid, .games-grid, .admin-apps-grid, .admin-games-grid {
+            .featured-grid, .all-grid, .apps-grid, .games-grid, .ios-grid, .admin-apps-grid, .admin-games-grid, .admin-ios-grid {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 22px;
             }
@@ -1370,7 +1396,7 @@
                 min-width: 70px;
             }
             
-            .featured-grid, .all-grid, .apps-grid, .games-grid, .admin-apps-grid, .admin-games-grid {
+            .featured-grid, .all-grid, .apps-grid, .games-grid, .ios-grid, .admin-apps-grid, .admin-games-grid, .admin-ios-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 10px;
             }
@@ -1389,15 +1415,15 @@
                 display: none;
             }
             
-            .app-info-overlay-title, .game-info-overlay-title, .featured-info-overlay-title {
+            .app-info-overlay-title, .game-info-overlay-title, .ios-info-overlay-title, .featured-info-overlay-title {
                 font-size: 13px;
             }
             
-            .app-info-overlay-desc, .game-info-overlay-desc, .featured-info-overlay-desc {
+            .app-info-overlay-desc, .game-info-overlay-desc, .ios-info-overlay-desc, .featured-info-overlay-desc {
                 font-size: 10px;
             }
             
-            .app-info-overlay-downloads, .game-info-overlay-downloads, .featured-info-overlay-downloads {
+            .app-info-overlay-downloads, .game-info-overlay-downloads, .ios-info-overlay-downloads, .featured-info-overlay-downloads {
                 font-size: 9px;
             }
         }
@@ -1483,6 +1509,9 @@
                     <li><a href="#" class="nav-link" data-page="games">
                         <i class="fas fa-gamepad"></i> یاریەکان
                     </a></li>
+                    <li><a href="#" class="nav-link" data-page="ios">
+                        <i class="fab fa-apple"></i> IOS
+                    </a></li>
                     <li><a href="#" class="nav-link" data-page="admin-login">
                         <i class="fas fa-user-shield"></i> ئەدمین
                     </a></li>
@@ -1511,6 +1540,9 @@
             </a></li>
             <li><a href="#" class="mobile-nav-link" data-page="games">
                 <i class="fas fa-gamepad"></i> یاریەکان
+            </a></li>
+            <li><a href="#" class="mobile-nav-link" data-page="ios">
+                <i class="fab fa-apple"></i> IOS
             </a></li>
             <li><a href="#" class="mobile-nav-link" data-page="admin-login">
                 <i class="fas fa-user-shield"></i> چوونەژوورەوەی ئەدمین
@@ -1557,6 +1589,9 @@
                 </a>
                 <a href="#" class="category-link" data-category="games">
                     <i class="fas fa-gamepad"></i> یاریەکان
+                </a>
+                <a href="#" class="category-link" data-category="ios">
+                    <i class="fab fa-apple"></i> IOS
                 </a>
             </div>
 
@@ -1631,6 +1666,29 @@
             </div>
         </section>
 
+        <section id="ios-page" class="content-section">
+            <h1 class="section-title">
+                <i class="fab fa-apple"></i> هەموو بەرنامەکانی IOS
+            </h1>
+            <div class="search-container">
+                <div class="autocomplete-container">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="گەڕان بە ناوی بەرنامەی IOS..." id="ios-search">
+                        <button class="search-btn" id="ios-search-btn">
+                            <i class="fas fa-search"></i> گەڕان
+                        </button>
+                    </div>
+                    <div class="autocomplete-results" id="ios-autocomplete"></div>
+                </div>
+            </div>
+            <div class="ios-grid" id="ios-grid">
+                <div class="loading">
+                    <i class="fas fa-spinner"></i><br>
+                    بەرنامەکانی IOS بار دەکرێن...
+                </div>
+            </div>
+        </section>
+
         <section id="admin-login-page" class="content-section">
             <div class="admin-login-full">
                 <div class="admin-login-container">
@@ -1683,6 +1741,9 @@
                     <div class="admin-tab" data-tab="manage-games">
                         <i class="fas fa-gamepad"></i> بەڕێوەبردنی یاریەکان
                     </div>
+                    <div class="admin-tab" data-tab="manage-ios">
+                        <i class="fab fa-apple"></i> بەڕێوەبردنی IOS
+                    </div>
                 </div>
                 
                 <div class="admin-tab-content active" id="add-app-tab">
@@ -1701,6 +1762,7 @@
                                         <option value="">جۆر هەڵبژێرە</option>
                                         <option value="app">ئەپ</option>
                                         <option value="game">یاری</option>
+                                        <option value="ios">IOS</option>
                                     </select>
                                 </div>
                                 
@@ -1873,6 +1935,31 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="admin-tab-content" id="manage-ios-tab">
+                    <h2 class="admin-form-title">
+                        <i class="fab fa-apple"></i> بەڕێوەبردنی بەرنامەکانی IOS
+                    </h2>
+                    
+                    <div class="admin-search-container">
+                        <div class="autocomplete-container" id="admin-ios-autocomplete-container">
+                            <div class="admin-search-box">
+                                <input type="text" class="admin-search-input" placeholder="گەڕان بە ناوی بەرنامەی IOS..." id="admin-ios-search">
+                                <button class="admin-search-btn" id="admin-ios-search-btn">
+                                    <i class="fas fa-search"></i> گەڕان
+                                </button>
+                            </div>
+                            <div class="autocomplete-results" id="admin-ios-autocomplete"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-ios-grid" id="admin-ios-grid">
+                        <div class="loading">
+                            <i class="fas fa-spinner"></i><br>
+                            بەرنامەکانی IOS بار دەکرێن...
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -1896,6 +1983,7 @@
                         <li><a href="#" data-page="home"><i class="fas fa-home"></i> سەرەکی</a></li>
                         <li><a href="#" data-page="apps"><i class="fas fa-mobile-alt"></i> ئەپەکان</a></li>
                         <li><a href="#" data-page="games"><i class="fas fa-gamepad"></i> یاریەکان</a></li>
+                        <li><a href="#" data-page="ios"><i class="fab fa-apple"></i> IOS</a></li>
                         <li><a href="#" data-page="admin-login"><i class="fas fa-user-shield"></i> ئەدمین</a></li>
                     </ul>
                 </div>
@@ -1951,11 +2039,13 @@
         
         let apps = [];
         let games = [];
+        let iosApps = [];
         let featured = [];
         let currentCategory = 'all';
         let isAdminLoggedIn = false;
         let unsubscribeApps = null;
         let unsubscribeGames = null;
+        let unsubscribeIos = null;
 
         function showConnectionStatus(message, isSuccess) {
             const statusDiv = document.getElementById('connection-status');
@@ -2020,11 +2110,12 @@
                 setupAdminTabs();
                 displayAdminApps();
                 displayAdminGames();
+                displayAdminIos();
             }
             
             closeMobileMenu();
             
-            if (pageId === 'home' || pageId === 'apps' || pageId === 'games') {
+            if (pageId === 'home' || pageId === 'apps' || pageId === 'games' || pageId === 'ios') {
                 loadAllData();
             }
         }
@@ -2037,6 +2128,7 @@
             
             loadApps();
             loadGames();
+            loadIos();
         }
 
         function loadApps() {
@@ -2113,11 +2205,49 @@
                 });
         }
 
+        function loadIos() {
+            if (!db) return;
+            
+            db.collection("zhi-zhi")
+                .where("type", "==", "ios")
+                .get()
+                .then((querySnapshot) => {
+                    iosApps = [];
+                    querySnapshot.forEach((doc) => {
+                        const data = doc.data();
+                        iosApps.push({
+                            ...data,
+                            id: doc.id,
+                            name: data.name || "بێ ناو",
+                            description: data.description || "بێ وەسف",
+                            imgurl: data.imgurl || "",
+                            downloadurl: data.downloadurl || "#",
+                            downloads: data.downloads || 0,
+                            featured: data.featured || false,
+                            createdAt: data.createdAt || new Date().toISOString()
+                        });
+                    });
+                    
+                    console.log(`✅ ${iosApps.length} بەرنامەی IOS بارکرا`);
+                    displayIos();
+                    displayAllItems();
+                    updateFeatured();
+                    
+                    if (document.getElementById('admin-panel-page').classList.contains('active') && isAdminLoggedIn) {
+                        displayAdminIos();
+                    }
+                })
+                .catch((error) => {
+                    console.error("❌ هەڵە لە وەرگرتنی بەرنامەکانی IOS:", error);
+                });
+        }
+
         function setupRealtimeListeners() {
             if (!db) return;
             
             if (unsubscribeApps) unsubscribeApps();
             if (unsubscribeGames) unsubscribeGames();
+            if (unsubscribeIos) unsubscribeIos();
             
             unsubscribeApps = db.collection("zhi-zhi")
                 .where("type", "==", "app")
@@ -2142,6 +2272,18 @@
                 }, (error) => {
                     console.error("❌ هەڵە لە چاودێری یاریەکان:", error);
                 });
+            
+            unsubscribeIos = db.collection("zhi-zhi")
+                .where("type", "==", "ios")
+                .onSnapshot((snapshot) => {
+                    const changes = snapshot.docChanges();
+                    if (changes.length > 0) {
+                        console.log("🔄 گۆڕانکاری لە بەرنامەکانی IOS: ", changes.length);
+                        loadIos();
+                    }
+                }, (error) => {
+                    console.error("❌ هەڵە لە چاودێری بەرنامەکانی IOS:", error);
+                });
         }
 
         function displayAllItems() {
@@ -2153,11 +2295,13 @@
             let itemsToShow = [];
             
             if (currentCategory === 'all') {
-                itemsToShow = [...apps, ...games];
+                itemsToShow = [...apps, ...games, ...iosApps];
             } else if (currentCategory === 'apps') {
                 itemsToShow = apps;
             } else if (currentCategory === 'games') {
                 itemsToShow = games;
+            } else if (currentCategory === 'ios') {
+                itemsToShow = iosApps;
             }
             
             if (itemsToShow.length === 0) {
@@ -2167,28 +2311,39 @@
             
             itemsToShow.forEach(item => {
                 const itemCard = document.createElement('div');
-                itemCard.className = item.type === 'app' ? 'app-card' : 'game-card';
-                
-                if (item.featured) {
-                    itemCard.innerHTML += `<div class="featured-badge">پاڵێوراو</div>`;
+                if (item.type === 'app') {
+                    itemCard.className = 'app-card';
+                } else if (item.type === 'game') {
+                    itemCard.className = 'game-card';
+                } else if (item.type === 'ios') {
+                    itemCard.className = 'ios-card';
                 }
                 
+                if (item.featured) {
+                    const badgeClass = item.type === 'ios' ? 'featured-badge ios-badge' : 'featured-badge';
+                    itemCard.innerHTML += `<div class="${badgeClass}">پاڵێوراو</div>`;
+                }
+                
+                const iconClass = item.type === 'app' ? 'fa-mobile-alt' : 
+                                 item.type === 'game' ? 'fa-gamepad' : 
+                                 'fa-apple';
+                
                 itemCard.innerHTML += `
-                    <div class="${item.type === 'app' ? 'app' : 'game'}-image">
+                    <div class="${item.type}-image">
                         ${item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}" loading="lazy">` : 
-                            `<i class="fas ${item.type === 'app' ? 'fa-mobile-alt' : 'fa-gamepad'} fa-3x"></i>`}
+                            `<i class="fas ${iconClass} fa-3x"></i>`}
                     </div>
-                    <div class="${item.type === 'app' ? 'app' : 'game'}-info-overlay">
-                        <h3 class="${item.type === 'app' ? 'app' : 'game'}-info-overlay-title">
+                    <div class="${item.type}-info-overlay">
+                        <h3 class="${item.type}-info-overlay-title">
                             ${item.name}
                         </h3>
-                        <p class="${item.type === 'app' ? 'app' : 'game'}-info-overlay-desc">
+                        <p class="${item.type}-info-overlay-desc">
                             ${item.description || 'بێ وەسف'}
                         </p>
-                        <div class="${item.type === 'app' ? 'app' : 'game'}-info-overlay-downloads">
+                        <div class="${item.type}-info-overlay-downloads">
                             <i class="fas fa-download"></i> ${item.downloads || 0} داگرتن
                         </div>
-                        <a href="${item.downloadurl || '#'}" target="_blank" class="download-overlay-btn" data-id="${item.id}" data-type="${item.type}">
+                        <a href="${item.downloadurl || '#'}" target="_blank" class="download-overlay-btn ${item.type === 'ios' ? 'ios-download-overlay-btn' : ''}" data-id="${item.id}" data-type="${item.type}">
                             <i class="fas fa-download"></i> دابەزاندن
                         </a>
                     </div>
@@ -2284,6 +2439,50 @@
                 gamesGrid.appendChild(gameCard);
                 
                 setupCardHoldEvents(gameCard, game);
+            });
+        }
+
+        function displayIos() {
+            const iosGrid = document.getElementById('ios-grid');
+            if (!iosGrid) return;
+            
+            iosGrid.innerHTML = '';
+            
+            if (iosApps.length === 0) {
+                iosGrid.innerHTML = '<div class="no-items"><i class="fab fa-apple fa-2x"></i><br><br>هیچ بەرنامەیەکی IOS بوونی نیە</div>';
+                return;
+            }
+            
+            iosApps.forEach(ios => {
+                const iosCard = document.createElement('div');
+                iosCard.className = 'ios-card';
+                
+                if (ios.featured) {
+                    iosCard.innerHTML += `<div class="featured-badge ios-badge">پاڵێوراو</div>`;
+                }
+                
+                iosCard.innerHTML = `
+                    <div class="ios-image">
+                        ${ios.imgurl ? `<img src="${ios.imgurl}" alt="${ios.name}" loading="lazy">` : `<i class="fab fa-apple fa-3x"></i>`}
+                    </div>
+                    <div class="ios-info-overlay">
+                        <h3 class="ios-info-overlay-title">
+                            ${ios.name}
+                        </h3>
+                        <p class="ios-info-overlay-desc">
+                            ${ios.description || 'بێ وەسف'}
+                        </p>
+                        <div class="ios-info-overlay-downloads">
+                            <i class="fas fa-download"></i> ${ios.downloads || 0} داگرتن
+                        </div>
+                        <a href="${ios.downloadurl || '#'}" target="_blank" class="download-overlay-btn ios-download-overlay-btn" data-id="${ios.id}" data-type="ios">
+                            <i class="fas fa-download"></i> دابەزاندن
+                        </a>
+                    </div>
+                `;
+                iosGrid.appendChild(iosCard);
+                
+                setupCardHoldEvents(iosCard, ios);
             });
         }
 
@@ -2418,6 +2617,12 @@
                 }
             });
             
+            iosApps.forEach(ios => {
+                if (ios.featured) {
+                    featured.push({...ios, featuredType: 'ios'});
+                }
+            });
+            
             displayFeatured();
         }
 
@@ -2436,11 +2641,12 @@
                 const featuredCard = document.createElement('div');
                 featuredCard.className = `featured-card`;
                 
+                const badgeClass = item.featuredType === 'ios' ? 'featured-badge ios-badge' : 'featured-badge';
                 featuredCard.innerHTML = `
-                    <div class="featured-badge">پاڵێوراو</div>
+                    <div class="${badgeClass}">پاڵێوراو</div>
                     <div class="featured-image">
                         ${item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}" loading="lazy">` : 
-                            `<i class="fas ${item.featuredType === 'app' ? 'fa-mobile-alt' : 'fa-gamepad'} fa-3x"></i>`}
+                            `<i class="fas ${item.featuredType === 'app' ? 'fa-mobile-alt' : item.featuredType === 'game' ? 'fa-gamepad' : 'fa-apple'} fa-3x"></i>`}
                     </div>
                     <div class="featured-info-overlay">
                         <h3 class="featured-info-overlay-title">
@@ -2452,7 +2658,7 @@
                         <div class="featured-info-overlay-downloads">
                             <i class="fas fa-download"></i> ${item.downloads || 0} داگرتن
                         </div>
-                        <a href="${item.downloadurl || '#'}" target="_blank" class="download-overlay-btn" data-id="${item.id}" data-type="${item.type}">
+                        <a href="${item.downloadurl || '#'}" target="_blank" class="download-overlay-btn ${item.featuredType === 'ios' ? 'ios-download-overlay-btn' : ''}" data-id="${item.id}" data-type="${item.type}">
                             <i class="fas fa-download"></i> دابەزاندن
                         </a>
                     </div>
@@ -2550,6 +2756,9 @@
                     } else if (tabId === 'manage-games') {
                         document.getElementById('admin-games-search').value = '';
                         displayAdminGames();
+                    } else if (tabId === 'manage-ios') {
+                        document.getElementById('admin-ios-search').value = '';
+                        displayAdminIos();
                     }
                 });
             });
@@ -2715,6 +2924,86 @@
             });
         }
 
+        function displayAdminIos() {
+            const adminIosGrid = document.getElementById('admin-ios-grid');
+            if (!adminIosGrid) return;
+            
+            adminIosGrid.innerHTML = '';
+            
+            if (iosApps.length === 0) {
+                adminIosGrid.innerHTML = '<div class="no-items"><i class="fab fa-apple fa-2x"></i><br><br>هیچ بەرنامەیەکی IOS بوونی نیە</div>';
+                return;
+            }
+            
+            iosApps.forEach(ios => {
+                const iosCard = document.createElement('div');
+                iosCard.className = 'admin-ios-card';
+                
+                if (ios.featured) {
+                    iosCard.innerHTML += `<div class="featured-badge ios-badge">پاڵێوراو</div>`;
+                }
+                
+                iosCard.innerHTML = `
+                    <div class="admin-ios-actions">
+                        <button class="admin-action-btn edit" data-id="${ios.id}" data-type="ios">
+                            <i class="fas fa-edit"></i> دەستکاری
+                        </button>
+                        <button class="admin-action-btn delete" data-id="${ios.id}" data-type="ios">
+                            <i class="fas fa-trash"></i> سڕینەوە
+                        </button>
+                    </div>
+                    <div class="admin-ios-image">
+                        ${ios.imgurl ? `<img src="${ios.imgurl}" alt="${ios.name}" loading="lazy">` : `<i class="fab fa-apple fa-3x"></i>`}
+                    </div>
+                    <div class="admin-ios-info-overlay">
+                        <h3 class="admin-ios-info-overlay-title">
+                            ${ios.name}
+                        </h3>
+                        <p class="admin-ios-info-overlay-desc">
+                            ${ios.description || 'بێ وەسف'}
+                        </p>
+                        <div class="admin-ios-info-overlay-downloads">
+                            <i class="fas fa-download"></i> ${ios.downloads || 0} داگرتن
+                        </div>
+                        <button class="download-overlay-btn ios-download-overlay-btn view-details-btn" data-id="${ios.id}" data-type="ios">
+                            <i class="fas fa-eye"></i> بینینی وردەکاری
+                        </button>
+                    </div>
+                `;
+                adminIosGrid.appendChild(iosCard);
+                
+                const editBtn = iosCard.querySelector('.edit');
+                const deleteBtn = iosCard.querySelector('.delete');
+                const viewBtn = iosCard.querySelector('.view-details-btn');
+                
+                editBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const appId = this.getAttribute('data-id');
+                    const type = this.getAttribute('data-type');
+                    editApp(appId, type);
+                });
+                
+                deleteBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const appId = this.getAttribute('data-id');
+                    const type = this.getAttribute('data-type');
+                    deleteApp(appId, type);
+                });
+                
+                viewBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const appId = this.getAttribute('data-id');
+                    const type = this.getAttribute('data-type');
+                    viewAppDetails(appId, type);
+                });
+                
+                setupCardHoldEvents(iosCard, ios);
+            });
+        }
+
         function deleteApp(appId, type) {
             if (!db) {
                 showFirebaseAlert("پەیوەندی Firebase دروست نیە!", false);
@@ -2730,16 +3019,21 @@
                         if (type === "app") {
                             apps = apps.filter(app => app.id !== appId);
                             displayAdminApps();
-                        } else {
+                        } else if (type === "game") {
                             games = games.filter(game => game.id !== appId);
                             displayAdminGames();
+                        } else if (type === "ios") {
+                            iosApps = iosApps.filter(ios => ios.id !== appId);
+                            displayAdminIos();
                         }
                         
                         setTimeout(() => {
                             if (type === "app") {
                                 loadApps();
-                            } else {
+                            } else if (type === "game") {
                                 loadGames();
+                            } else if (type === "ios") {
+                                loadIos();
                             }
                         }, 500);
                     })
@@ -2757,8 +3051,10 @@
             
             if (type === 'app') {
                 appToEdit = apps.find(item => item.id === appId);
-            } else {
+            } else if (type === 'game') {
                 appToEdit = games.find(item => item.id === appId);
+            } else if (type === 'ios') {
+                appToEdit = iosApps.find(item => item.id === appId);
             }
             
             if (appToEdit) {
@@ -2812,8 +3108,10 @@
                     
                     if (appData.type === "app") {
                         loadApps();
-                    } else {
+                    } else if (appData.type === "game") {
                         loadGames();
+                    } else if (appData.type === "ios") {
+                        loadIos();
                     }
                     
                 })
@@ -2824,13 +3122,14 @@
         }
 
         function viewAppDetails(appId, type) {
-            const allItems = [...apps, ...games];
+            const allItems = [...apps, ...games, ...iosApps];
             const app = allItems.find(item => item.id === appId);
             
             if (app) {
+                const typeText = type === 'app' ? 'ئەپ' : type === 'game' ? 'یاری' : 'IOS';
                 alert(
                     `ناوی بەرنامە: ${app.name}\n\n` +
-                    `جۆر: ${type === 'app' ? 'ئەپ' : 'یاری'}\n\n` +
+                    `جۆر: ${typeText}\n\n` +
                     `کورتە: ${app.description || 'بێ وەسف'}\n\n` +
                     `لینکی وێنە: ${app.imgurl || 'بێ وێنە'}\n\n` +
                     `لینکی داگرتن: ${app.downloadurl}\n\n` +
@@ -2894,25 +3193,30 @@
                 card.className = cardType;
                 
                 if (item.featured) {
-                    card.innerHTML += `<div class="featured-badge">پاڵێوراو</div>`;
+                    const badgeClass = item.type === 'ios' ? 'featured-badge ios-badge' : 'featured-badge';
+                    card.innerHTML += `<div class="${badgeClass}">پاڵێوراو</div>`;
                 }
                 
+                const iconClass = item.type === 'app' ? 'fa-mobile-alt' : 
+                                 item.type === 'game' ? 'fa-gamepad' : 
+                                 'fa-apple';
+                
                 card.innerHTML = `
-                    <div class="${item.type === 'app' ? 'app' : 'game'}-image">
+                    <div class="${item.type}-image">
                         ${item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}" loading="lazy">` : 
-                            `<i class="fas ${item.type === 'app' ? 'fa-mobile-alt' : 'fa-gamepad'} fa-3x"></i>`}
+                            `<i class="fas ${iconClass} fa-3x"></i>`}
                     </div>
-                    <div class="${item.type === 'app' ? 'app' : 'game'}-info-overlay">
-                        <h3 class="${item.type === 'app' ? 'app' : 'game'}-info-overlay-title">
+                    <div class="${item.type}-info-overlay">
+                        <h3 class="${item.type}-info-overlay-title">
                             ${item.name}
                         </h3>
-                        <p class="${item.type === 'app' ? 'app' : 'game'}-info-overlay-desc">
+                        <p class="${item.type}-info-overlay-desc">
                             ${item.description || 'بێ وەسف'}
                         </p>
-                        <div class="${item.type === 'app' ? 'app' : 'game'}-info-overlay-downloads">
+                        <div class="${item.type}-info-overlay-downloads">
                             <i class="fas fa-download"></i> ${item.downloads || 0} داگرتن
                         </div>
-                        <a href="${item.downloadurl || '#'}" target="_blank" class="download-overlay-btn" data-id="${item.id}" data-type="${item.type}">
+                        <a href="${item.downloadurl || '#'}" target="_blank" class="download-overlay-btn ${item.type === 'ios' ? 'ios-download-overlay-btn' : ''}" data-id="${item.id}" data-type="${item.type}">
                             <i class="fas fa-download"></i> دابەزاندن
                         </a>
                     </div>
@@ -2955,10 +3259,16 @@
             filteredItems.forEach(item => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'autocomplete-item';
+                
+                const typeText = item.type === 'app' ? 'ئەپ' : item.type === 'game' ? 'یاری' : 'IOS';
+                const iconClass = item.type === 'app' ? 'fa-mobile-alt' : 
+                                 item.type === 'game' ? 'fa-gamepad' : 
+                                 'fa-apple';
+                
                 itemDiv.innerHTML = `
-                    <i class="fas ${item.type === 'app' ? 'fa-mobile-alt' : 'fa-gamepad'} autocomplete-item-icon"></i>
+                    <i class="fas ${iconClass} autocomplete-item-icon"></i>
                     <span>${item.name}</span>
-                    <small style="margin-right: auto; color: #888;">${item.type === 'app' ? 'ئەپ' : 'یاری'}</small>
+                    <small style="margin-right: auto; color: #888;">${typeText}</small>
                 `;
                 
                 itemDiv.addEventListener('click', function() {
@@ -2969,15 +3279,19 @@
                     }
                     
                     if (containerId === 'main-autocomplete') {
-                        displaySearchResults(item.name, [...apps, ...games], 'all-grid', 'app-card');
+                        displaySearchResults(item.name, [...apps, ...games, ...iosApps], 'all-grid', 'app-card');
                     } else if (containerId === 'apps-autocomplete') {
                         displaySearchResults(item.name, apps, 'apps-grid', 'app-card');
                     } else if (containerId === 'games-autocomplete') {
                         displaySearchResults(item.name, games, 'games-grid', 'game-card');
+                    } else if (containerId === 'ios-autocomplete') {
+                        displaySearchResults(item.name, iosApps, 'ios-grid', 'ios-card');
                     } else if (containerId === 'admin-apps-autocomplete') {
                         displaySearchResults(item.name, apps, 'admin-apps-grid', 'admin-app-card');
                     } else if (containerId === 'admin-games-autocomplete') {
                         displaySearchResults(item.name, games, 'admin-games-grid', 'admin-game-card');
+                    } else if (containerId === 'admin-ios-autocomplete') {
+                        displaySearchResults(item.name, iosApps, 'admin-ios-grid', 'admin-ios-card');
                     }
                     
                     container.classList.remove('show');
@@ -2996,12 +3310,12 @@
             
             if (mainSearchInput) {
                 mainSearchInput.addEventListener('input', function() {
-                    showAutocompleteResults(this.value, 'main-autocomplete', [...apps, ...games]);
+                    showAutocompleteResults(this.value, 'main-autocomplete', [...apps, ...games, ...iosApps]);
                 });
                 
                 mainSearchInput.addEventListener('focus', function() {
                     if (this.value) {
-                        showAutocompleteResults(this.value, 'main-autocomplete', [...apps, ...games]);
+                        showAutocompleteResults(this.value, 'main-autocomplete', [...apps, ...games, ...iosApps]);
                     }
                 });
                 
@@ -3009,7 +3323,7 @@
                     if (e.key === 'Enter') {
                         e.preventDefault();
                         const query = this.value;
-                        displaySearchResults(query, [...apps, ...games], 'all-grid', 'app-card');
+                        displaySearchResults(query, [...apps, ...games, ...iosApps], 'all-grid', 'app-card');
                         mainAutocomplete.classList.remove('show');
                     }
                 });
@@ -3019,7 +3333,7 @@
                 mainSearchBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     const query = mainSearchInput.value;
-                    displaySearchResults(query, [...apps, ...games], 'all-grid', 'app-card');
+                    displaySearchResults(query, [...apps, ...games, ...iosApps], 'all-grid', 'app-card');
                     mainAutocomplete.classList.remove('show');
                 });
             }
@@ -3092,6 +3406,40 @@
                 });
             }
             
+            const iosSearchInput = document.getElementById('ios-search');
+            const iosSearchBtn = document.getElementById('ios-search-btn');
+            const iosAutocomplete = document.getElementById('ios-autocomplete');
+            
+            if (iosSearchInput) {
+                iosSearchInput.addEventListener('input', function() {
+                    showAutocompleteResults(this.value, 'ios-autocomplete', iosApps);
+                });
+                
+                iosSearchInput.addEventListener('focus', function() {
+                    if (this.value) {
+                        showAutocompleteResults(this.value, 'ios-autocomplete', iosApps);
+                    }
+                });
+                
+                iosSearchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const query = this.value;
+                        displaySearchResults(query, iosApps, 'ios-grid', 'ios-card');
+                        iosAutocomplete.classList.remove('show');
+                    }
+                });
+            }
+            
+            if (iosSearchBtn) {
+                iosSearchBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const query = iosSearchInput.value;
+                    displaySearchResults(query, iosApps, 'ios-grid', 'ios-card');
+                    iosAutocomplete.classList.remove('show');
+                });
+            }
+            
             const adminAppsSearchInput = document.getElementById('admin-apps-search');
             const adminAppsSearchBtn = document.getElementById('admin-apps-search-btn');
             const adminAppsAutocomplete = document.getElementById('admin-apps-autocomplete');
@@ -3153,6 +3501,38 @@
                     const query = adminGamesSearchInput.value;
                     displaySearchResults(query, games, 'admin-games-grid', 'admin-game-card');
                     adminGamesAutocomplete.classList.remove('show');
+                });
+            }
+            
+            const adminIosSearchInput = document.getElementById('admin-ios-search');
+            const adminIosSearchBtn = document.getElementById('admin-ios-search-btn');
+            const adminIosAutocomplete = document.getElementById('admin-ios-autocomplete');
+            
+            if (adminIosSearchInput && adminIosSearchBtn) {
+                adminIosSearchInput.addEventListener('input', function() {
+                    showAutocompleteResults(this.value, 'admin-ios-autocomplete', iosApps);
+                });
+                
+                adminIosSearchInput.addEventListener('focus', function() {
+                    if (this.value) {
+                        showAutocompleteResults(this.value, 'admin-ios-autocomplete', iosApps);
+                    }
+                });
+                
+                adminIosSearchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const query = this.value;
+                        displaySearchResults(query, iosApps, 'admin-ios-grid', 'admin-ios-card');
+                        adminIosAutocomplete.classList.remove('show');
+                    }
+                });
+                
+                adminIosSearchBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const query = adminIosSearchInput.value;
+                    displaySearchResults(query, iosApps, 'admin-ios-grid', 'admin-ios-card');
+                    adminIosAutocomplete.classList.remove('show');
                 });
             }
             
@@ -3271,8 +3651,10 @@
                             
                             if (formData.type === "app") {
                                 loadApps();
-                            } else {
+                            } else if (formData.type === "game") {
                                 loadGames();
+                            } else if (formData.type === "ios") {
+                                loadIos();
                             }
                             
                         })
