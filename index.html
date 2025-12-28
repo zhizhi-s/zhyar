@@ -452,8 +452,8 @@
         }
         
         .categories-nav {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 8px;
             margin-bottom: 20px;
             flex-wrap: wrap;
@@ -461,20 +461,23 @@
         }
         
         .category-link {
-            padding: 10px 15px;
+            padding: 12px 8px;
             background-color: var(--card-bg);
             border: 2px solid var(--border-color);
-            border-radius: 50px;
+            border-radius: 12px;
             text-decoration: none;
             color: var(--text-color);
             font-weight: 700;
             transition: var(--transition);
-            font-size: 13px;
+            font-size: 12px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 6px;
-            min-width: 80px;
+            min-width: 0;
             justify-content: center;
+            text-align: center;
+            height: 80px;
         }
         
         .category-link:hover {
@@ -489,6 +492,11 @@
             border-color: var(--primary-color);
             box-shadow: 0 6px 20px rgba(67, 97, 238, 0.2);
             font-weight: 700;
+        }
+        
+        .category-link i {
+            font-size: 20px;
+            margin-bottom: 5px;
         }
         
         .content-section {
@@ -1256,13 +1264,26 @@
             }
             
             .categories-nav {
+                display: flex;
+                justify-content: center;
                 gap: 12px;
+                margin-bottom: 20px;
+                flex-wrap: wrap;
+                padding: 0 5px;
             }
             
             .category-link {
                 padding: 12px 20px;
                 font-size: 14px;
                 min-width: 100px;
+                flex-direction: row;
+                height: auto;
+            }
+            
+            .category-link i {
+                font-size: 18px;
+                margin-bottom: 0;
+                margin-left: 8px;
             }
             
             .section-title {
@@ -1387,13 +1408,20 @@
             }
             
             .categories-nav {
+                grid-template-columns: repeat(4, 1fr);
                 gap: 6px;
             }
             
             .category-link {
-                padding: 8px 12px;
-                font-size: 12px;
-                min-width: 70px;
+                padding: 8px 6px;
+                font-size: 11px;
+                min-width: 0;
+                height: 70px;
+            }
+            
+            .category-link i {
+                font-size: 16px;
+                margin-bottom: 3px;
             }
             
             .featured-grid, .all-grid, .apps-grid, .games-grid, .ios-grid, .admin-apps-grid, .admin-games-grid, .admin-ios-grid {
@@ -1443,6 +1471,22 @@
             
             .logo-icon {
                 font-size: 22px;
+            }
+            
+            .categories-nav {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+            
+            .category-link {
+                padding: 10px 8px;
+                font-size: 12px;
+                height: 80px;
+            }
+            
+            .category-link i {
+                font-size: 18px;
+                margin-bottom: 5px;
             }
         }
         
