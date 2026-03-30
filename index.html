@@ -2,7 +2,7 @@
 <html lang="ku" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Zhi Zhi - دابەزاندنی یاری و ئەپ</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap');
@@ -35,6 +35,7 @@
             --border-color: #e2e8f0;
             --autocomplete-text: #1e293b;
             --ios-color: #000000;
+            --modal-overlay: rgba(0,0,0,0.8);
         }
         
         body.dark-mode {
@@ -47,6 +48,7 @@
             --border-color: #475569;
             --autocomplete-text: #f1f5f9;
             --ios-color: #ffffff;
+            --modal-overlay: rgba(0,0,0,0.9);
         }
         
         body {
@@ -61,6 +63,159 @@
             font-size: 16px;
             font-weight: 400;
             -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-overlay);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: 28px;
+            width: 90%;
+            max-width: 400px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.3s ease;
+            border: 1px solid var(--border-color);
+            direction: rtl;
+        }
+        
+        .modal-header {
+            position: relative;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .modal-close:hover {
+            background-color: rgba(0,0,0,0.1);
+            transform: scale(1.1);
+        }
+        
+        .modal-body {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .modal-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 24px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        body.dark-mode .modal-image {
+            background: linear-gradient(135deg, #1e293b, #334155);
+        }
+        
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-image i {
+            font-size: 48px;
+            color: var(--primary-color);
+        }
+        
+        .modal-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+        
+        .modal-description {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            opacity: 0.85;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            padding: 0 8px;
+        }
+        
+        .modal-download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: var(--transition);
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .modal-download-btn.ios-btn {
+            background: linear-gradient(135deg, var(--ios-color), #666666);
+        }
+        
+        .modal-download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(67, 97, 238, 0.3);
+        }
+        
+        .modal-download-count {
+            margin-top: 16px;
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         
         .container {
@@ -98,7 +253,6 @@
             gap: 10px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             letter-spacing: -0.5px;
-            cursor: pointer;
         }
         
         .logo-icon {
@@ -271,345 +425,6 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
         
-        /* Detail Page Styles - FIXED IMAGE SIZE */
-        .detail-page {
-            padding: 20px 0 40px;
-        }
-        
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 40px;
-            padding: 10px 20px;
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 600;
-            margin-bottom: 25px;
-            transition: var(--transition);
-            font-size: 14px;
-        }
-        
-        .back-btn:hover {
-            transform: translateX(5px);
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-        
-        .detail-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--box-shadow);
-            border: 1px solid var(--border-color);
-        }
-        
-        /* FIX: Better image sizing for all screens */
-        .detail-image {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            max-height: 280px;
-            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        
-        body.dark-mode .detail-image {
-            background: linear-gradient(135deg, #1e293b, #334155);
-        }
-        
-        .detail-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .detail-image i {
-            font-size: 60px;
-            color: var(--primary-color);
-        }
-        
-        .detail-info {
-            padding: 25px;
-        }
-        
-        .detail-title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
-        
-        .detail-downloads {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(67, 97, 238, 0.1);
-            padding: 8px 16px;
-            border-radius: 40px;
-            margin-bottom: 20px;
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--primary-color);
-        }
-        
-        .detail-description {
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 25px;
-            color: var(--text-color);
-        }
-        
-        .detail-download-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            text-decoration: none;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            max-width: 300px;
-        }
-        
-        .detail-download-btn.ios {
-            background: linear-gradient(135deg, var(--ios-color), #666666);
-        }
-        
-        .detail-download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.3);
-        }
-        
-        .detail-meta {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .detail-meta-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            color: var(--text-color);
-            opacity: 0.8;
-        }
-        
-        .detail-meta-item i {
-            color: var(--primary-color);
-            width: 20px;
-        }
-        
-        .detail-meta-item.ios-meta i {
-            color: var(--ios-color);
-        }
-        
-        @media (min-width: 768px) {
-            .detail-card {
-                display: flex;
-                flex-direction: row;
-                align-items: flex-start;
-            }
-            
-            .detail-image {
-                width: 280px;
-                max-height: 280px;
-                aspect-ratio: 1 / 1;
-                flex-shrink: 0;
-            }
-            
-            .detail-info {
-                flex: 1;
-            }
-            
-            .detail-title {
-                font-size: 1.9rem;
-            }
-            
-            .detail-download-btn {
-                width: auto;
-            }
-        }
-        
-        @media (min-width: 992px) {
-            .detail-image {
-                width: 320px;
-                max-height: 320px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .detail-image {
-                max-height: 240px;
-            }
-            .detail-image i {
-                font-size: 48px;
-            }
-            .detail-title {
-                font-size: 1.4rem;
-            }
-        }
-        
-        /* FIXED: Admin Login Page - Beautiful Design */
-        .admin-login-full {
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-        }
-        
-        .admin-login-container {
-            width: 100%;
-            max-width: 450px;
-            margin: 0 auto;
-        }
-        
-        .admin-login-box {
-            background: var(--card-bg);
-            border-radius: 28px;
-            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.2);
-            padding: 35px 30px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-        
-        .admin-login-box h2 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 25px;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-        
-        .admin-login-box h2 i {
-            font-size: 32px;
-        }
-        
-        .admin-form {
-            width: 100%;
-        }
-        
-        .form-group {
-            margin-bottom: 22px;
-            text-align: right;
-        }
-        
-        .form-group label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text-color);
-            font-size: 0.95rem;
-        }
-        
-        .form-group label i {
-            color: var(--primary-color);
-            width: 20px;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid var(--border-color);
-            border-radius: 20px;
-            background-color: var(--input-bg);
-            color: var(--text-color);
-            font-size: 1rem;
-            transition: var(--transition);
-            outline: none;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-        }
-        
-        .login-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 14px 20px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .login-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
-        }
-        
-        .alert {
-            background: rgba(230, 57, 70, 0.1);
-            border-right: 4px solid var(--danger-color);
-            padding: 12px 16px;
-            border-radius: 16px;
-            margin-bottom: 20px;
-            display: none;
-            align-items: center;
-            gap: 10px;
-            color: var(--danger-color);
-            font-weight: 500;
-            text-align: right;
-        }
-        
-        .alert.show {
-            display: flex;
-        }
-        
-        .alert i {
-            font-size: 18px;
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .desktop-nav {
-                display: none;
-            }
-            
-            .admin-login-box {
-                padding: 30px 20px;
-            }
-            
-            .admin-login-box h2 {
-                font-size: 1.5rem;
-            }
-        }
-        
         .hero {
             text-align: center;
             padding: 30px 10px;
@@ -713,6 +528,11 @@
             font-size: 14px;
         }
         
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(58, 134, 255, 0.4);
+        }
+        
         .categories-nav {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -754,6 +574,11 @@
             border-color: var(--primary-color);
             box-shadow: 0 6px 20px rgba(67, 97, 238, 0.2);
             font-weight: 700;
+        }
+        
+        .category-link i {
+            font-size: 20px;
+            margin-bottom: 5px;
         }
         
         .content-section {
@@ -821,7 +646,7 @@
             border-color: var(--primary-color);
         }
         
-        .app-image, .game-image, .ios-image, .featured-image, .admin-app-image, .admin-game-image, .admin-ios-image {
+        .app-image, .game-image, .ios-image, .featured-image {
             height: 100%;
             width: 100%;
             display: flex;
@@ -830,13 +655,6 @@
             background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
             overflow: hidden;
             position: relative;
-        }
-        
-        body.dark-mode .app-image,
-        body.dark-mode .game-image,
-        body.dark-mode .ios-image,
-        body.dark-mode .featured-image {
-            background: linear-gradient(135deg, #1e293b, #334155);
         }
         
         .app-image img, .game-image img, .ios-image img, .featured-image img {
@@ -860,8 +678,286 @@
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
         }
         
-        .ios-badge {
-            background: linear-gradient(135deg, var(--ios-color), #666666);
+        /* Admin Login Styles */
+        .admin-login-full {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+            padding: 20px 10px;
+        }
+        
+        .admin-login-container {
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .admin-login-box {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            padding: 30px 25px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .admin-login-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .admin-login-box h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .alert {
+            padding: 12px 16px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+        
+        .alert.show {
+            display: flex;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .alert-danger {
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.15), rgba(220, 38, 38, 0.1));
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            color: #dc2626;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 14px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 15px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            transition: var(--transition);
+            outline: none;
+            font-family: 'Noto Sans Arabic', sans-serif;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.35);
+        }
+        
+        .admin-panel-container {
+            margin-top: 15px;
+        }
+        
+        .admin-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+            flex-wrap: wrap;
+            overflow-x: auto;
+        }
+        
+        .admin-tab {
+            padding: 12px 18px;
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            cursor: pointer;
+            font-weight: 700;
+            transition: var(--transition);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        
+        .admin-tab:hover, .admin-tab.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .admin-tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .admin-tab-content.active {
+            display: block;
+        }
+        
+        .admin-form-container {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px 20px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+        
+        .admin-form-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+        }
+        
+        .admin-form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .admin-form-group {
+            width: 100%;
+        }
+        
+        .admin-form-group.full-width {
+            flex: 0 0 100%;
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            transition: var(--transition);
+            outline: none;
+            cursor: pointer;
+            font-family: 'Noto Sans Arabic', sans-serif;
+        }
+        
+        .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+        
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .form-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .admin-form-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .admin-btn {
+            padding: 12px 18px;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .admin-btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        
+        .admin-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.3);
+        }
+        
+        .admin-btn-secondary {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+        }
+        
+        .admin-btn-secondary:hover {
+            background-color: var(--border-color);
         }
         
         footer {
@@ -915,6 +1011,11 @@
             font-weight: 400;
         }
         
+        .footer-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(-3px);
+        }
+        
         .copyright {
             text-align: center;
             padding-top: 20px;
@@ -935,53 +1036,6 @@
             animation: spin 1s linear infinite;
             margin-bottom: 10px;
             font-size: 24px;
-            color: var(--primary-color);
-        }
-        
-        .connection-status {
-            position: fixed;
-            top: 12px;
-            left: 12px;
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 8px 12px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 600;
-            animation: slideInLeft 0.5s ease;
-            max-width: calc(100% - 24px);
-            font-size: 13px;
-        }
-        
-        .connection-status.error {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-        }
-        
-        .firebase-alert {
-            position: fixed;
-            top: 70px;
-            right: 10px;
-            background: linear-gradient(135deg, var(--success-color), #34d399);
-            color: white;
-            padding: 12px 15px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            max-width: 250px;
-            animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1), fadeOut 0.5s ease 4.5s forwards;
-            border-left: 4px solid rgba(255, 255, 255, 0.5);
-            font-size: 14px;
-        }
-        
-        .firebase-error {
-            background: linear-gradient(135deg, var(--danger-color), #dc2626) !important;
         }
         
         .no-items {
@@ -993,257 +1047,150 @@
             font-size: 14px;
         }
         
-        @media (min-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
-            
-            .hero {
-                padding: 40px 15px;
-                margin-top: 15px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .search-box {
-                flex-direction: row;
-                border-radius: 50px;
-                padding: 4px;
-                border: 2px solid rgba(255, 255, 255, 0.3);
-            }
-            
-            .search-input {
-                border-radius: 50px;
-                border-bottom: none;
-                padding: 16px 20px;
-            }
-            
-            .search-btn {
-                border-radius: 50px;
-                padding: 16px 30px;
-            }
-            
-            .categories-nav {
-                display: flex;
-                justify-content: center;
-                gap: 12px;
-                margin-bottom: 20px;
-                flex-wrap: wrap;
-                padding: 0 5px;
-            }
-            
-            .category-link {
-                padding: 12px 20px;
-                font-size: 14px;
-                min-width: 100px;
-                flex-direction: row;
-                height: auto;
-            }
-            
-            .category-link i {
-                font-size: 18px;
-                margin-bottom: 0;
-                margin-left: 8px;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
-            .featured-grid, .all-grid, .apps-grid, .games-grid, .ios-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 18px;
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 35px;
-            }
-        }
-        
-        @media (min-width: 992px) {
-            .desktop-nav {
-                display: block;
-            }
-            
-            .mobile-menu-btn {
-                display: none;
-            }
-            
-            .featured-grid, .all-grid, .apps-grid, .games-grid, .ios-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 22px;
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .desktop-nav {
-                display: none;
-            }
-            
-            .categories-nav {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 8px;
-            }
-            
-            .category-link {
-                padding: 10px 8px;
-                font-size: 12px;
-                height: 80px;
-            }
-        }
-        
         @keyframes spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
         
-        @keyframes slideInLeft {
-            from { transform: translateX(-100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        @media (min-width: 768px) {
+            .container { padding: 0 20px; }
+            .hero { padding: 40px 15px; margin-top: 15px; }
+            .hero h1 { font-size: 2rem; }
+            .search-box { flex-direction: row; border-radius: 50px; padding: 4px; }
+            .search-input { border-radius: 50px; border-bottom: none; padding: 16px 20px; }
+            .search-btn { border-radius: 50px; padding: 16px 30px; }
+            .categories-nav { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+            .category-link { padding: 12px 20px; font-size: 14px; min-width: 100px; flex-direction: row; height: auto; }
+            .category-link i { margin-bottom: 0; margin-left: 8px; }
+            .featured-grid, .all-grid, .apps-grid, .games-grid, .ios-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+            .footer-content { grid-template-columns: repeat(2, 1fr); gap: 35px; }
+            .admin-form-row { flex-direction: row; }
+            .admin-form-group { flex: 1; }
+            .admin-form-buttons { flex-direction: row; }
         }
         
-        @keyframes slideInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        @media (min-width: 992px) {
+            .desktop-nav { display: block; }
+            .mobile-menu-btn { display: none; }
+            .featured-grid, .all-grid, .apps-grid, .games-grid, .ios-grid { grid-template-columns: repeat(4, 1fr); gap: 22px; }
+            .footer-content { grid-template-columns: repeat(3, 1fr); }
         }
         
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            .desktop-nav { display: none; }
         }
+        
+        .connection-status { position: fixed; top: 12px; left: 12px; background: #10b981; color: white; padding: 8px 12px; border-radius: var(--border-radius); z-index: 999; display: flex; align-items: center; gap: 6px; font-size: 13px; }
+        .firebase-alert { position: fixed; top: 70px; right: 10px; background: var(--success-color); color: white; padding: 12px 15px; border-radius: var(--border-radius); z-index: 9999; display: flex; align-items: center; gap: 10px; max-width: 250px; animation: slideInRight 0.5s, fadeOut 0.5s 4.5s forwards; font-size: 14px; }
+        @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeOut { to { opacity: 0; } }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div id="connection-status" class="connection-status" style="display: none;">
-        <i class="fas fa-wifi"></i>
-        <span>پەیوەندی بە Firebase دروست کرا</span>
+    <div id="connection-status" class="connection-status" style="display: none;"><i class="fas fa-wifi"></i><span>پەیوەندی بە Firebase دروست کرا</span></div>
+    <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button>
+
+    <!-- Modal Popup -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" id="modalCloseBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image" id="modalImage">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h2 class="modal-title" id="modalTitle">ناوی بەرنامە</h2>
+                <p class="modal-description" id="modalDescription">کورتەی بەرنامە</p>
+                <a href="#" id="modalDownloadBtn" class="modal-download-btn" target="_blank"><i class="fas fa-download"></i> دابەزاندن</a>
+                <div class="modal-download-count" id="modalDownloads"><i class="fas fa-chart-line"></i> <span>0</span> داگرتن</div>
+            </div>
+        </div>
     </div>
 
-    <button class="theme-toggle" id="theme-toggle">
-        <i class="fas fa-moon"></i>
-    </button>
+    <header><div class="container header-content"><div class="logo"><i class="fas fa-download logo-icon"></i>Zhi Zhi</div><button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button><nav class="desktop-nav"><ul><li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> سەرەکی</a></li><li><a href="#" class="nav-link" data-page="apps"><i class="fas fa-mobile-alt"></i> ئەپەکان</a></li><li><a href="#" class="nav-link" data-page="games"><i class="fas fa-gamepad"></i> یاریەکان</a></li><li><a href="#" class="nav-link" data-page="ios"><i class="fab fa-apple"></i> IOS</a></li><li><a href="#" class="nav-link" data-page="admin-login"><i class="fas fa-user-shield"></i> ئەدمین</a></li></ul></nav></div></header>
 
-    <header>
-        <div class="container header-content">
-            <div class="logo" onclick="showPage('home')">
-                <i class="fas fa-download logo-icon"></i>
-                Zhi Zhi
-            </div>
-            
-            <button class="mobile-menu-btn" id="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <nav class="desktop-nav">
-                <ul>
-                    <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> سەرەکی</a></li>
-                    <li><a href="#" class="nav-link" data-page="apps"><i class="fas fa-mobile-alt"></i> ئەپەکان</a></li>
-                    <li><a href="#" class="nav-link" data-page="games"><i class="fas fa-gamepad"></i> یاریەکان</a></li>
-                    <li><a href="#" class="nav-link" data-page="ios"><i class="fab fa-apple"></i> IOS</a></li>
-                    <li><a href="#" class="nav-link" data-page="admin-login"><i class="fas fa-user-shield"></i> ئەدمین</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="mobile-overlay" id="mobile-overlay"></div>
-    <div class="mobile-nav" id="mobile-nav">
-        <div class="mobile-nav-header">
-            <div class="logo" onclick="showPage('home'); closeMobileMenu();">
-                <i class="fas fa-download logo-icon"></i>
-                Zhi Zhi
-            </div>
-            <button class="mobile-nav-close" id="mobile-nav-close">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <ul class="mobile-nav-links">
-            <li><a href="#" class="mobile-nav-link active" data-page="home"><i class="fas fa-home"></i> سەرەکی</a></li>
-            <li><a href="#" class="mobile-nav-link" data-page="apps"><i class="fas fa-mobile-alt"></i> ئەپەکان</a></li>
-            <li><a href="#" class="mobile-nav-link" data-page="games"><i class="fas fa-gamepad"></i> یاریەکان</a></li>
-            <li><a href="#" class="mobile-nav-link" data-page="ios"><i class="fab fa-apple"></i> IOS</a></li>
-            <li><a href="#" class="mobile-nav-link" data-page="admin-login"><i class="fas fa-user-shield"></i> چوونەژوورەوەی ئەدمین</a></li>
-            <li id="admin-panel-mobile-link" style="display: none;"><a href="#" class="mobile-nav-link" data-page="admin-panel"><i class="fas fa-cogs"></i> بەڕێوەبەری</a></li>
-        </ul>
-    </div>
+    <div class="mobile-overlay" id="mobile-overlay"></div><div class="mobile-nav" id="mobile-nav"><div class="mobile-nav-header"><div class="logo"><i class="fas fa-download logo-icon"></i>Zhi Zhi</div><button class="mobile-nav-close" id="mobile-nav-close"><i class="fas fa-times"></i></button></div><ul class="mobile-nav-links"><li><a href="#" class="mobile-nav-link active" data-page="home"><i class="fas fa-home"></i> سەرەکی</a></li><li><a href="#" class="mobile-nav-link" data-page="apps"><i class="fas fa-mobile-alt"></i> ئەپەکان</a></li><li><a href="#" class="mobile-nav-link" data-page="games"><i class="fas fa-gamepad"></i> یاریەکان</a></li><li><a href="#" class="mobile-nav-link" data-page="ios"><i class="fab fa-apple"></i> IOS</a></li><li><a href="#" class="mobile-nav-link" data-page="admin-login"><i class="fas fa-user-shield"></i> چوونەژوورەوەی ئەدمین</a></li><li id="admin-panel-mobile-link" style="display: none;"><a href="#" class="mobile-nav-link" data-page="admin-panel"><i class="fas fa-cogs"></i> بەڕێوەبەری</a></li></ul></div>
 
     <main class="container">
-        <!-- Home, Apps, Games, iOS, Detail sections remain similar but with fixed image sizes in CSS -->
-        <section id="home-page" class="content-section active"><div class="hero"><div class="hero-bg-pattern"></div><div class="hero-content"><h1>بەخێربێیت بۆ Zhi Zhi</h1><p>باشترین یاری و ئەپەکان بەشێوەیەکی نوێ و خێرا دابەزێنە.</p><div class="search-container"><div class="search-box"><input type="text" class="search-input" placeholder="گەڕان بە ناوی یاری یان ئەپ..." id="main-search"><button class="search-btn" id="main-search-btn"><i class="fas fa-search"></i> گەڕان</button></div></div></div></div><div class="categories-nav"><a href="#" class="category-link active" data-category="all"><i class="fas fa-th-large"></i> هەموو</a><a href="#" class="category-link" data-category="apps"><i class="fas fa-mobile-alt"></i> ئەپەکان</a><a href="#" class="category-link" data-category="games"><i class="fas fa-gamepad"></i> یاریەکان</a><a href="#" class="category-link" data-category="ios"><i class="fab fa-apple"></i> IOS</a></div><section class="featured-section"><h2 class="section-title"><i class="fas fa-crown"></i> پاڵێوراوەکان</h2><div class="featured-grid" id="featured-grid"><div class="loading"><i class="fas fa-spinner"></i><br>پاڵێوراوەکان بار دەکرێن...</div></div></section><section class="all-section"><h2 class="section-title"><i class="fas fa-th-list"></i> هەموو ئەپ و یاریەکان</h2><div class="all-grid" id="all-grid"><div class="loading"><i class="fas fa-spinner"></i><br>ئەپ و یاریەکان بار دەکرێن...</div></div></section></section>
-        <section id="apps-page" class="content-section"><h1 class="section-title"><i class="fas fa-mobile-alt"></i> هەموو ئەپەکان</h1><div class="search-container"><div class="search-box"><input type="text" class="search-input" placeholder="گەڕان بە ناوی ئەپ..." id="apps-search"><button class="search-btn" id="apps-search-btn"><i class="fas fa-search"></i> گەڕان</button></div></div><div class="apps-grid" id="apps-grid"><div class="loading"><i class="fas fa-spinner"></i><br>ئەپەکان بار دەکرێن...</div></div></section>
-        <section id="games-page" class="content-section"><h1 class="section-title"><i class="fas fa-gamepad"></i> هەموو یاریەکان</h1><div class="search-container"><div class="search-box"><input type="text" class="search-input" placeholder="گەڕان بە ناوی یاری..." id="games-search"><button class="search-btn" id="games-search-btn"><i class="fas fa-search"></i> گەڕان</button></div></div><div class="games-grid" id="games-grid"><div class="loading"><i class="fas fa-spinner"></i><br>یاریەکان بار دەکرێن...</div></div></section>
-        <section id="ios-page" class="content-section"><h1 class="section-title"><i class="fab fa-apple"></i> هەموو بەرنامەکانی IOS</h1><div class="search-container"><div class="search-box"><input type="text" class="search-input" placeholder="گەڕان بە ناوی بەرنامەی IOS..." id="ios-search"><button class="search-btn" id="ios-search-btn"><i class="fas fa-search"></i> گەڕان</button></div></div><div class="ios-grid" id="ios-grid"><div class="loading"><i class="fas fa-spinner"></i><br>بەرنامەکانی IOS بار دەکرێن...</div></div></section>
-        <section id="detail-page" class="content-section"><div class="detail-page"><a href="#" class="back-btn" id="detail-back-btn"><i class="fas fa-arrow-right"></i> گەڕانەوە</a><div class="detail-card"><div class="detail-image" id="detail-image"><i class="fas fa-download fa-3x"></i></div><div class="detail-info"><h1 class="detail-title" id="detail-title">-</h1><div class="detail-downloads"><i class="fas fa-download"></i> <span id="detail-downloads-count">0</span> داگرتن</div><p class="detail-description" id="detail-description">-</p><a href="#" target="_blank" class="detail-download-btn" id="detail-download-btn"><i class="fas fa-download"></i> دابەزاندن</a><div class="detail-meta"><div class="detail-meta-item"><i class="fas fa-tag"></i> <span id="detail-meta-type">جۆر: -</span></div><div class="detail-meta-item"><i class="fas fa-id-card"></i> <span id="detail-meta-id">ID: -</span></div></div></div></div></div></section>
-        
-        <!-- FIXED: Admin Login Page with beautiful design -->
+        <section id="home-page" class="content-section active"><section class="hero"><div class="hero-bg-pattern"></div><div class="hero-content"><h1>بەخێربێیت بۆ Zhi Zhi</h1><p>باشترین یاری و ئەپەکان بەشێوەیەکی نوێ و خێرا دابەزێنە.</p><div class="search-container"><div class="search-box"><input type="text" class="search-input" placeholder="گەڕان بە ناوی یاری یان ئەپ..." id="main-search"><button class="search-btn" id="main-search-btn"><i class="fas fa-search"></i> گەڕان</button></div></div></div></section><div class="categories-nav"><a href="#" class="category-link active" data-category="all"><i class="fas fa-th-large"></i> هەموو</a><a href="#" class="category-link" data-category="apps"><i class="fas fa-mobile-alt"></i> ئەپەکان</a><a href="#" class="category-link" data-category="games"><i class="fas fa-gamepad"></i> یاریەکان</a><a href="#" class="category-link" data-category="ios"><i class="fab fa-apple"></i> IOS</a></div><section class="featured-section"><h2 class="section-title"><i class="fas fa-crown"></i> پاڵێوراوەکان</h2><div class="featured-grid" id="featured-grid"><div class="loading"><i class="fas fa-spinner"></i><br>پاڵێوراوەکان بار دەکرێن...</div></div></section><section class="all-section"><h2 class="section-title"><i class="fas fa-th-list"></i> هەموو ئەپ و یاریەکان</h2><div class="all-grid" id="all-grid"><div class="loading"><i class="fas fa-spinner"></i><br>ئەپ و یاریەکان بار دەکرێن...</div></div></section></section>
+        <section id="apps-page" class="content-section"><h1 class="section-title"><i class="fas fa-mobile-alt"></i> هەموو ئەپەکان</h1><div class="apps-grid" id="apps-grid"><div class="loading"><i class="fas fa-spinner"></i><br>ئەپەکان بار دەکرێن...</div></div></section>
+        <section id="games-page" class="content-section"><h1 class="section-title"><i class="fas fa-gamepad"></i> هەموو یاریەکان</h1><div class="games-grid" id="games-grid"><div class="loading"><i class="fas fa-spinner"></i><br>یاریەکان بار دەکرێن...</div></div></section>
+        <section id="ios-page" class="content-section"><h1 class="section-title"><i class="fab fa-apple"></i> هەموو بەرنامەکانی IOS</h1><div class="ios-grid" id="ios-grid"><div class="loading"><i class="fas fa-spinner"></i><br>بەرنامەکانی IOS بار دەکرێن...</div></div></section>
         <section id="admin-login-page" class="content-section">
             <div class="admin-login-full">
                 <div class="admin-login-container">
                     <div class="admin-login-box">
                         <h2><i class="fas fa-user-shield"></i> چوونە ژوورەوەی ئەدمین</h2>
                         <div class="alert alert-danger" id="login-error"><i class="fas fa-exclamation-circle"></i> ناوی بەکارهێنەر یان وشەی نهێنی هەڵەیە.</div>
-                        <form id="admin-login-form" class="admin-form">
-                            <div class="form-group"><label for="username"><i class="fas fa-user"></i> ناوی بەکارهێنەر</label><input type="text" id="username" class="form-control" placeholder="ناوی بەکارهێنەر بنووسە" required></div>
-                            <div class="form-group"><label for="password"><i class="fas fa-lock"></i> وشەی نهێنی</label><input type="password" id="password" class="form-control" placeholder="وشەی نهێنی بنووسە" required></div>
+                        <form id="admin-login-form">
+                            <div class="form-group">
+                                <label for="username"><i class="fas fa-user"></i> ناوی بەکارهێنەر</label>
+                                <input type="text" id="username" class="form-control" placeholder="ناوی بەکارهێنەر بنووسە" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password"><i class="fas fa-lock"></i> وشەی نهێنی</label>
+                                <input type="password" id="password" class="form-control" placeholder="وشەی نهێنی بنووسە" required>
+                            </div>
                             <button type="submit" class="login-btn"><i class="fas fa-sign-in-alt"></i> چوونەژوورەوە</button>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <section id="admin-panel-page" class="content-section"><div class="admin-panel-container"><h1 class="section-title"><i class="fas fa-cogs"></i> بەڕێوەبەری</h1><div class="admin-tabs"><div class="admin-tab active" data-tab="add-app"><i class="fas fa-plus-circle"></i> زیادکردنی بەرنامە</div><div class="admin-tab" data-tab="manage-apps"><i class="fas fa-mobile-alt"></i> بەڕێوەبردنی ئەپەکان</div><div class="admin-tab" data-tab="manage-games"><i class="fas fa-gamepad"></i> بەڕێوەبردنی یاریەکان</div><div class="admin-tab" data-tab="manage-ios"><i class="fab fa-apple"></i> بەڕێوەبردنی IOS</div></div><div class="admin-tab-content active" id="add-app-tab"><div class="admin-form-container"><h2 class="admin-form-title"><i class="fas fa-plus-circle"></i> زیادکردنی بەرنامەی نوێ</h2><form id="add-app-form"><div class="admin-form-row"><div class="admin-form-group"><label for="app-type"><i class="fas fa-list"></i> جۆری بەرنامە</label><select id="app-type" class="form-select" required><option value="">جۆر هەڵبژێرە</option><option value="app">ئەپ</option><option value="game">یاری</option><option value="ios">IOS</option></select></div><div class="admin-form-group"><label for="app-name"><i class="fas fa-heading"></i> ناوی بەرنامە</label><input type="text" id="app-name" class="form-control" placeholder="ناوی بەرنامە" required></div></div><div class="admin-form-row"><div class="admin-form-group full-width"><label for="app-description"><i class="fas fa-align-left"></i> کورتەی بەرنامە</label><textarea id="app-description" class="form-control" placeholder="کورتەی بەرنامە" required></textarea></div></div><div class="admin-form-row"><div class="admin-form-group"><label for="app-image"><i class="fas fa-image"></i> لینکی وێنە</label><input type="url" id="app-image" class="form-control" placeholder="لینکی وێنە (URL)"></div><div class="admin-form-group"><label for="app-download"><i class="fas fa-download"></i> لینکی داگرتن</label><input type="url" id="app-download" class="form-control" placeholder="لینکی داگرتن (URL)" required></div></div><div class="admin-form-row"><div class="admin-form-group"><div class="form-checkbox"><input type="checkbox" id="app-featured"> <label for="app-featured"><i class="fas fa-crown"></i> پاڵێوراو بکە</label></div></div></div><div class="admin-form-buttons"><button type="submit" class="admin-btn admin-btn-primary"><i class="fas fa-save"></i> زیادکردنی بەرنامە</button><button type="reset" class="admin-btn admin-btn-secondary"><i class="fas fa-redo"></i> پاککردنەوە</button></div></form></div><div class="admin-form-container" id="edit-form-container" style="display: none;"><h2 class="admin-form-title"><i class="fas fa-edit"></i> نوێکردنەوەی بەرنامە</h2><form id="edit-app-form"><input type="hidden" id="edit-app-id"><input type="hidden" id="edit-app-type"><div class="admin-form-row"><div class="admin-form-group"><label for="edit-app-name">ناوی بەرنامە</label><input type="text" id="edit-app-name" class="form-control" required></div><div class="admin-form-group"><label for="edit-app-featured">پاڵێوراو</label><select id="edit-app-featured" class="form-select"><option value="false">نەخێر</option><option value="true">بەڵێ</option></select></div></div><div class="admin-form-row"><div class="admin-form-group full-width"><label for="edit-app-description">کورتەی بەرنامە</label><textarea id="edit-app-description" class="form-control" required></textarea></div></div><div class="admin-form-row"><div class="admin-form-group"><label for="edit-app-image">لینکی وێنە</label><input type="url" id="edit-app-image" class="form-control"></div><div class="admin-form-group"><label for="edit-app-download">لینکی داگرتن</label><input type="url" id="edit-app-download" class="form-control" required></div></div><div class="admin-form-buttons"><button type="submit" class="admin-btn admin-btn-primary"><i class="fas fa-save"></i> نوێکردنەوە</button><button type="button" id="cancel-edit" class="admin-btn admin-btn-secondary"><i class="fas fa-times"></i> هەڵوەشاندنەوە</button></div></form></div></div><div class="admin-tab-content" id="manage-apps-tab"><h2 class="admin-form-title"><i class="fas fa-mobile-alt"></i> بەڕێوەبردنی ئەپەکان</h2><div class="admin-apps-grid" id="admin-apps-grid"><div class="loading"><i class="fas fa-spinner"></i><br>ئەپەکان بار دەکرێن...</div></div></div><div class="admin-tab-content" id="manage-games-tab"><h2 class="admin-form-title"><i class="fas fa-gamepad"></i> بەڕێوەبردنی یاریەکان</h2><div class="admin-games-grid" id="admin-games-grid"><div class="loading"><i class="fas fa-spinner"></i><br>یاریەکان بار دەکرێن...</div></div></div><div class="admin-tab-content" id="manage-ios-tab"><h2 class="admin-form-title"><i class="fab fa-apple"></i> بەڕێوەبردنی بەرنامەکانی IOS</h2><div class="admin-ios-grid" id="admin-ios-grid"><div class="loading"><i class="fas fa-spinner"></i><br>بەرنامەکانی IOS بار دەکرێن...</div></div></div></div></section>
+        <section id="admin-panel-page" class="content-section"><div class="admin-panel-container"><h1 class="section-title"><i class="fas fa-cogs"></i> بەڕێوەبەری</h1><div class="admin-tabs"><div class="admin-tab active" data-tab="add-app"><i class="fas fa-plus-circle"></i> زیادکردنی بەرنامە</div><div class="admin-tab" data-tab="manage-apps"><i class="fas fa-mobile-alt"></i> بەڕێوەبردنی ئەپەکان</div><div class="admin-tab" data-tab="manage-games"><i class="fas fa-gamepad"></i> بەڕێوەبردنی یاریەکان</div><div class="admin-tab" data-tab="manage-ios"><i class="fab fa-apple"></i> بەڕێوەبردنی IOS</div></div><div class="admin-tab-content active" id="add-app-tab"><div class="admin-form-container"><h2 class="admin-form-title"><i class="fas fa-plus-circle"></i> زیادکردنی بەرنامەی نوێ</h2><form id="add-app-form"><div class="admin-form-row"><div class="admin-form-group"><label for="app-type">جۆری بەرنامە</label><select id="app-type" class="form-select" required><option value="">جۆر هەڵبژێرە</option><option value="app">ئەپ</option><option value="game">یاری</option><option value="ios">IOS</option></select></div><div class="admin-form-group"><label for="app-name">ناوی بەرنامە</label><input type="text" id="app-name" class="form-control" placeholder="ناوی بەرنامە" required></div></div><div class="admin-form-row"><div class="admin-form-group full-width"><label for="app-description">کورتەی بەرنامە</label><textarea id="app-description" class="form-control" placeholder="کورتەی بەرنامە" required></textarea></div></div><div class="admin-form-row"><div class="admin-form-group"><label for="app-image">لینکی وێنە</label><input type="url" id="app-image" class="form-control" placeholder="لینکی وێنە (URL)"></div><div class="admin-form-group"><label for="app-download">لینکی داگرتن</label><input type="url" id="app-download" class="form-control" placeholder="لینکی داگرتن (URL)" required></div></div><div class="admin-form-row"><div class="admin-form-group"><div class="form-checkbox"><input type="checkbox" id="app-featured"><label for="app-featured"><i class="fas fa-crown"></i> پاڵێوراو بکە</label></div></div></div><div class="admin-form-buttons"><button type="submit" class="admin-btn admin-btn-primary"><i class="fas fa-save"></i> زیادکردنی بەرنامە</button><button type="reset" class="admin-btn admin-btn-secondary"><i class="fas fa-redo"></i> پاککردنەوە</button></div></form></div></div></div></section>
     </main>
 
-    <footer><div class="container"><div class="footer-content"><div class="footer-section"><h3>Zhi Zhi</h3><p>وێبسایتێکە بۆ دابەزاندنی یاری و ئەپەکان. هەموو مافەکان پارێزراون.</p></div><div class="footer-section"><h3>بەستەرەکان</h3><ul class="footer-links"><li><a href="#" data-page="home"><i class="fas fa-home"></i> سەرەکی</a></li><li><a href="#" data-page="apps"><i class="fas fa-mobile-alt"></i> ئەپەکان</a></li><li><a href="#" data-page="games"><i class="fas fa-gamepad"></i> یاریەکان</a></li><li><a href="#" data-page="ios"><i class="fab fa-apple"></i> IOS</a></li></ul></div><div class="footer-section"><h3>پەیوەندیمان پێوە بکە</h3><ul class="footer-links"><li><i class="fas fa-envelope"></i> imzhyo721@gmail.com</li><li><i class="fas fa-map-marker-alt"></i> هەولێر، کوردستان</li></ul><div style="margin-top: 20px; display: flex; gap: 15px;"><a href="https://t.me/ZhiZhimod" target="_blank" style="color: #4cc9f0; font-size: 20px;"><i class="fab fa-telegram"></i></a><a href="https://www.tiktok.com/@zhizhimod" target="_blank" style="color: #4cc9f0; font-size: 20px;"><i class="fab fa-tiktok"></i></a></div></div></div><div class="copyright"><p>&copy; ٢٠٢٣ Zhi Zhi. هەموو مافەکان پارێزراون.</p></div></div></footer>
+    <footer><div class="container"><div class="footer-content"><div class="footer-section"><h3>Zhi Zhi</h3><p>وێبسایتێکە بۆ دابەزاندنی یاری و ئەپەکان. هەموو مافەکان پارێزراون.</p></div><div class="footer-section"><h3>بەستەرەکان</h3><ul class="footer-links"><li><a href="#" data-page="home"><i class="fas fa-home"></i> سەرەکی</a></li><li><a href="#" data-page="apps"><i class="fas fa-mobile-alt"></i> ئەپەکان</a></li><li><a href="#" data-page="games"><i class="fas fa-gamepad"></i> یاریەکان</a></li><li><a href="#" data-page="ios"><i class="fab fa-apple"></i> IOS</a></li></ul></div><div class="footer-section"><h3>پەیوەندیمان پێوە بکە</h3><ul class="footer-links"><li><i class="fas fa-envelope"></i> imzhyo721@gmail.com</li><li><i class="fas fa-map-marker-alt"></i> هەولێر، کوردستان</li></ul></div></div><div class="copyright"><p>&copy; ٢٠٢٣ Zhi Zhi. هەموو مافەکان پارێزراون.</p></div></div></footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script>
         const firebaseConfig = { apiKey: "AIzaSyDf8v2t0GzChcIc1wP6vmNdTZsI5Y-rCfU", authDomain: "zhi-zhii.firebaseapp.com", projectId: "zhi-zhii", storageBucket: "zhi-zhii.firebasestorage.app", messagingSenderId: "660343070228", appId: "1:660343070228:web:7d360db626016ad4541101", measurementId: "G-WLGWYNH6L4" };
-        let app, db, apps = [], games = [], iosApps = [], featured = [], currentCategory = 'all', isAdminLoggedIn = false, currentDetailItem = null;
-        try { app = firebase.initializeApp(firebaseConfig); db = firebase.firestore(); console.log("✅ Firebase started"); testFirebaseConnection(); } catch(e) { console.error(e); }
-        function showConnectionStatus(m,s){const d=document.getElementById('connection-status');if(d){d.innerHTML=`<i class="fas ${s?'fa-wifi':'fa-exclamation-triangle'}"></i><span>${m}</span>`;d.className=`connection-status ${s?'':'error'}`;d.style.display='flex';if(s)setTimeout(()=>d.style.display='none',3000);}}
-        function testFirebaseConnection(){if(!db)return;db.collection("zhi-zhi").limit(1).get().then(()=>{loadAllData();setupRealtimeListeners();}).catch(e=>showConnectionStatus("هەڵە لە پەیوەندی Firebase",false));}
-        function showPage(pageId){document.querySelectorAll('.content-section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(l=>l.classList.remove('active'));const p=document.getElementById(`${pageId}-page`);if(p)p.classList.add('active');if(pageId==='admin-panel'&&isAdminLoggedIn){setupAdminTabs();displayAdminApps();displayAdminGames();displayAdminIos();}closeMobileMenu();if(pageId==='home'||pageId==='apps'||pageId==='games'||pageId==='ios')loadAllData();}
-        function showDetailPage(item){if(!item)return;currentDetailItem=item;const imgDiv=document.getElementById('detail-image'),title=document.getElementById('detail-title'),downloadsSpan=document.getElementById('detail-downloads-count'),desc=document.getElementById('detail-description'),btn=document.getElementById('detail-download-btn'),typeSpan=document.getElementById('detail-meta-type'),idSpan=document.getElementById('detail-meta-id');const typeText=item.type==='app'?'ئەپ':item.type==='game'?'یاری':'IOS';const iconClass=item.type==='app'?'fa-mobile-alt':item.type==='game'?'fa-gamepad':'fa-apple';if(item.imgurl)imgDiv.innerHTML=`<img src="${item.imgurl}" alt="${item.name}">`;else imgDiv.innerHTML=`<i class="fas ${iconClass} fa-3x"></i>`;title.textContent=item.name||'بێ ناو';downloadsSpan.textContent=item.downloads||0;desc.textContent=item.description||'بێ وەسف';btn.href=item.downloadurl||'#';if(item.type==='ios')btn.classList.add('ios');else btn.classList.remove('ios');typeSpan.innerHTML=`جۆر: ${typeText}`;idSpan.innerHTML=`ID: ${item.id}`;btn.onclick=function(e){e.preventDefault();incrementDownloadCount(item.id,item.type);if(item.downloadurl&&item.downloadurl!=='#')window.open(item.downloadurl,'_blank');};showPage('detail');}
-        function loadAllData(){if(!db)return;db.collection("zhi-zhi").where("type","==","app").get().then(s=>{apps=[];s.forEach(d=>{const data=d.data();apps.push({...data,id:d.id,name:data.name||"بێ ناو",description:data.description||"",imgurl:data.imgurl||"",downloadurl:data.downloadurl||"#",downloads:data.downloads||0,featured:data.featured||false,type:"app"});});displayApps();displayAllItems();updateFeatured();if(document.getElementById('admin-panel-page').classList.contains('active')&&isAdminLoggedIn)displayAdminApps();}).catch(e=>console.error(e));db.collection("zhi-zhi").where("type","==","game").get().then(s=>{games=[];s.forEach(d=>{const data=d.data();games.push({...data,id:d.id,name:data.name||"بێ ناو",description:data.description||"",imgurl:data.imgurl||"",downloadurl:data.downloadurl||"#",downloads:data.downloads||0,featured:data.featured||false,type:"game"});});displayGames();displayAllItems();updateFeatured();if(document.getElementById('admin-panel-page').classList.contains('active')&&isAdminLoggedIn)displayAdminGames();}).catch(e=>console.error(e));db.collection("zhi-zhi").where("type","==","ios").get().then(s=>{iosApps=[];s.forEach(d=>{const data=d.data();iosApps.push({...data,id:d.id,name:data.name||"بێ ناو",description:data.description||"",imgurl:data.imgurl||"",downloadurl:data.downloadurl||"#",downloads:data.downloads||0,featured:data.featured||false,type:"ios"});});displayIos();displayAllItems();updateFeatured();if(document.getElementById('admin-panel-page').classList.contains('active')&&isAdminLoggedIn)displayAdminIos();}).catch(e=>console.error(e));}
-        function setupRealtimeListeners(){if(!db)return;db.collection("zhi-zhi").where("type","==","app").onSnapshot(()=>loadAllData());db.collection("zhi-zhi").where("type","==","game").onSnapshot(()=>loadAllData());db.collection("zhi-zhi").where("type","==","ios").onSnapshot(()=>loadAllData());}
-        function displayAllItems(){const grid=document.getElementById('all-grid');if(!grid)return;grid.innerHTML='';let items=[];if(currentCategory==='all')items=[...apps,...games,...iosApps];else if(currentCategory==='apps')items=apps;else if(currentCategory==='games')items=games;else if(currentCategory==='ios')items=iosApps;if(items.length===0){grid.innerHTML='<div class="no-items"><i class="fas fa-inbox fa-2x"></i><br><br>هیچ ئایتمێک بوونی نیە</div>';return;}items.forEach(item=>{const card=document.createElement('div');card.className=`${item.type}-card`;if(item.featured){const badgeClass=item.type==='ios'?'featured-badge ios-badge':'featured-badge';card.innerHTML+=`<div class="${badgeClass}">پاڵێوراو</div>`;}const iconClass=item.type==='app'?'fa-mobile-alt':item.type==='game'?'fa-gamepad':'fa-apple';card.innerHTML+=`<div class="${item.type}-image">${item.imgurl?`<img src="${item.imgurl}" alt="${item.name}" loading="lazy">`:`<i class="fas ${iconClass} fa-3x"></i>`}</div>`;card.addEventListener('click',()=>showDetailPage(item));grid.appendChild(card);});}
-        function displayApps(){const grid=document.getElementById('apps-grid');if(!grid)return;grid.innerHTML='';if(apps.length===0){grid.innerHTML='<div class="no-items"><i class="fas fa-mobile-alt fa-2x"></i><br><br>هیچ ئەپێک بوونی نیە</div>';return;}apps.forEach(app=>{const card=document.createElement('div');card.className='app-card';if(app.featured)card.innerHTML+=`<div class="featured-badge">پاڵێوراو</div>`;card.innerHTML+=`<div class="app-image">${app.imgurl?`<img src="${app.imgurl}" alt="${app.name}" loading="lazy">`:`<i class="fas fa-mobile-alt fa-3x"></i>`}</div>`;card.addEventListener('click',()=>showDetailPage(app));grid.appendChild(card);});}
-        function displayGames(){const grid=document.getElementById('games-grid');if(!grid)return;grid.innerHTML='';if(games.length===0){grid.innerHTML='<div class="no-items"><i class="fas fa-gamepad fa-2x"></i><br><br>هیچ یارییەک بوونی نیە</div>';return;}games.forEach(game=>{const card=document.createElement('div');card.className='game-card';if(game.featured)card.innerHTML+=`<div class="featured-badge">پاڵێوراو</div>`;card.innerHTML+=`<div class="game-image">${game.imgurl?`<img src="${game.imgurl}" alt="${game.name}" loading="lazy">`:`<i class="fas fa-gamepad fa-3x"></i>`}</div>`;card.addEventListener('click',()=>showDetailPage(game));grid.appendChild(card);});}
-        function displayIos(){const grid=document.getElementById('ios-grid');if(!grid)return;grid.innerHTML='';if(iosApps.length===0){grid.innerHTML='<div class="no-items"><i class="fab fa-apple fa-2x"></i><br><br>هیچ بەرنامەیەکی IOS بوونی نیە</div>';return;}iosApps.forEach(ios=>{const card=document.createElement('div');card.className='ios-card';if(ios.featured)card.innerHTML+=`<div class="featured-badge ios-badge">پاڵێوراو</div>`;card.innerHTML+=`<div class="ios-image">${ios.imgurl?`<img src="${ios.imgurl}" alt="${ios.name}" loading="lazy">`:`<i class="fab fa-apple fa-3x"></i>`}</div>`;card.addEventListener('click',()=>showDetailPage(ios));grid.appendChild(card);});}
-        function updateFeatured(){featured=[...apps.filter(a=>a.featured),...games.filter(g=>g.featured),...iosApps.filter(i=>i.featured)];const fg=document.getElementById('featured-grid');if(!fg)return;fg.innerHTML='';if(featured.length===0){fg.innerHTML='<div class="no-items"><i class="fas fa-crown fa-2x"></i><br><br>هیچ پاڵێوراوێک بوونی نیە</div>';return;}featured.forEach(item=>{const card=document.createElement('div');card.className='featured-card';const badgeClass=item.type==='ios'?'featured-badge ios-badge':'featured-badge';card.innerHTML=`<div class="${badgeClass}">پاڵێوراو</div>`;const iconClass=item.type==='app'?'fa-mobile-alt':item.type==='game'?'fa-gamepad':'fa-apple';card.innerHTML+=`<div class="featured-image">${item.imgurl?`<img src="${item.imgurl}" alt="${item.name}" loading="lazy">`:`<i class="fas ${iconClass} fa-3x"></i>`}</div>`;card.addEventListener('click',()=>showDetailPage(item));fg.appendChild(card);});}
-        function incrementDownloadCount(id,type){if(!db)return;db.collection("zhi-zhi").doc(id).get().then(d=>{if(d.exists){const curr=d.data().downloads||0;db.collection("zhi-zhi").doc(id).update({downloads:curr+1});}}).catch(e=>console.error(e));}
-        function adminLogin(u,p){if(u==="zhs12"&&p==="zhizhisun"){isAdminLoggedIn=true;const nav=document.querySelector('nav.desktop-nav ul');if(nav&&!document.querySelector('nav a[data-page="admin-panel"]')){const li=document.createElement('li');li.innerHTML='<a href="#" class="nav-link" data-page="admin-panel"><i class="fas fa-cogs"></i> بەڕێوەبەری</a>';nav.appendChild(li);}document.getElementById('admin-panel-mobile-link').style.display='block';showPage('admin-panel');return true;}else{document.getElementById('login-error').classList.add('show');setTimeout(()=>document.getElementById('login-error').classList.remove('show'),3000);return false;}}
-        function toggleTheme(){document.body.classList.toggle('dark-mode');const btn=document.getElementById('theme-toggle');if(document.body.classList.contains('dark-mode')){btn.innerHTML='<i class="fas fa-sun"></i>';localStorage.setItem('zhizhi_theme','dark');}else{btn.innerHTML='<i class="fas fa-moon"></i>';localStorage.setItem('zhizhi_theme','light');}}
+        let app, db, apps=[], games=[], iosApps=[], featured=[], currentCategory='all', isAdminLoggedIn=false;
+        try { app = firebase.initializeApp(firebaseConfig); db = firebase.firestore(); console.log("✅ Firebase started"); } catch(e) { console.error(e); }
+        
+        function showModal(item) {
+            const modal = document.getElementById('itemModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+            const modalDownloads = document.getElementById('modalDownloads').querySelector('span');
+            
+            modalImage.innerHTML = item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}">` : `<i class="fas ${item.type==='app'?'fa-mobile-alt':item.type==='game'?'fa-gamepad':'fa-apple'} fa-4x"></i>`;
+            modalTitle.textContent = item.name;
+            modalDescription.textContent = item.description || 'بێ وەسف';
+            modalDownloadBtn.href = item.downloadurl || '#';
+            modalDownloadBtn.classList.toggle('ios-btn', item.type === 'ios');
+            modalDownloads.textContent = item.downloads || 0;
+            modal.classList.add('active');
+        }
+        
+        function closeModal() { document.getElementById('itemModal').classList.remove('active'); }
+        
+        function setupCardClick(card, item) { card.addEventListener('click', (e) => { if(!e.target.closest('.download-overlay-btn')) showModal(item); }); }
+        
+        function loadAllData() { if(!db) return; db.collection("zhi-zhi").get().then(snap=>{ apps=[]; games=[]; iosApps=[]; snap.forEach(d=>{ let data=d.data(), obj={...data, id:d.id, name:data.name||"بێ ناو", description:data.description||"بێ وەسف", imgurl:data.imgurl||"", downloadurl:data.downloadurl||"#", downloads:data.downloads||0, featured:data.featured||false}; if(data.type==='app') apps.push(obj); else if(data.type==='game') games.push(obj); else if(data.type==='ios') iosApps.push(obj); }); displayAll(); displayApps(); displayGames(); displayIos(); updateFeatured(); }); }
+        
+        function displayAll() { let grid=document.getElementById('all-grid'); if(!grid) return; let items=currentCategory==='all'?[...apps,...games,...iosApps]:currentCategory==='apps'?apps:currentCategory==='games'?games:iosApps; grid.innerHTML=''; if(items.length===0){grid.innerHTML='<div class="no-items">هیچ ئایتمێک نیە</div>';return;} items.forEach(i=>{ let card=document.createElement('div'); card.className=i.type==='app'?'app-card':i.type==='game'?'game-card':'ios-card'; if(i.featured) card.innerHTML+=`<div class="featured-badge ${i.type==='ios'?'ios-badge':''}">پاڵێوراو</div>`; let icon=i.type==='app'?'fa-mobile-alt':i.type==='game'?'fa-gamepad':'fa-apple'; card.innerHTML+=`<div class="${i.type}-image">${i.imgurl?`<img src="${i.imgurl}" alt="${i.name}">`:`<i class="fas ${icon} fa-3x"></i>`}</div><div class="${i.type}-info-overlay"><h3 class="${i.type}-info-overlay-title">${i.name}</h3><p class="${i.type}-info-overlay-desc">${i.description||''}</p><div class="${i.type}-info-overlay-downloads"><i class="fas fa-download"></i> ${i.downloads||0}</div><a href="${i.downloadurl}" target="_blank" class="download-overlay-btn ${i.type==='ios'?'ios-download-overlay-btn':''}"><i class="fas fa-download"></i> دابەزاندن</a></div>`; grid.appendChild(card); setupCardClick(card,i); let btn=card.querySelector('.download-overlay-btn'); if(btn) btn.addEventListener('click',e=>e.stopPropagation()); }); }
+        
+        function displayApps(){let g=document.getElementById('apps-grid');if(!g)return;g.innerHTML='';if(apps.length===0){g.innerHTML='<div class="no-items">هیچ ئەپێک نیە</div>';return;}apps.forEach(i=>{let c=document.createElement('div');c.className='app-card';if(i.featured)c.innerHTML+='<div class="featured-badge">پاڵێوراو</div>';c.innerHTML+=`<div class="app-image">${i.imgurl?`<img src="${i.imgurl}">`:'<i class="fas fa-mobile-alt fa-3x"></i>'}</div><div class="app-info-overlay"><h3>${i.name}</h3><p>${i.description||''}</p><div><i class="fas fa-download"></i> ${i.downloads||0}</div><a href="${i.downloadurl}" target="_blank" class="download-overlay-btn"><i class="fas fa-download"></i> دابەزاندن</a></div>`;g.appendChild(c);setupCardClick(c,i);});}
+        function displayGames(){let g=document.getElementById('games-grid');if(!g)return;g.innerHTML='';if(games.length===0){g.innerHTML='<div class="no-items">هیچ یارییەک نیە</div>';return;}games.forEach(i=>{let c=document.createElement('div');c.className='game-card';if(i.featured)c.innerHTML+='<div class="featured-badge">پاڵێوراو</div>';c.innerHTML+=`<div class="game-image">${i.imgurl?`<img src="${i.imgurl}">`:'<i class="fas fa-gamepad fa-3x"></i>'}</div><div class="game-info-overlay"><h3>${i.name}</h3><p>${i.description||''}</p><div><i class="fas fa-download"></i> ${i.downloads||0}</div><a href="${i.downloadurl}" target="_blank" class="download-overlay-btn"><i class="fas fa-download"></i> دابەزاندن</a></div>`;g.appendChild(c);setupCardClick(c,i);});}
+        function displayIos(){let g=document.getElementById('ios-grid');if(!g)return;g.innerHTML='';if(iosApps.length===0){g.innerHTML='<div class="no-items">هیچ بەرنامەی IOS نیە</div>';return;}iosApps.forEach(i=>{let c=document.createElement('div');c.className='ios-card';if(i.featured)c.innerHTML+='<div class="featured-badge ios-badge">پاڵێوراو</div>';c.innerHTML+=`<div class="ios-image">${i.imgurl?`<img src="${i.imgurl}">`:'<i class="fab fa-apple fa-3x"></i>'}</div><div class="ios-info-overlay"><h3>${i.name}</h3><p>${i.description||''}</p><div><i class="fas fa-download"></i> ${i.downloads||0}</div><a href="${i.downloadurl}" target="_blank" class="download-overlay-btn ios-download-overlay-btn"><i class="fas fa-download"></i> دابەزاندن</a></div>`;g.appendChild(c);setupCardClick(c,i);});}
+        function updateFeatured(){featured=[...apps.filter(a=>a.featured),...games.filter(g=>g.featured),...iosApps.filter(i=>i.featured)]; let grid=document.getElementById('featured-grid'); if(!grid)return; grid.innerHTML=''; if(featured.length===0){grid.innerHTML='<div class="no-items">هیچ پاڵێوراوێک نیە</div>';return;} featured.forEach(i=>{let c=document.createElement('div');c.className='featured-card';c.innerHTML+=`<div class="featured-badge ${i.type==='ios'?'ios-badge':''}">پاڵێوراو</div><div class="featured-image">${i.imgurl?`<img src="${i.imgurl}">`:'<i class="fas fa-download fa-3x"></i>'}</div><div class="featured-info-overlay"><h3>${i.name}</h3><p>${i.description||''}</p><div><i class="fas fa-download"></i> ${i.downloads||0}</div><a href="${i.downloadurl}" target="_blank" class="download-overlay-btn ${i.type==='ios'?'ios-download-overlay-btn':''}"><i class="fas fa-download"></i> دابەزاندن</a></div>`;grid.appendChild(c);setupCardClick(c,i);});}
+        
+        function adminLogin(u,p){if(u==="zhs12"&&p==="zhizhisun"){isAdminLoggedIn=true;alert("چوونەژوورەوە سەرکەوتوو");showPage('admin-panel');return true;}else{document.getElementById('login-error')?.classList.add('show');setTimeout(()=>document.getElementById('login-error')?.classList.remove('show'),3000);return false;}}
+        
+        function showPage(pageId){document.querySelectorAll('.content-section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(l=>l.classList.remove('active'));document.getElementById(`${pageId}-page`)?.classList.add('active');closeMobileMenu();if(pageId==='admin-panel'&&!isAdminLoggedIn)showPage('admin-login');}
+        
+        function toggleTheme(){document.body.classList.toggle('dark-mode');localStorage.setItem('zhizhi_theme',document.body.classList.contains('dark-mode')?'dark':'light');document.getElementById('theme-toggle').innerHTML=document.body.classList.contains('dark-mode')?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';}
         function openMobileMenu(){document.getElementById('mobile-nav').classList.add('active');document.getElementById('mobile-overlay').classList.add('active');document.body.style.overflow='hidden';}
         function closeMobileMenu(){document.getElementById('mobile-nav').classList.remove('active');document.getElementById('mobile-overlay').classList.remove('active');document.body.style.overflow='';}
-        function setupAdminTabs(){document.querySelectorAll('.admin-tab').forEach(tab=>{tab.addEventListener('click',function(){const id=this.getAttribute('data-tab');document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.admin-tab-content').forEach(c=>c.classList.remove('active'));this.classList.add('active');document.getElementById(`${id}-tab`).classList.add('active');if(id==='manage-apps')displayAdminApps();else if(id==='manage-games')displayAdminGames();else if(id==='manage-ios')displayAdminIos();});});}
-        function displayAdminApps(){const grid=document.getElementById('admin-apps-grid');if(!grid)return;grid.innerHTML='';if(apps.length===0){grid.innerHTML='<div class="no-items"><i class="fas fa-mobile-alt fa-2x"></i><br><br>هیچ ئەپێک بوونی نیە</div>';return;}apps.forEach(app=>{const card=document.createElement('div');card.className='admin-app-card';if(app.featured)card.innerHTML+=`<div class="featured-badge">پاڵێوراو</div>`;card.innerHTML+=`<div class="admin-app-actions"><button class="admin-action-btn edit" data-id="${app.id}" data-type="app"><i class="fas fa-edit"></i> دەستکاری</button><button class="admin-action-btn delete" data-id="${app.id}" data-type="app"><i class="fas fa-trash"></i> سڕینەوە</button></div><div class="admin-app-image">${app.imgurl?`<img src="${app.imgurl}" alt="${app.name}">`:`<i class="fas fa-mobile-alt fa-3x"></i>`}</div>`;card.querySelector('.edit')?.addEventListener('click',(e)=>{e.stopPropagation();editApp(app.id,'app');});card.querySelector('.delete')?.addEventListener('click',(e)=>{e.stopPropagation();deleteApp(app.id,'app');});grid.appendChild(card);});}
-        function displayAdminGames(){const grid=document.getElementById('admin-games-grid');if(!grid)return;grid.innerHTML='';if(games.length===0){grid.innerHTML='<div class="no-items"><i class="fas fa-gamepad fa-2x"></i><br><br>هیچ یارییەک بوونی نیە</div>';return;}games.forEach(game=>{const card=document.createElement('div');card.className='admin-game-card';if(game.featured)card.innerHTML+=`<div class="featured-badge">پاڵێوراو</div>`;card.innerHTML+=`<div class="admin-game-actions"><button class="admin-action-btn edit" data-id="${game.id}" data-type="game"><i class="fas fa-edit"></i> دەستکاری</button><button class="admin-action-btn delete" data-id="${game.id}" data-type="game"><i class="fas fa-trash"></i> سڕینەوە</button></div><div class="admin-game-image">${game.imgurl?`<img src="${game.imgurl}" alt="${game.name}">`:`<i class="fas fa-gamepad fa-3x"></i>`}</div>`;card.querySelector('.edit')?.addEventListener('click',(e)=>{e.stopPropagation();editApp(game.id,'game');});card.querySelector('.delete')?.addEventListener('click',(e)=>{e.stopPropagation();deleteApp(game.id,'game');});grid.appendChild(card);});}
-        function displayAdminIos(){const grid=document.getElementById('admin-ios-grid');if(!grid)return;grid.innerHTML='';if(iosApps.length===0){grid.innerHTML='<div class="no-items"><i class="fab fa-apple fa-2x"></i><br><br>هیچ بەرنامەیەکی IOS بوونی نیە</div>';return;}iosApps.forEach(ios=>{const card=document.createElement('div');card.className='admin-ios-card';if(ios.featured)card.innerHTML+=`<div class="featured-badge ios-badge">پاڵێوراو</div>`;card.innerHTML+=`<div class="admin-ios-actions"><button class="admin-action-btn edit" data-id="${ios.id}" data-type="ios"><i class="fas fa-edit"></i> دەستکاری</button><button class="admin-action-btn delete" data-id="${ios.id}" data-type="ios"><i class="fas fa-trash"></i> سڕینەوە</button></div><div class="admin-ios-image">${ios.imgurl?`<img src="${ios.imgurl}" alt="${ios.name}">`:`<i class="fab fa-apple fa-3x"></i>`}</div>`;card.querySelector('.edit')?.addEventListener('click',(e)=>{e.stopPropagation();editApp(ios.id,'ios');});card.querySelector('.delete')?.addEventListener('click',(e)=>{e.stopPropagation();deleteApp(ios.id,'ios');});grid.appendChild(card);});}
-        function deleteApp(id,type){if(!db)return;if(confirm("دڵنیایت دەتەوێت ئەم بەرنامەیە بسڕیتەوە？")){db.collection("zhi-zhi").doc(id).delete().then(()=>{showFirebaseAlert("بەرنامە سڕایەوە بە سەرکەوتوویی!",true);loadAllData();}).catch(e=>showFirebaseAlert("هەڵە لە سڕینەوە",false));}}
-        function editApp(id,type){let item;if(type==='app')item=apps.find(i=>i.id===id);else if(type==='game')item=games.find(i=>i.id===id);else item=iosApps.find(i=>i.id===id);if(item){document.getElementById('edit-form-container').style.display='block';document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.admin-tab-content').forEach(c=>c.classList.remove('active'));document.querySelector('.admin-tab[data-tab="add-app"]').classList.add('active');document.getElementById('add-app-tab').classList.add('active');document.getElementById('edit-app-id').value=id;document.getElementById('edit-app-type').value=type;document.getElementById('edit-app-name').value=item.name||'';document.getElementById('edit-app-description').value=item.description||'';document.getElementById('edit-app-image').value=item.imgurl||'';document.getElementById('edit-app-download').value=item.downloadurl||'';document.getElementById('edit-app-featured').value=item.featured?'true':'false';document.getElementById('edit-form-container').scrollIntoView({behavior:'smooth'});}else showFirebaseAlert("بەرنامە نەدۆزرایەوە!",false);}
-        function updateApp(id,data){if(!db)return;db.collection("zhi-zhi").doc(id).update({name:data.name,description:data.description,imgurl:data.image||"",downloadurl:data.downloadLink,featured:data.featured==="true"}).then(()=>{showFirebaseAlert("بەرنامە نوێکرایەوە!",true);document.getElementById('edit-form-container').style.display='none';document.getElementById('edit-app-form').reset();loadAllData();}).catch(e=>showFirebaseAlert("هەڵە لە نوێکردنەوە",false));}
-        function showFirebaseAlert(msg,success){const div=document.createElement('div');div.className=`firebase-alert ${success?'':'firebase-error'}`;div.innerHTML=`<i class="fas ${success?'fa-check-circle':'fa-exclamation-circle'}"></i><span>${msg}</span>`;document.body.appendChild(div);setTimeout(()=>div.remove(),5000);}
-        document.addEventListener('DOMContentLoaded',function(){if(localStorage.getItem('zhizhi_theme')==='dark'){document.body.classList.add('dark-mode');document.getElementById('theme-toggle').innerHTML='<i class="fas fa-sun"></i>';}showPage('home');document.querySelectorAll('.nav-link, .mobile-nav-link, .footer-links a').forEach(l=>{l.addEventListener('click',function(e){e.preventDefault();const page=this.getAttribute('data-page');if(page==='admin-panel'&&!isAdminLoggedIn)showPage('admin-login');else if(page)showPage(page);});});document.querySelectorAll('.category-link').forEach(link=>{link.addEventListener('click',function(e){e.preventDefault();document.querySelectorAll('.category-link').forEach(c=>c.classList.remove('active'));this.classList.add('active');currentCategory=this.getAttribute('data-category');displayAllItems();});});document.getElementById('detail-back-btn')?.addEventListener('click',(e)=>{e.preventDefault();if(currentDetailItem){if(currentDetailItem.type==='app')showPage('apps');else if(currentDetailItem.type==='game')showPage('games');else if(currentDetailItem.type==='ios')showPage('ios');else showPage('home');}else showPage('home');});document.getElementById('admin-login-form')?.addEventListener('submit',function(e){e.preventDefault();adminLogin(document.getElementById('username').value,document.getElementById('password').value);});document.getElementById('add-app-form')?.addEventListener('submit',function(e){e.preventDefault();const type=document.getElementById('app-type').value;if(!type){alert("تکایە جۆری بەرنامە هەڵبژێرە!");return;}const data={name:document.getElementById('app-name').value,description:document.getElementById('app-description').value,type:type,imgurl:document.getElementById('app-image').value||"",downloadurl:document.getElementById('app-download').value,downloads:0,featured:document.getElementById('app-featured').checked||false,createdAt:new Date().toISOString()};if(!db){showFirebaseAlert("پەیوەندی Firebase دروست نیە!",false);return;}db.collection("zhi-zhi").add(data).then(()=>{showFirebaseAlert("بەرنامە زیادکرا!",true);document.getElementById("add-app-form").reset();loadAllData();}).catch(e=>showFirebaseAlert("هەڵە لە زیادکردن",false));});document.getElementById('edit-app-form')?.addEventListener('submit',function(e){e.preventDefault();updateApp(document.getElementById('edit-app-id').value,{name:document.getElementById('edit-app-name').value,description:document.getElementById('edit-app-description').value,type:document.getElementById('edit-app-type').value,image:document.getElementById('edit-app-image').value,downloadLink:document.getElementById('edit-app-download').value,featured:document.getElementById('edit-app-featured').value});});document.getElementById('cancel-edit')?.addEventListener('click',()=>{document.getElementById('edit-form-container').style.display='none';document.getElementById('edit-app-form').reset();});document.getElementById('theme-toggle')?.addEventListener('click',toggleTheme);document.getElementById('mobile-menu-btn')?.addEventListener('click',openMobileMenu);document.getElementById('mobile-nav-close')?.addEventListener('click',closeMobileMenu);document.getElementById('mobile-overlay')?.addEventListener('click',closeMobileMenu);const mainSearchBtn=document.getElementById('main-search-btn');const mainSearchInput=document.getElementById('main-search');if(mainSearchBtn){mainSearchBtn.addEventListener('click',()=>{const q=mainSearchInput?.value;if(q){const all=[...apps,...games,...iosApps];const f=all.filter(i=>i.name.toLowerCase().includes(q.toLowerCase()));if(f.length>0)showDetailPage(f[0]);}});}if(mainSearchInput){mainSearchInput.addEventListener('keypress',(e)=>{if(e.key==='Enter'){const q=mainSearchInput.value;if(q){const all=[...apps,...games,...iosApps];const f=all.filter(i=>i.name.toLowerCase().includes(q.toLowerCase()));if(f.length>0)showDetailPage(f[0]);}}});}});
+        
+        document.addEventListener('DOMContentLoaded',()=>{if(localStorage.getItem('zhizhi_theme')==='dark'){document.body.classList.add('dark-mode');document.getElementById('theme-toggle').innerHTML='<i class="fas fa-sun"></i>';}showPage('home');loadAllData();document.getElementById('theme-toggle')?.addEventListener('click',toggleTheme);document.getElementById('mobile-menu-btn')?.addEventListener('click',openMobileMenu);document.getElementById('mobile-nav-close')?.addEventListener('click',closeMobileMenu);document.getElementById('mobile-overlay')?.addEventListener('click',closeMobileMenu);document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(l=>{l.addEventListener('click',e=>{e.preventDefault();let page=l.getAttribute('data-page');if(page==='admin-panel'&&!isAdminLoggedIn)showPage('admin-login');else showPage(page);});});document.querySelectorAll('.category-link').forEach(l=>{l.addEventListener('click',e=>{e.preventDefault();currentCategory=l.getAttribute('data-category');document.querySelectorAll('.category-link').forEach(c=>c.classList.remove('active'));l.classList.add('active');displayAll();});});document.getElementById('admin-login-form')?.addEventListener('submit',e=>{e.preventDefault();adminLogin(document.getElementById('username').value,document.getElementById('password').value);});document.getElementById('add-app-form')?.addEventListener('submit',e=>{e.preventDefault();let type=document.getElementById('app-type').value;if(!type){alert("تکایە جۆر هەڵبژێرە");return;}let newItem={name:document.getElementById('app-name').value,description:document.getElementById('app-description').value,type:type,imgurl:document.getElementById('app-image').value,downloadurl:document.getElementById('app-download').value,featured:document.getElementById('app-featured').checked,downloads:0,createdAt:new Date().toISOString()};db.collection("zhi-zhi").add(newItem).then(()=>{alert("زیادکرا");document.getElementById('add-app-form').reset();loadAllData();});});document.getElementById('modalCloseBtn')?.addEventListener('click',closeModal);document.getElementById('itemModal')?.addEventListener('click',e=>{if(e.target===document.getElementById('itemModal'))closeModal();});});
     </script>
 </body>
 </html>
