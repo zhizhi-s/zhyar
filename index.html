@@ -98,7 +98,7 @@
             direction: rtl;
         }
         
-        /* موبایل و تابلێت - موداڵ بچووکتر */
+        /* مۆبایل و شاشە بچووکەکان - modal بچووکتر */
         @media (max-width: 768px) {
             .modal-content {
                 width: 85%;
@@ -106,14 +106,14 @@
                 border-radius: 24px;
             }
             
+            .modal-body {
+                padding: 16px;
+            }
+            
             .modal-image {
                 width: 100px;
                 height: 100px;
-                margin: 0 auto 15px;
-            }
-            
-            .modal-image i {
-                font-size: 40px;
+                margin-bottom: 12px;
             }
             
             .modal-title {
@@ -123,25 +123,12 @@
             
             .modal-description {
                 font-size: 0.85rem;
-                margin-bottom: 15px;
+                margin-bottom: 16px;
             }
             
             .modal-download-btn {
-                padding: 12px 20px;
+                padding: 10px 20px;
                 font-size: 0.9rem;
-            }
-            
-            .modal-download-count {
-                font-size: 0.75rem;
-                margin-top: 12px;
-            }
-            
-            .modal-header {
-                padding: 12px 16px;
-            }
-            
-            .modal-body {
-                padding: 16px;
             }
         }
         
@@ -151,6 +138,12 @@
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: flex-end;
+        }
+        
+        @media (max-width: 768px) {
+            .modal-header {
+                padding: 12px 16px;
+            }
         }
         
         .modal-close {
@@ -285,8 +278,8 @@
             background-color: rgba(67, 97, 238, 0.95);
         }
         
-        /* موبایل و تابلێت - هێدەر باریکتر */
-        @media (max-width: 768px) {
+        /* تابلێت و مۆبایل و شاشە بچووکەکان - header باریکتر */
+        @media (max-width: 1024px) {
             header {
                 backdrop-filter: blur(8px);
             }
@@ -297,10 +290,27 @@
             
             .logo {
                 font-size: 18px;
+                gap: 6px;
             }
             
             .logo-icon {
                 font-size: 20px;
+            }
+        }
+        
+        /* مۆبایل - header زیاتر باریک */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 6px 0;
+            }
+            
+            .logo {
+                font-size: 16px;
+                gap: 5px;
+            }
+            
+            .logo-icon {
+                font-size: 18px;
             }
             
             .mobile-menu-btn {
@@ -763,19 +773,50 @@
             max-width: 500px;
         }
         
-        /* موبایل و تابلێت - پەڕەی چوونەژوورەوە بچووکتر */
-        @media (max-width: 768px) {
+        /* تابلێت و مۆبایل و شاشە بچووکەکان - login بچووکتر */
+        @media (max-width: 1024px) {
             .admin-login-container {
-                max-width: 90%;
+                max-width: 420px;
             }
             
             .admin-login-box {
-                padding: 20px 18px;
+                padding: 24px 20px;
             }
             
             .admin-login-box h2 {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
                 margin-bottom: 20px;
+            }
+            
+            .form-group {
+                margin-bottom: 16px;
+            }
+            
+            .form-control {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+            
+            .login-btn {
+                padding: 12px;
+                font-size: 15px;
+            }
+        }
+        
+        /* مۆبایل - login زیاتر بچووک */
+        @media (max-width: 768px) {
+            .admin-login-container {
+                max-width: 340px;
+            }
+            
+            .admin-login-box {
+                padding: 20px 16px;
+                border-radius: 20px;
+            }
+            
+            .admin-login-box h2 {
+                font-size: 1.2rem;
+                margin-bottom: 16px;
                 gap: 8px;
             }
             
@@ -784,7 +825,7 @@
             }
             
             .form-group {
-                margin-bottom: 16px;
+                margin-bottom: 14px;
             }
             
             .form-group label {
@@ -793,20 +834,21 @@
             }
             
             .form-control {
-                padding: 10px 14px;
-                font-size: 14px;
+                padding: 10px 12px;
+                font-size: 13px;
+                border-radius: 12px;
             }
             
             .login-btn {
-                padding: 12px;
+                padding: 10px;
                 font-size: 14px;
-                margin-top: 8px;
+                margin-top: 6px;
             }
             
             .alert {
                 padding: 10px 12px;
-                margin-bottom: 16px;
                 font-size: 12px;
+                margin-bottom: 16px;
             }
         }
         
