@@ -1295,34 +1295,6 @@
             box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
         }
         
-        /* جۆری بەرنامە لە مۆدالدا */
-        .modal-type-badge {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-        
-        .type-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            border-radius: 40px;
-            font-size: 12px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .type-badge.ios-type {
-            background: linear-gradient(135deg, var(--ios-color), #666666);
-        }
-        
-        .type-badge.game-type {
-            background: linear-gradient(135deg, #f4a261, #e76f51);
-        }
-        
         @media (max-width: 768px) {
             header .container {
                 padding: 0 16px;
@@ -1926,7 +1898,6 @@
             <div class="modal-image" id="modalImage">
                 <i class="fas fa-mobile-alt"></i>
             </div>
-            <div class="modal-type-badge" id="modalTypeBadge"></div>
             <h3 class="modal-title" id="modalTitle"></h3>
             <p class="modal-description" id="modalDescription"></p>
             <div class="modal-downloads" id="modalDownloads">
@@ -2181,7 +2152,6 @@
 
         const modal = document.getElementById('itemModal');
         const modalImage = document.getElementById('modalImage');
-        const modalTypeBadge = document.getElementById('modalTypeBadge');
         const modalTitle = document.getElementById('modalTitle');
         const modalDescription = document.getElementById('modalDescription');
         const modalDownloadsCount = document.getElementById('modalDownloadsCount');
@@ -2195,21 +2165,6 @@
                 const iconClass = item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' : 'fa-apple';
                 modalImage.innerHTML = `<i class="fas ${iconClass} fa-3x"></i>`;
             }
-            
-            let typeText = '';
-            let typeClass = '';
-            if (item.type === 'app') {
-                typeText = 'ئەپ';
-                typeClass = '';
-            } else if (item.type === 'game') {
-                typeText = 'یاری';
-                typeClass = 'game-type';
-            } else if (item.type === 'ios') {
-                typeText = 'بەرنامەی IOS';
-                typeClass = 'ios-type';
-            }
-            modalTypeBadge.innerHTML = `<div class="type-badge ${typeClass}"><i class="fas ${item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' : 'fa-apple'}"></i> ${typeText}</div>`;
-            
             modalTitle.textContent = item.name;
             modalDescription.textContent = item.description || 'بێ وەسف';
             modalDownloadsCount.textContent = item.downloads || 0;
@@ -2225,6 +2180,7 @@
             document.body.style.overflow = '';
         }
 
+        // ئەم بەشە گۆڕانکاری تێدا کراوە بۆ ڕیزبەندی بە پێی کاتی زیادکردن
         function displayAllItems() {
             const allGrid = document.getElementById('all-grid');
             if (!allGrid) return;
@@ -2233,7 +2189,9 @@
             let itemsToShow = [];
             
             if (currentCategory === 'all') {
+                // هەموو ئایتمەکان کۆبکەرەوە و بە پێی ڕێزبەندی زیادکردن (نوێترین لە سەرەوە) ڕیزبکە
                 itemsToShow = [...apps, ...games, ...iosApps];
+                // ڕیزبەندی بە پێی createdAt (نوێترین لە سەرەوە)
                 itemsToShow.sort((a, b) => {
                     const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
                     const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
