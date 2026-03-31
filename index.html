@@ -71,10 +71,9 @@
             flex: 1;
         }
         
-        /* ========== هێدەر - دەستکاری کراوە بۆ چارەسەرکردنی کێشەی وێنە ========== */
         header {
             position: relative;
-            overflow: hidden; /* ئەمە دەبێتە هۆی شاردردنەوەی هەر شتێک کە لە سنووری هێدەر دەرچێت */
+            overflow: hidden;
             background: var(--header-bg);
             color: white;
             padding: 0;
@@ -107,16 +106,14 @@
             z-index: 10;
         }
         
-        /* دڵنیابوون لەوەی وێنەکە لە سنووری هێدەر دەرنەچێت */
         .header-center-image img {
             height: 90px;
             width: auto;
             max-width: 280px;
             object-fit: contain;
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
-            display: block; /* ڕێگری لە بۆشایی زیادە دەکات */
+            display: block;
         }
-        /* ========== کۆتایی دەستکاری هێدەر ========== */
         
         .logo {
             font-size: 22px;
@@ -354,28 +351,6 @@
             font-weight: 400;
         }
         
-        .hero-shape {
-            position: absolute;
-            bottom: -50px;
-            left: -50px;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            z-index: 1;
-        }
-        
-        .hero-shape-2 {
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 150px;
-            height: 150px;
-            background: rgba(76, 201, 240, 0.1);
-            border-radius: 50%;
-            z-index: 1;
-        }
-        
         .search-container {
             max-width: 100%;
             margin: 15px auto;
@@ -478,11 +453,6 @@
         .autocomplete-item:hover {
             background-color: rgba(76, 201, 240, 0.1);
             padding-right: 15px;
-        }
-        
-        .autocomplete-item-icon {
-            font-size: 14px;
-            color: var(--primary-color);
         }
         
         .categories-nav {
@@ -596,10 +566,6 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             border-color: var(--primary-color);
-        }
-        
-        .ios-card:hover {
-            border-color: var(--ios-color);
         }
         
         .app-image, .game-image, .ios-image, .featured-image, .admin-app-image, .admin-game-image, .admin-ios-image {
@@ -1036,10 +1002,6 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
         
-        .admin-action-btn:active {
-            transform: translateY(0);
-        }
-        
         .firebase-alert {
             position: fixed;
             top: 70px;
@@ -1170,7 +1132,6 @@
             to { transform: translateX(0); opacity: 1; }
         }
         
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -1334,7 +1295,34 @@
             box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
         }
         
-        /* قەبارەی وێنە بەپێی قەبارەی سکرین */
+        /* جۆری بەرنامە لە مۆدالدا */
+        .modal-type-badge {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .type-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .type-badge.ios-type {
+            background: linear-gradient(135deg, var(--ios-color), #666666);
+        }
+        
+        .type-badge.game-type {
+            background: linear-gradient(135deg, #f4a261, #e76f51);
+        }
+        
         @media (max-width: 768px) {
             header .container {
                 padding: 0 16px;
@@ -1349,58 +1337,45 @@
                 font-size: 18px;
             }
             
-            .logo-icon {
-                font-size: 20px;
-            }
-        }
-        
-        @media (min-width: 768px) and (max-width: 991px) {
-            .header-center-image img {
-                height: 90px;
-                max-width: 280px;
-            }
-        }
-        
-        @media (min-width: 992px) {
-            .desktop-nav {
+            .mobile-menu-btn {
                 display: block;
             }
             
-            .mobile-menu-btn {
+            .desktop-nav {
                 display: none;
             }
-            
-            .logo {
-                font-size: 24px;
+        }
+        
+        @media (min-width: 768px) {
+            .search-box {
+                flex-direction: row;
+                border-radius: 50px;
+                padding: 4px;
             }
             
-            .logo-icon {
-                font-size: 26px;
+            .search-input {
+                border-radius: 50px;
+                border-bottom: none;
             }
             
-            .desktop-nav ul {
+            .search-btn {
+                border-radius: 50px;
+            }
+            
+            .categories-nav {
+                display: flex;
+                justify-content: center;
                 gap: 12px;
             }
             
-            .nav-link {
-                padding: 14px 24px;
-                font-size: 15px;
-                gap: 8px;
+            .category-link {
+                padding: 12px 20px;
+                font-size: 14px;
+                flex-direction: row;
+                height: auto;
             }
             
-            .hero h1 {
-                font-size: 2.4rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .featured-grid, .all-grid, .apps-grid, .games-grid, .ios-grid, .admin-apps-grid, .admin-games-grid, .admin-ios-grid {
+            .featured-grid, .all-grid, .apps-grid, .games-grid, .ios-grid {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 22px;
             }
@@ -1414,232 +1389,10 @@
             }
         }
         
-        @media (min-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
-            
-            .hero {
-                padding: 40px 15px;
-                margin-top: 15px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .search-box {
-                flex-direction: row;
-                border-radius: 50px;
-                padding: 4px;
-                border: 2px solid rgba(255, 255, 255, 0.3);
-            }
-            
-            .search-input {
-                border-radius: 50px;
-                border-bottom: none;
-                padding: 16px 20px;
-            }
-            
-            .search-btn {
-                border-radius: 50px;
-                padding: 16px 30px;
-            }
-            
-            .categories-nav {
-                display: flex;
-                justify-content: center;
-                gap: 12px;
-                margin-bottom: 20px;
-                flex-wrap: wrap;
-                padding: 0 5px;
-            }
-            
-            .category-link {
-                padding: 12px 20px;
-                font-size: 14px;
-                min-width: 100px;
-                flex-direction: row;
-                height: auto;
-            }
-            
-            .category-link i {
-                font-size: 18px;
-                margin-bottom: 0;
-                margin-left: 8px;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
-            .featured-grid, .all-grid, .apps-grid, .games-grid, .ios-grid, .admin-apps-grid, .admin-games-grid, .admin-ios-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 18px;
-            }
-            
-            .app-card, .game-card, .ios-card, .featured-card, .admin-app-card, .admin-game-card, .admin-ios-card {
-                aspect-ratio: 3/4;
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 35px;
-            }
-            
-            .admin-form-row {
-                flex-direction: row;
-            }
-            
-            .admin-form-group {
-                flex: 1;
-                min-width: 0;
-            }
-            
-            .admin-form-buttons {
-                flex-direction: row;
-            }
-            
-            .admin-search-box {
-                flex-direction: row;
-                border-radius: 50px;
-                padding: 4px;
-            }
-            
-            .admin-search-input {
-                border-radius: 50px;
-                border-bottom: none;
-            }
-            
-            .admin-search-btn {
-                border-radius: 50px;
-            }
-            
-            .modal-content {
-                max-width: 400px;
-                padding: 28px 24px 32px;
-            }
-            
-            .modal-image img, .modal-image i {
-                width: 150px;
-                height: 150px;
-                border-radius: 36px;
-            }
-            
-            .modal-title {
-                font-size: 1.6rem;
-            }
-        }
-        
         @media (max-width: 360px) {
-            .container {
-                padding: 0 10px;
-            }
-            
-            header .container {
-                padding: 0 12px;
-            }
-            
-            .hero h1 {
-                font-size: 1.4rem;
-            }
-            
-            .hero p {
-                font-size: 0.85rem;
-            }
-            
-            .categories-nav {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 6px;
-            }
-            
-            .category-link {
-                padding: 8px 6px;
-                font-size: 11px;
-                min-width: 0;
-                height: 70px;
-            }
-            
-            .category-link i {
-                font-size: 16px;
-                margin-bottom: 3px;
-            }
-            
-            .featured-grid, .all-grid, .apps-grid, .games-grid, .ios-grid, .admin-apps-grid, .admin-games-grid, .admin-ios-grid {
+            .featured-grid, .all-grid, .apps-grid, .games-grid, .ios-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 10px;
-            }
-            
-            .admin-action-btn {
-                max-width: 70px;
-                padding: 5px 7px;
-                font-size: 9px;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .desktop-nav {
-                display: none;
-            }
-            
-            .modal-content {
-                width: 92%;
-                padding: 20px 16px 24px;
-            }
-            
-            .modal-image img, .modal-image i {
-                width: 100px;
-                height: 100px;
-                border-radius: 28px;
-            }
-            
-            .modal-title {
-                font-size: 1.2rem;
-            }
-            
-            .header-center-image img {
-                height: 65px;
-                max-width: 180px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .desktop-nav {
-                display: none;
-            }
-            
-            .logo {
-                font-size: 20px;
-            }
-            
-            .logo-icon {
-                font-size: 22px;
-            }
-            
-            .categories-nav {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 8px;
-            }
-            
-            .category-link {
-                padding: 10px 8px;
-                font-size: 12px;
-                height: 80px;
-            }
-            
-            .category-link i {
-                font-size: 18px;
-                margin-bottom: 5px;
             }
         }
         
@@ -1687,7 +1440,7 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <i class="fas fa-mobile-alt logo-icon"></i>
+                <i class="fas fa-gamepad logo-icon"></i>
                 Zhi Zhi
             </div>
             
@@ -1725,7 +1478,7 @@
     <div class="mobile-nav" id="mobile-nav">
         <div class="mobile-nav-header">
             <div class="logo">
-                <i class="fas fa-mobile-alt logo-icon"></i>
+                <i class="fas fa-gamepad logo-icon"></i>
                 Zhi Zhi
             </div>
             <button class="mobile-nav-close" id="mobile-nav-close">
@@ -2173,6 +1926,7 @@
             <div class="modal-image" id="modalImage">
                 <i class="fas fa-mobile-alt"></i>
             </div>
+            <div class="modal-type-badge" id="modalTypeBadge"></div>
             <h3 class="modal-title" id="modalTitle"></h3>
             <p class="modal-description" id="modalDescription"></p>
             <div class="modal-downloads" id="modalDownloads">
@@ -2191,11 +1945,6 @@
                 <div class="footer-section">
                     <h3>Zhi Zhi</h3>
                     <p>وێبسایتێکە بۆ دابەزاندنی یاری و ئەپەکان. هەموو مافەکان پارێزراون.</p>
-                    <div style="margin-top: 20px;">
-                        <a href="#" class="download-btn" style="width: auto; padding: 10px 20px;">
-                            <i class="fas fa-star"></i>
-                        </a>
-                    </div>
                 </div>
                 
                 <div class="footer-section">
@@ -2247,7 +1996,6 @@
             app = firebase.initializeApp(firebaseConfig);
             db = firebase.firestore();
             console.log("✅ Firebase دەستپێکرا بە سەرکەوتوویی");
-            
             showConnectionStatus("پەیوەندی بە Firebase دروست کرا", true);
             testFirebaseConnection();
         } catch (error) {
@@ -2339,11 +2087,7 @@
         }
 
         function loadAllData() {
-            if (!db) {
-                console.error("Firebase Firestore بەردەست نیە");
-                return;
-            }
-            
+            if (!db) return;
             loadApps();
             loadGames();
             loadIos();
@@ -2351,161 +2095,93 @@
 
         function loadApps() {
             if (!db) return;
-            
-            db.collection("zhi-zhi")
-                .where("type", "==", "app")
-                .get()
-                .then((querySnapshot) => {
-                    apps = [];
-                    querySnapshot.forEach((doc) => {
-                        const data = doc.data();
-                        apps.push({
-                            ...data,
-                            id: doc.id,
-                            name: data.name || "بێ ناو",
-                            description: data.description || "بێ وەسف",
-                            imgurl: data.imgurl || "",
-                            downloadurl: data.downloadurl || "#",
-                            downloads: data.downloads || 0,
-                            featured: data.featured || false,
-                            createdAt: data.createdAt || new Date().toISOString()
-                        });
+            db.collection("zhi-zhi").where("type", "==", "app").get().then((querySnapshot) => {
+                apps = [];
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    apps.push({
+                        ...data,
+                        id: doc.id,
+                        name: data.name || "بێ ناو",
+                        description: data.description || "بێ وەسف",
+                        imgurl: data.imgurl || "",
+                        downloadurl: data.downloadurl || "#",
+                        downloads: data.downloads || 0,
+                        featured: data.featured || false,
+                        createdAt: data.createdAt || new Date().toISOString()
                     });
-                    
-                    console.log(`✅ ${apps.length} ئەپ بارکرا`);
-                    displayApps();
-                    displayAllItems();
-                    updateFeatured();
-                    
-                    if (document.getElementById('admin-panel-page').classList.contains('active') && isAdminLoggedIn) {
-                        displayAdminApps();
-                    }
-                })
-                .catch((error) => {
-                    console.error("❌ هەڵە لە وەرگرتنی ئەپەکان:", error);
                 });
+                displayApps();
+                displayAllItems();
+                updateFeatured();
+                if (document.getElementById('admin-panel-page').classList.contains('active') && isAdminLoggedIn) displayAdminApps();
+            }).catch(error => console.error("❌ هەڵە لە وەرگرتنی ئەپەکان:", error));
         }
 
         function loadGames() {
             if (!db) return;
-            
-            db.collection("zhi-zhi")
-                .where("type", "==", "game")
-                .get()
-                .then((querySnapshot) => {
-                    games = [];
-                    querySnapshot.forEach((doc) => {
-                        const data = doc.data();
-                        games.push({
-                            ...data,
-                            id: doc.id,
-                            name: data.name || "بێ ناو",
-                            description: data.description || "بێ وەسف",
-                            imgurl: data.imgurl || "",
-                            downloadurl: data.downloadurl || "#",
-                            downloads: data.downloads || 0,
-                            featured: data.featured || false,
-                            createdAt: data.createdAt || new Date().toISOString()
-                        });
+            db.collection("zhi-zhi").where("type", "==", "game").get().then((querySnapshot) => {
+                games = [];
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    games.push({
+                        ...data,
+                        id: doc.id,
+                        name: data.name || "بێ ناو",
+                        description: data.description || "بێ وەسف",
+                        imgurl: data.imgurl || "",
+                        downloadurl: data.downloadurl || "#",
+                        downloads: data.downloads || 0,
+                        featured: data.featured || false,
+                        createdAt: data.createdAt || new Date().toISOString()
                     });
-                    
-                    console.log(`✅ ${games.length} یاری بارکرا`);
-                    displayGames();
-                    displayAllItems();
-                    updateFeatured();
-                    
-                    if (document.getElementById('admin-panel-page').classList.contains('active') && isAdminLoggedIn) {
-                        displayAdminGames();
-                    }
-                })
-                .catch((error) => {
-                    console.error("❌ هەڵە لە وەرگرتنی یاریەکان:", error);
                 });
+                displayGames();
+                displayAllItems();
+                updateFeatured();
+                if (document.getElementById('admin-panel-page').classList.contains('active') && isAdminLoggedIn) displayAdminGames();
+            }).catch(error => console.error("❌ هەڵە لە وەرگرتنی یاریەکان:", error));
         }
 
         function loadIos() {
             if (!db) return;
-            
-            db.collection("zhi-zhi")
-                .where("type", "==", "ios")
-                .get()
-                .then((querySnapshot) => {
-                    iosApps = [];
-                    querySnapshot.forEach((doc) => {
-                        const data = doc.data();
-                        iosApps.push({
-                            ...data,
-                            id: doc.id,
-                            name: data.name || "بێ ناو",
-                            description: data.description || "بێ وەسف",
-                            imgurl: data.imgurl || "",
-                            downloadurl: data.downloadurl || "#",
-                            downloads: data.downloads || 0,
-                            featured: data.featured || false,
-                            createdAt: data.createdAt || new Date().toISOString()
-                        });
+            db.collection("zhi-zhi").where("type", "==", "ios").get().then((querySnapshot) => {
+                iosApps = [];
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    iosApps.push({
+                        ...data,
+                        id: doc.id,
+                        name: data.name || "بێ ناو",
+                        description: data.description || "بێ وەسف",
+                        imgurl: data.imgurl || "",
+                        downloadurl: data.downloadurl || "#",
+                        downloads: data.downloads || 0,
+                        featured: data.featured || false,
+                        createdAt: data.createdAt || new Date().toISOString()
                     });
-                    
-                    console.log(`✅ ${iosApps.length} بەرنامەی IOS بارکرا`);
-                    displayIos();
-                    displayAllItems();
-                    updateFeatured();
-                    
-                    if (document.getElementById('admin-panel-page').classList.contains('active') && isAdminLoggedIn) {
-                        displayAdminIos();
-                    }
-                })
-                .catch((error) => {
-                    console.error("❌ هەڵە لە وەرگرتنی بەرنامەکانی IOS:", error);
                 });
+                displayIos();
+                displayAllItems();
+                updateFeatured();
+                if (document.getElementById('admin-panel-page').classList.contains('active') && isAdminLoggedIn) displayAdminIos();
+            }).catch(error => console.error("❌ هەڵە لە وەرگرتنی بەرنامەکانی IOS:", error));
         }
 
         function setupRealtimeListeners() {
             if (!db) return;
-            
             if (unsubscribeApps) unsubscribeApps();
             if (unsubscribeGames) unsubscribeGames();
             if (unsubscribeIos) unsubscribeIos();
             
-            unsubscribeApps = db.collection("zhi-zhi")
-                .where("type", "==", "app")
-                .onSnapshot((snapshot) => {
-                    const changes = snapshot.docChanges();
-                    if (changes.length > 0) {
-                        console.log("🔄 گۆڕانکاری لە ئەپەکان: ", changes.length);
-                        loadApps();
-                    }
-                }, (error) => {
-                    console.error("❌ هەڵە لە چاودێری ئەپەکان:", error);
-                });
-            
-            unsubscribeGames = db.collection("zhi-zhi")
-                .where("type", "==", "game")
-                .onSnapshot((snapshot) => {
-                    const changes = snapshot.docChanges();
-                    if (changes.length > 0) {
-                        console.log("🔄 گۆڕانکاری لە یاریەکان: ", changes.length);
-                        loadGames();
-                    }
-                }, (error) => {
-                    console.error("❌ هەڵە لە چاودێری یاریەکان:", error);
-                });
-            
-            unsubscribeIos = db.collection("zhi-zhi")
-                .where("type", "==", "ios")
-                .onSnapshot((snapshot) => {
-                    const changes = snapshot.docChanges();
-                    if (changes.length > 0) {
-                        console.log("🔄 گۆڕانکاری لە بەرنامەکانی IOS: ", changes.length);
-                        loadIos();
-                    }
-                }, (error) => {
-                    console.error("❌ هەڵە لە چاودێری بەرنامەکانی IOS:", error);
-                });
+            unsubscribeApps = db.collection("zhi-zhi").where("type", "==", "app").onSnapshot(() => loadApps(), error => console.error(error));
+            unsubscribeGames = db.collection("zhi-zhi").where("type", "==", "game").onSnapshot(() => loadGames(), error => console.error(error));
+            unsubscribeIos = db.collection("zhi-zhi").where("type", "==", "ios").onSnapshot(() => loadIos(), error => console.error(error));
         }
 
         const modal = document.getElementById('itemModal');
         const modalImage = document.getElementById('modalImage');
+        const modalTypeBadge = document.getElementById('modalTypeBadge');
         const modalTitle = document.getElementById('modalTitle');
         const modalDescription = document.getElementById('modalDescription');
         const modalDownloadsCount = document.getElementById('modalDownloadsCount');
@@ -2516,23 +2192,30 @@
             if (item.imgurl && item.imgurl.trim() !== '') {
                 modalImage.innerHTML = `<img src="${item.imgurl}" alt="${item.name}">`;
             } else {
-                const iconClass = item.type === 'app' ? 'fa-mobile-alt' : 
-                                 item.type === 'game' ? 'fa-gamepad' : 
-                                 'fa-apple';
+                const iconClass = item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' : 'fa-apple';
                 modalImage.innerHTML = `<i class="fas ${iconClass} fa-3x"></i>`;
             }
+            
+            let typeText = '';
+            let typeClass = '';
+            if (item.type === 'app') {
+                typeText = 'ئەپ';
+                typeClass = '';
+            } else if (item.type === 'game') {
+                typeText = 'یاری';
+                typeClass = 'game-type';
+            } else if (item.type === 'ios') {
+                typeText = 'IOS';
+                typeClass = 'ios-type';
+            }
+            modalTypeBadge.innerHTML = `<div class="type-badge ${typeClass}"><i class="fab ${item.type === 'ios' ? 'fa-apple' : (item.type === 'game' ? 'fa-gamepad' : 'fa-mobile-alt')}"></i> ${typeText}</div>`;
             
             modalTitle.textContent = item.name;
             modalDescription.textContent = item.description || 'بێ وەسف';
             modalDownloadsCount.textContent = item.downloads || 0;
             modalDownloadBtn.href = item.downloadurl || '#';
-            
-            if (item.type === 'ios') {
-                modalDownloadBtn.classList.add('ios');
-            } else {
-                modalDownloadBtn.classList.remove('ios');
-            }
-            
+            if (item.type === 'ios') modalDownloadBtn.classList.add('ios');
+            else modalDownloadBtn.classList.remove('ios');
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -2545,19 +2228,38 @@
         function displayAllItems() {
             const allGrid = document.getElementById('all-grid');
             if (!allGrid) return;
-            
             allGrid.innerHTML = '';
             
             let itemsToShow = [];
             
             if (currentCategory === 'all') {
                 itemsToShow = [...apps, ...games, ...iosApps];
+                itemsToShow.sort((a, b) => {
+                    const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+                    const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+                    return dateB - dateA;
+                });
             } else if (currentCategory === 'apps') {
-                itemsToShow = apps;
+                itemsToShow = [...apps];
+                itemsToShow.sort((a, b) => {
+                    const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+                    const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+                    return dateB - dateA;
+                });
             } else if (currentCategory === 'games') {
-                itemsToShow = games;
+                itemsToShow = [...games];
+                itemsToShow.sort((a, b) => {
+                    const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+                    const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+                    return dateB - dateA;
+                });
             } else if (currentCategory === 'ios') {
-                itemsToShow = iosApps;
+                itemsToShow = [...iosApps];
+                itemsToShow.sort((a, b) => {
+                    const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+                    const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+                    return dateB - dateA;
+                });
             }
             
             if (itemsToShow.length === 0) {
@@ -2567,1235 +2269,325 @@
             
             itemsToShow.forEach(item => {
                 const itemCard = document.createElement('div');
-                if (item.type === 'app') {
-                    itemCard.className = 'app-card';
-                } else if (item.type === 'game') {
-                    itemCard.className = 'game-card';
-                } else if (item.type === 'ios') {
-                    itemCard.className = 'ios-card';
-                }
+                if (item.type === 'app') itemCard.className = 'app-card';
+                else if (item.type === 'game') itemCard.className = 'game-card';
+                else if (item.type === 'ios') itemCard.className = 'ios-card';
                 
                 if (item.featured) {
                     const badgeClass = item.type === 'ios' ? 'featured-badge ios-badge' : 'featured-badge';
                     itemCard.innerHTML += `<div class="${badgeClass}">پاڵێوراو</div>`;
                 }
                 
-                const iconClass = item.type === 'app' ? 'fa-mobile-alt' : 
-                                 item.type === 'game' ? 'fa-gamepad' : 
-                                 'fa-apple';
-                
+                const iconClass = item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' : 'fa-apple';
                 itemCard.innerHTML += `
                     <div class="${item.type}-image">
-                        ${item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}" loading="lazy">` : 
-                            `<i class="fas ${iconClass} fa-3x"></i>`}
+                        ${item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}" loading="lazy">` : `<i class="fas ${iconClass} fa-3x"></i>`}
                     </div>
                 `;
                 allGrid.appendChild(itemCard);
-                
-                itemCard.addEventListener('click', function(e) {
-                    openModal(item);
-                });
+                itemCard.addEventListener('click', function(e) { openModal(item); });
             });
         }
 
         function displayApps() {
             const appsGrid = document.getElementById('apps-grid');
             if (!appsGrid) return;
-            
             appsGrid.innerHTML = '';
-            
-            if (apps.length === 0) {
-                appsGrid.innerHTML = '<div class="no-items"><i class="fas fa-mobile-alt fa-2x"></i><br><br>هیچ ئەپێک بوونی نیە</div>';
-                return;
-            }
-            
+            if (apps.length === 0) { appsGrid.innerHTML = '<div class="no-items"><i class="fas fa-mobile-alt fa-2x"></i><br><br>هیچ ئەپێک بوونی نیە</div>'; return; }
             apps.forEach(app => {
                 const appCard = document.createElement('div');
                 appCard.className = 'app-card';
-                
-                if (app.featured) {
-                    appCard.innerHTML += `<div class="featured-badge">پاڵێوراو</div>`;
-                }
-                
-                appCard.innerHTML = `
-                    <div class="app-image">
-                        ${app.imgurl ? `<img src="${app.imgurl}" alt="${app.name}" loading="lazy">` : `<i class="fas fa-mobile-alt fa-3x"></i>`}
-                    </div>
-                `;
+                if (app.featured) appCard.innerHTML += `<div class="featured-badge">پاڵێوراو</div>`;
+                appCard.innerHTML += `<div class="app-image">${app.imgurl ? `<img src="${app.imgurl}" alt="${app.name}">` : `<i class="fas fa-mobile-alt fa-3x"></i>`}</div>`;
                 appsGrid.appendChild(appCard);
-                
-                appCard.addEventListener('click', function(e) {
-                    openModal(app);
-                });
+                appCard.addEventListener('click', () => openModal(app));
             });
         }
 
         function displayGames() {
             const gamesGrid = document.getElementById('games-grid');
             if (!gamesGrid) return;
-            
             gamesGrid.innerHTML = '';
-            
-            if (games.length === 0) {
-                gamesGrid.innerHTML = '<div class="no-items"><i class="fas fa-gamepad fa-2x"></i><br><br>هیچ یارییەک بوونی نیە</div>';
-                return;
-            }
-            
+            if (games.length === 0) { gamesGrid.innerHTML = '<div class="no-items"><i class="fas fa-gamepad fa-2x"></i><br><br>هیچ یارییەک بوونی نیە</div>'; return; }
             games.forEach(game => {
                 const gameCard = document.createElement('div');
                 gameCard.className = 'game-card';
-                
-                if (game.featured) {
-                    gameCard.innerHTML += `<div class="featured-badge">پاڵێوراو</div>`;
-                }
-                
-                gameCard.innerHTML = `
-                    <div class="game-image">
-                        ${game.imgurl ? `<img src="${game.imgurl}" alt="${game.name}" loading="lazy">` : `<i class="fas fa-gamepad fa-3x"></i>`}
-                    </div>
-                `;
+                if (game.featured) gameCard.innerHTML += `<div class="featured-badge">پاڵێوراو</div>`;
+                gameCard.innerHTML += `<div class="game-image">${game.imgurl ? `<img src="${game.imgurl}" alt="${game.name}">` : `<i class="fas fa-gamepad fa-3x"></i>`}</div>`;
                 gamesGrid.appendChild(gameCard);
-                
-                gameCard.addEventListener('click', function(e) {
-                    openModal(game);
-                });
+                gameCard.addEventListener('click', () => openModal(game));
             });
         }
 
         function displayIos() {
             const iosGrid = document.getElementById('ios-grid');
             if (!iosGrid) return;
-            
             iosGrid.innerHTML = '';
-            
-            if (iosApps.length === 0) {
-                iosGrid.innerHTML = '<div class="no-items"><i class="fab fa-apple fa-2x"></i><br><br>هیچ بەرنامەیەکی IOS بوونی نیە</div>';
-                return;
-            }
-            
+            if (iosApps.length === 0) { iosGrid.innerHTML = '<div class="no-items"><i class="fab fa-apple fa-2x"></i><br><br>هیچ بەرنامەیەکی IOS بوونی نیە</div>'; return; }
             iosApps.forEach(ios => {
                 const iosCard = document.createElement('div');
                 iosCard.className = 'ios-card';
-                
-                if (ios.featured) {
-                    iosCard.innerHTML += `<div class="featured-badge ios-badge">پاڵێوراو</div>`;
-                }
-                
-                iosCard.innerHTML = `
-                    <div class="ios-image">
-                        ${ios.imgurl ? `<img src="${ios.imgurl}" alt="${ios.name}" loading="lazy">` : `<i class="fab fa-apple fa-3x"></i>`}
-                    </div>
-                `;
+                if (ios.featured) iosCard.innerHTML += `<div class="featured-badge ios-badge">پاڵێوراو</div>`;
+                iosCard.innerHTML += `<div class="ios-image">${ios.imgurl ? `<img src="${ios.imgurl}" alt="${ios.name}">` : `<i class="fab fa-apple fa-3x"></i>`}</div>`;
                 iosGrid.appendChild(iosCard);
-                
-                iosCard.addEventListener('click', function(e) {
-                    openModal(ios);
-                });
+                iosCard.addEventListener('click', () => openModal(ios));
             });
         }
 
         function displayFeatured() {
             const featuredGrid = document.getElementById('featured-grid');
             if (!featuredGrid) return;
-            
             featuredGrid.innerHTML = '';
-            
-            if (featured.length === 0) {
-                featuredGrid.innerHTML = '<div class="no-items"><i class="fas fa-crown fa-2x"></i><br><br>هیچ پاڵێوراوێک بوونی نیە</div>';
-                return;
-            }
-            
-            featured.forEach((item) => {
-                const featuredCard = document.createElement('div');
-                featuredCard.className = `featured-card`;
-                
+            if (featured.length === 0) { featuredGrid.innerHTML = '<div class="no-items"><i class="fas fa-crown fa-2x"></i><br><br>هیچ پاڵێوراوێک بوونی نیە</div>'; return; }
+            featured.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'featured-card';
                 const badgeClass = item.type === 'ios' ? 'featured-badge ios-badge' : 'featured-badge';
-                featuredCard.innerHTML = `
-                    <div class="${badgeClass}">پاڵێوراو</div>
-                    <div class="featured-image">
-                        ${item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}" loading="lazy">` : 
-                            `<i class="fas ${item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' : 'fa-apple'} fa-3x"></i>`}
-                    </div>
-                `;
-                featuredGrid.appendChild(featuredCard);
-                
-                featuredCard.addEventListener('click', function(e) {
-                    openModal(item);
-                });
+                const iconClass = item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' : 'fa-apple';
+                card.innerHTML = `<div class="${badgeClass}">پاڵێوراو</div><div class="featured-image">${item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}">` : `<i class="fas ${iconClass} fa-3x"></i>`}</div>`;
+                featuredGrid.appendChild(card);
+                card.addEventListener('click', () => openModal(item));
             });
         }
 
         function updateFeatured() {
             featured = [];
-            
-            apps.forEach(app => {
-                if (app.featured) {
-                    featured.push({...app, type: 'app'});
-                }
-            });
-            
-            games.forEach(game => {
-                if (game.featured) {
-                    featured.push({...game, type: 'game'});
-                }
-            });
-            
-            iosApps.forEach(ios => {
-                if (ios.featured) {
-                    featured.push({...ios, type: 'ios'});
-                }
-            });
-            
+            apps.forEach(app => { if (app.featured) featured.push({...app, type: 'app'}); });
+            games.forEach(game => { if (game.featured) featured.push({...game, type: 'game'}); });
+            iosApps.forEach(ios => { if (ios.featured) featured.push({...ios, type: 'ios'}); });
             displayFeatured();
         }
 
         function adminLogin(username, password) {
-            const correctUsername = "zhs12";
-            const correctPassword = "zhizhisun";
-            
-            if (username === correctUsername && password === correctPassword) {
+            if (username === "zhs12" && password === "zhizhisun") {
                 isAdminLoggedIn = true;
                 addAdminLinkToMenu();
                 showPage('admin-panel');
                 return true;
             } else {
-                isAdminLoggedIn = false;
                 const loginError = document.getElementById('login-error');
-                if (loginError) {
-                    loginError.classList.add('show');
-                    setTimeout(() => {
-                        loginError.classList.remove('show');
-                    }, 3000);
-                }
+                if (loginError) { loginError.classList.add('show'); setTimeout(() => loginError.classList.remove('show'), 3000); }
                 return false;
             }
         }
 
         function addAdminLinkToMenu() {
             const nav = document.querySelector('nav.desktop-nav ul');
-            const existingAdminLink = document.querySelector('nav.desktop-nav ul li a[data-page="admin-panel"]');
-            
-            if (!existingAdminLink && nav) {
-                const adminPanelLi = document.createElement('li');
-                adminPanelLi.innerHTML = `
-                    <a href="#" class="nav-link" data-page="admin-panel">
-                        <i class="fas fa-cogs"></i> بەڕێوەبەری
-                    </a>
-                `;
-                nav.appendChild(adminPanelLi);
+            if (!document.querySelector('.nav-link[data-page="admin-panel"]') && nav) {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="#" class="nav-link" data-page="admin-panel"><i class="fas fa-cogs"></i> بەڕێوەبەری</a>`;
+                nav.appendChild(li);
             }
-            
-            const adminPanelMobileLink = document.getElementById('admin-panel-mobile-link');
-            if (adminPanelMobileLink) {
-                adminPanelMobileLink.style.display = 'block';
-            }
+            const mobileLink = document.getElementById('admin-panel-mobile-link');
+            if (mobileLink) mobileLink.style.display = 'block';
         }
 
         function toggleTheme() {
-            const body = document.body;
-            const themeToggle = document.getElementById('theme-toggle');
-            
-            body.classList.toggle('dark-mode');
-            
-            if (body.classList.contains('dark-mode')) {
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                localStorage.setItem('zhizhi_theme', 'dark');
-            } else {
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                localStorage.setItem('zhizhi_theme', 'light');
-            }
+            document.body.classList.toggle('dark-mode');
+            const btn = document.getElementById('theme-toggle');
+            if (document.body.classList.contains('dark-mode')) { btn.innerHTML = '<i class="fas fa-sun"></i>'; localStorage.setItem('zhizhi_theme', 'dark'); }
+            else { btn.innerHTML = '<i class="fas fa-moon"></i>'; localStorage.setItem('zhizhi_theme', 'light'); }
         }
 
-        function openMobileMenu() {
-            document.getElementById('mobile-nav').classList.add('active');
-            document.getElementById('mobile-overlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeMobileMenu() {
-            document.getElementById('mobile-nav').classList.remove('active');
-            document.getElementById('mobile-overlay').classList.remove('active');
-            document.body.style.overflow = '';
-        }
+        function openMobileMenu() { document.getElementById('mobile-nav').classList.add('active'); document.getElementById('mobile-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeMobileMenu() { document.getElementById('mobile-nav').classList.remove('active'); document.getElementById('mobile-overlay').classList.remove('active'); document.body.style.overflow = ''; }
 
         function setupAdminTabs() {
-            const tabs = document.querySelectorAll('.admin-tab');
-            tabs.forEach(tab => {
+            document.querySelectorAll('.admin-tab').forEach(tab => {
                 tab.addEventListener('click', function() {
                     const tabId = this.getAttribute('data-tab');
-                    
                     document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
                     document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
-                    
                     this.classList.add('active');
                     document.getElementById(`${tabId}-tab`).classList.add('active');
-                    
-                    if (tabId === 'manage-apps') {
-                        document.getElementById('admin-apps-search').value = '';
-                        displayAdminApps();
-                    } else if (tabId === 'manage-games') {
-                        document.getElementById('admin-games-search').value = '';
-                        displayAdminGames();
-                    } else if (tabId === 'manage-ios') {
-                        document.getElementById('admin-ios-search').value = '';
-                        displayAdminIos();
-                    }
+                    if (tabId === 'manage-apps') displayAdminApps();
+                    else if (tabId === 'manage-games') displayAdminGames();
+                    else if (tabId === 'manage-ios') displayAdminIos();
                 });
             });
         }
 
         function displayAdminApps() {
-            const adminAppsGrid = document.getElementById('admin-apps-grid');
-            if (!adminAppsGrid) return;
-            
-            adminAppsGrid.innerHTML = '';
-            
-            if (apps.length === 0) {
-                adminAppsGrid.innerHTML = '<div class="no-items"><i class="fas fa-mobile-alt fa-2x"></i><br><br>هیچ ئەپێک بوونی نیە</div>';
-                return;
-            }
-            
+            const grid = document.getElementById('admin-apps-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            if (apps.length === 0) { grid.innerHTML = '<div class="no-items"><i class="fas fa-mobile-alt fa-2x"></i><br><br>هیچ ئەپێک بوونی نیە</div>'; return; }
             apps.forEach(app => {
-                const appCard = document.createElement('div');
-                appCard.className = 'admin-app-card';
-                
-                if (app.featured) {
-                    appCard.innerHTML += `<div class="featured-badge">پاڵێوراو</div>`;
-                }
-                
-                appCard.innerHTML = `
-                    <div class="admin-app-actions">
-                        <button class="admin-action-btn edit" data-id="${app.id}" data-type="app">
-                            <i class="fas fa-edit"></i> دەستکاری
-                        </button>
-                        <button class="admin-action-btn delete" data-id="${app.id}" data-type="app">
-                            <i class="fas fa-trash"></i> سڕینەوە
-                        </button>
-                    </div>
-                    <div class="admin-app-image">
-                        ${app.imgurl ? `<img src="${app.imgurl}" alt="${app.name}" loading="lazy">` : `<i class="fas fa-mobile-alt fa-3x"></i>`}
-                    </div>
-                    <div class="admin-app-info-overlay">
-                        <h3 class="admin-app-info-overlay-title">
-                            ${app.name}
-                        </h3>
-                        <p class="admin-app-info-overlay-desc">
-                            ${app.description || 'بێ وەسف'}
-                        </p>
-                        <div class="admin-app-info-overlay-downloads">
-                            <i class="fas fa-download"></i> ${app.downloads || 0} داگرتن
-                        </div>
-                        <button class="view-details-btn" data-id="${app.id}" data-type="app">
-                            <i class="fas fa-eye"></i> بینینی وردەکاری
-                        </button>
-                    </div>
-                `;
-                adminAppsGrid.appendChild(appCard);
-                
-                const editBtn = appCard.querySelector('.edit');
-                const deleteBtn = appCard.querySelector('.delete');
-                const viewBtn = appCard.querySelector('.view-details-btn');
-                
-                editBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const appId = this.getAttribute('data-id');
-                    const type = this.getAttribute('data-type');
-                    editApp(appId, type);
-                });
-                
-                deleteBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const appId = this.getAttribute('data-id');
-                    const type = this.getAttribute('data-type');
-                    deleteApp(appId, type);
-                });
-                
-                viewBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const appId = this.getAttribute('data-id');
-                    const type = this.getAttribute('data-type');
-                    viewAppDetails(appId, type);
-                });
+                const card = document.createElement('div'); card.className = 'admin-app-card';
+                if (app.featured) card.innerHTML += `<div class="featured-badge">پاڵێوراو</div>`;
+                card.innerHTML += `<div class="admin-app-actions"><button class="admin-action-btn edit" data-id="${app.id}" data-type="app"><i class="fas fa-edit"></i> دەستکاری</button><button class="admin-action-btn delete" data-id="${app.id}" data-type="app"><i class="fas fa-trash"></i> سڕینەوە</button></div><div class="admin-app-image">${app.imgurl ? `<img src="${app.imgurl}" alt="${app.name}">` : `<i class="fas fa-mobile-alt fa-3x"></i>`}</div>`;
+                grid.appendChild(card);
+                card.querySelector('.edit').addEventListener('click', (e) => { e.stopPropagation(); editApp(app.id, 'app'); });
+                card.querySelector('.delete').addEventListener('click', (e) => { e.stopPropagation(); deleteApp(app.id, 'app'); });
             });
         }
 
         function displayAdminGames() {
-            const adminGamesGrid = document.getElementById('admin-games-grid');
-            if (!adminGamesGrid) return;
-            
-            adminGamesGrid.innerHTML = '';
-            
-            if (games.length === 0) {
-                adminGamesGrid.innerHTML = '<div class="no-items"><i class="fas fa-gamepad fa-2x"></i><br><br>هیچ یارییەک بوونی نیە</div>';
-                return;
-            }
-            
+            const grid = document.getElementById('admin-games-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            if (games.length === 0) { grid.innerHTML = '<div class="no-items"><i class="fas fa-gamepad fa-2x"></i><br><br>هیچ یارییەک بوونی نیە</div>'; return; }
             games.forEach(game => {
-                const gameCard = document.createElement('div');
-                gameCard.className = 'admin-game-card';
-                
-                if (game.featured) {
-                    gameCard.innerHTML += `<div class="featured-badge">پاڵێوراو</div>`;
-                }
-                
-                gameCard.innerHTML = `
-                    <div class="admin-game-actions">
-                        <button class="admin-action-btn edit" data-id="${game.id}" data-type="game">
-                            <i class="fas fa-edit"></i> دەستکاری
-                        </button>
-                        <button class="admin-action-btn delete" data-id="${game.id}" data-type="game">
-                            <i class="fas fa-trash"></i> سڕینەوە
-                        </button>
-                    </div>
-                    <div class="admin-game-image">
-                        ${game.imgurl ? `<img src="${game.imgurl}" alt="${game.name}" loading="lazy">` : `<i class="fas fa-gamepad fa-3x"></i>`}
-                    </div>
-                    <div class="admin-game-info-overlay">
-                        <h3 class="admin-game-info-overlay-title">
-                            ${game.name}
-                        </h3>
-                        <p class="admin-game-info-overlay-desc">
-                            ${game.description || 'بێ وەسف'}
-                        </p>
-                        <div class="admin-game-info-overlay-downloads">
-                            <i class="fas fa-download"></i> ${game.downloads || 0} داگرتن
-                        </div>
-                        <button class="view-details-btn" data-id="${game.id}" data-type="game">
-                            <i class="fas fa-eye"></i> بینینی وردەکاری
-                        </button>
-                    </div>
-                `;
-                adminGamesGrid.appendChild(gameCard);
-                
-                const editBtn = gameCard.querySelector('.edit');
-                const deleteBtn = gameCard.querySelector('.delete');
-                const viewBtn = gameCard.querySelector('.view-details-btn');
-                
-                editBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const appId = this.getAttribute('data-id');
-                    const type = this.getAttribute('data-type');
-                    editApp(appId, type);
-                });
-                
-                deleteBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const appId = this.getAttribute('data-id');
-                    const type = this.getAttribute('data-type');
-                    deleteApp(appId, type);
-                });
-                
-                viewBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const appId = this.getAttribute('data-id');
-                    const type = this.getAttribute('data-type');
-                    viewAppDetails(appId, type);
-                });
+                const card = document.createElement('div'); card.className = 'admin-game-card';
+                if (game.featured) card.innerHTML += `<div class="featured-badge">پاڵێوراو</div>`;
+                card.innerHTML += `<div class="admin-game-actions"><button class="admin-action-btn edit" data-id="${game.id}" data-type="game"><i class="fas fa-edit"></i> دەستکاری</button><button class="admin-action-btn delete" data-id="${game.id}" data-type="game"><i class="fas fa-trash"></i> سڕینەوە</button></div><div class="admin-game-image">${game.imgurl ? `<img src="${game.imgurl}" alt="${game.name}">` : `<i class="fas fa-gamepad fa-3x"></i>`}</div>`;
+                grid.appendChild(card);
+                card.querySelector('.edit').addEventListener('click', (e) => { e.stopPropagation(); editApp(game.id, 'game'); });
+                card.querySelector('.delete').addEventListener('click', (e) => { e.stopPropagation(); deleteApp(game.id, 'game'); });
             });
         }
 
         function displayAdminIos() {
-            const adminIosGrid = document.getElementById('admin-ios-grid');
-            if (!adminIosGrid) return;
-            
-            adminIosGrid.innerHTML = '';
-            
-            if (iosApps.length === 0) {
-                adminIosGrid.innerHTML = '<div class="no-items"><i class="fab fa-apple fa-2x"></i><br><br>هیچ بەرنامەیەکی IOS بوونی نیە</div>';
-                return;
-            }
-            
-            iosApps.forEach(ios => {
-                const iosCard = document.createElement('div');
-                iosCard.className = 'admin-ios-card';
-                
-                if (ios.featured) {
-                    iosCard.innerHTML += `<div class="featured-badge ios-badge">پاڵێوراو</div>`;
-                }
-                
-                iosCard.innerHTML = `
-                    <div class="admin-ios-actions">
-                        <button class="admin-action-btn edit" data-id="${ios.id}" data-type="ios">
-                            <i class="fas fa-edit"></i> دەستکاری
-                        </button>
-                        <button class="admin-action-btn delete" data-id="${ios.id}" data-type="ios">
-                            <i class="fas fa-trash"></i> سڕینەوە
-                        </button>
-                    </div>
-                    <div class="admin-ios-image">
-                        ${ios.imgurl ? `<img src="${ios.imgurl}" alt="${ios.name}" loading="lazy">` : `<i class="fab fa-apple fa-3x"></i>`}
-                    </div>
-                    <div class="admin-ios-info-overlay">
-                        <h3 class="admin-ios-info-overlay-title">
-                            ${ios.name}
-                        </h3>
-                        <p class="admin-ios-info-overlay-desc">
-                            ${ios.description || 'بێ وەسف'}
-                        </p>
-                        <div class="admin-ios-info-overlay-downloads">
-                            <i class="fas fa-download"></i> ${ios.downloads || 0} داگرتن
-                        </div>
-                        <button class="view-details-btn" data-id="${ios.id}" data-type="ios">
-                            <i class="fas fa-eye"></i> بینینی وردەکاری
-                        </button>
-                    </div>
-                `;
-                adminIosGrid.appendChild(iosCard);
-                
-                const editBtn = iosCard.querySelector('.edit');
-                const deleteBtn = iosCard.querySelector('.delete');
-                const viewBtn = iosCard.querySelector('.view-details-btn');
-                
-                editBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const appId = this.getAttribute('data-id');
-                    const type = this.getAttribute('data-type');
-                    editApp(appId, type);
-                });
-                
-                deleteBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const appId = this.getAttribute('data-id');
-                    const type = this.getAttribute('data-type');
-                    deleteApp(appId, type);
-                });
-                
-                viewBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const appId = this.getAttribute('data-id');
-                    const type = this.getAttribute('data-type');
-                    viewAppDetails(appId, type);
-                });
-            });
-        }
-
-        function deleteApp(appId, type) {
-            if (!db) {
-                showFirebaseAlert("پەیوەندی Firebase دروست نیە!", false);
-                return;
-            }
-            
-            if (confirm("دڵنیایت دەتەوێت ئەم بەرنامەەی بسڕیتەوە؟")) {
-                db.collection("zhi-zhi").doc(appId).delete()
-                    .then(() => {
-                        console.log("✅ بەرنامە سڕایەوە بە سەرکەوتوویی");
-                        showFirebaseAlert("بەرنامە سڕایەوە بە سەرکەوتوویی!", true);
-                        
-                        if (type === "app") {
-                            apps = apps.filter(app => app.id !== appId);
-                            displayAdminApps();
-                        } else if (type === "game") {
-                            games = games.filter(game => game.id !== appId);
-                            displayAdminGames();
-                        } else if (type === "ios") {
-                            iosApps = iosApps.filter(ios => ios.id !== appId);
-                            displayAdminIos();
-                        }
-                        
-                        setTimeout(() => {
-                            if (type === "app") {
-                                loadApps();
-                            } else if (type === "game") {
-                                loadGames();
-                            } else if (type === "ios") {
-                                loadIos();
-                            }
-                        }, 500);
-                    })
-                    .catch((error) => {
-                        console.error("❌ هەڵە لە سڕینەوەی بەرنامە:", error);
-                        showFirebaseAlert("هەڵە لە سڕینەوەی بەرنامە: " + error.message, false);
-                    });
-            }
-        }
-
-        function editApp(appId, type) {
-            console.log("دەستکاری بەرنامە:", appId, type);
-            
-            let appToEdit;
-            
-            if (type === 'app') {
-                appToEdit = apps.find(item => item.id === appId);
-            } else if (type === 'game') {
-                appToEdit = games.find(item => item.id === appId);
-            } else if (type === 'ios') {
-                appToEdit = iosApps.find(item => item.id === appId);
-            }
-            
-            if (appToEdit) {
-                document.getElementById("edit-form-container").style.display = "block";
-                
-                document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
-                
-                document.querySelector('.admin-tab[data-tab="add-app"]').classList.add('active');
-                document.getElementById('add-app-tab').classList.add('active');
-                
-                document.getElementById("edit-app-id").value = appId;
-                document.getElementById("edit-app-type").value = type;
-                document.getElementById("edit-app-name").value = appToEdit.name || "";
-                document.getElementById("edit-app-description").value = appToEdit.description || "";
-                document.getElementById("edit-app-image").value = appToEdit.imgurl || "";
-                document.getElementById("edit-app-download").value = appToEdit.downloadurl || "";
-                document.getElementById("edit-app-featured").value = appToEdit.featured ? "true" : "false";
-                
-                document.getElementById("edit-form-container").scrollIntoView({behavior: 'smooth'});
-                
-            } else {
-                console.error("بەرنامە نەدۆزرایەوە لە لیستەکان");
-                showFirebaseAlert("بەرنامە نەدۆزرایەوە! تکایە پەڕەکە دووبارە بار بکەرەوە.", false);
-            }
-        }
-
-        function updateApp(appId, appData) {
-            if (!db) {
-                showFirebaseAlert("پەیوەندی Firebase دروست نیە!", false);
-                return;
-            }
-            
-            const appToUpdate = {
-                name: appData.name,
-                description: appData.description,
-                imgurl: appData.image || "",
-                downloadurl: appData.downloadLink,
-                featured: appData.featured === "true"
-            };
-            
-            console.log("نوێکردنەوەی بەرنامە:", appId, appToUpdate);
-            
-            db.collection("zhi-zhi").doc(appId).update(appToUpdate)
-                .then(() => {
-                    console.log("✅ بەرنامە نوێکرایەوە بە سەرکەوتوویی");
-                    showFirebaseAlert("بەرنامە نوێکرایەوە بە سەرکەوتوویی!", true);
-                    
-                    document.getElementById("edit-form-container").style.display = "none";
-                    document.getElementById("edit-app-form").reset();
-                    
-                    if (appData.type === "app") {
-                        loadApps();
-                    } else if (appData.type === "game") {
-                        loadGames();
-                    } else if (appData.type === "ios") {
-                        loadIos();
-                    }
-                    
-                })
-                .catch((error) => {
-                    console.error("❌ هەڵە لە نوێکردنەوەی بەرنامە:", error);
-                    showFirebaseAlert("هەڵە لە نوێکردنەوەی بەرنامە: " + error.message, false);
-                });
-        }
-
-        function viewAppDetails(appId, type) {
-            const allItems = [...apps, ...games, ...iosApps];
-            const app = allItems.find(item => item.id === appId);
-            
-            if (app) {
-                const typeText = type === 'app' ? 'ئەپ' : type === 'game' ? 'یاری' : 'IOS';
-                alert(
-                    `ناوی بەرنامە: ${app.name}\n\n` +
-                    `جۆر: ${typeText}\n\n` +
-                    `کورتە: ${app.description || 'بێ وەسف'}\n\n` +
-                    `لینکی وێنە: ${app.imgurl || 'بێ وێنە'}\n\n` +
-                    `لینکی داگرتن: ${app.downloadurl}\n\n` +
-                    `ژمارەی داگرتن: ${app.downloads || 0}\n\n` +
-                    `پاڵێوراو: ${app.featured ? 'بەڵێ' : 'نەخێر'}\n\n` +
-                    `ID: ${appId}`
-                );
-            }
-        }
-
-        function showFirebaseAlert(message, isSuccess) {
-            const alertDiv = document.createElement('div');
-            alertDiv.className = `firebase-alert ${isSuccess ? '' : 'firebase-error'}`;
-            alertDiv.innerHTML = `
-                <i class="fas ${isSuccess ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
-                <span>${message}</span>
-            `;
-            
-            document.body.appendChild(alertDiv);
-            
-            setTimeout(() => {
-                if (alertDiv.parentNode) {
-                    alertDiv.parentNode.removeChild(alertDiv);
-                }
-            }, 5000);
-        }
-
-        function searchItems(query, items) {
-            if (!query || query.trim() === '') {
-                return items;
-            }
-            
-            const searchTerm = query.toLowerCase().trim();
-            return items.filter(item => 
-                item.name.toLowerCase().includes(searchTerm) || 
-                item.description.toLowerCase().includes(searchTerm)
-            );
-        }
-        
-        function displaySearchResults(query, itemsToSearch, gridId, cardType) {
-            const grid = document.getElementById(gridId);
+            const grid = document.getElementById('admin-ios-grid');
             if (!grid) return;
-            
-            const filteredItems = searchItems(query, itemsToSearch);
-            
             grid.innerHTML = '';
-            
-            if (filteredItems.length === 0) {
-                grid.innerHTML = `
-                    <div class="no-items" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
-                        <i class="fas fa-search fa-2x"></i><br><br>
-                        <h3>هیچ ئەنجامێک نەدۆزرایەوە بۆ "${query}"</h3>
-                        <p>تکایە گەڕانەکەت بگۆڕە یان وشەیەکی تر هەوڵ بدە</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            filteredItems.forEach(item => {
-                const card = document.createElement('div');
-                card.className = cardType;
-                
-                if (item.featured) {
-                    const badgeClass = item.type === 'ios' ? 'featured-badge ios-badge' : 'featured-badge';
-                    card.innerHTML += `<div class="${badgeClass}">پاڵێوراو</div>`;
-                }
-                
-                const iconClass = item.type === 'app' ? 'fa-mobile-alt' : 
-                                 item.type === 'game' ? 'fa-gamepad' : 
-                                 'fa-apple';
-                
-                card.innerHTML = `
-                    <div class="${item.type}-image">
-                        ${item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}" loading="lazy">` : 
-                            `<i class="fas ${iconClass} fa-3x"></i>`}
-                    </div>
-                `;
+            if (iosApps.length === 0) { grid.innerHTML = '<div class="no-items"><i class="fab fa-apple fa-2x"></i><br><br>هیچ بەرنامەیەکی IOS بوونی نیە</div>'; return; }
+            iosApps.forEach(ios => {
+                const card = document.createElement('div'); card.className = 'admin-ios-card';
+                if (ios.featured) card.innerHTML += `<div class="featured-badge ios-badge">پاڵێوراو</div>`;
+                card.innerHTML += `<div class="admin-ios-actions"><button class="admin-action-btn edit" data-id="${ios.id}" data-type="ios"><i class="fas fa-edit"></i> دەستکاری</button><button class="admin-action-btn delete" data-id="${ios.id}" data-type="ios"><i class="fas fa-trash"></i> سڕینەوە</button></div><div class="admin-ios-image">${ios.imgurl ? `<img src="${ios.imgurl}" alt="${ios.name}">` : `<i class="fab fa-apple fa-3x"></i>`}</div>`;
                 grid.appendChild(card);
-                
-                card.addEventListener('click', function(e) {
-                    openModal(item);
-                });
+                card.querySelector('.edit').addEventListener('click', (e) => { e.stopPropagation(); editApp(ios.id, 'ios'); });
+                card.querySelector('.delete').addEventListener('click', (e) => { e.stopPropagation(); deleteApp(ios.id, 'ios'); });
             });
         }
-        
-        function showAutocompleteResults(query, containerId, allItems) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            
-            if (!query || query.trim() === '') {
-                container.classList.remove('show');
-                container.innerHTML = '';
-                return;
+
+        function deleteApp(id, type) {
+            if (!db) return;
+            if (confirm("دڵنیایت دەتەوێت ئەم بەرنامەەی بسڕیتەوە؟")) {
+                db.collection("zhi-zhi").doc(id).delete().then(() => {
+                    showFirebaseAlert("بەرنامە سڕایەوە بە سەرکەوتوویی!", true);
+                    if (type === "app") loadApps();
+                    else if (type === "game") loadGames();
+                    else if (type === "ios") loadIos();
+                }).catch(error => showFirebaseAlert("هەڵە لە سڕینەوە: " + error.message, false));
             }
-            
-            const searchTerm = query.toLowerCase().trim();
-            const filteredItems = allItems.filter(item => 
-                item.name.toLowerCase().includes(searchTerm) || 
-                item.description.toLowerCase().includes(searchTerm)
-            ).slice(0, 8);
-            
-            if (filteredItems.length === 0) {
-                container.innerHTML = `
-                    <div class="autocomplete-item">
-                        <i class="fas fa-search autocomplete-item-icon"></i>
-                        <span>هیچ ئەنجامێک نەدۆزرایەوە بۆ "${query}"</span>
-                    </div>
-                `;
-                container.classList.add('show');
-                return;
-            }
-            
-            container.innerHTML = '';
-            
-            filteredItems.forEach(item => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'autocomplete-item';
-                
-                const typeText = item.type === 'app' ? 'ئەپ' : item.type === 'game' ? 'یاری' : 'IOS';
-                const iconClass = item.type === 'app' ? 'fa-mobile-alt' : 
-                                 item.type === 'game' ? 'fa-gamepad' : 
-                                 'fa-apple';
-                
-                itemDiv.innerHTML = `
-                    <i class="fas ${iconClass} autocomplete-item-icon"></i>
-                    <span>${item.name}</span>
-                    <small style="margin-right: auto; color: #888;">${typeText}</small>
-                `;
-                
-                itemDiv.addEventListener('click', function() {
-                    const input = container.previousElementSibling.querySelector('.search-input') || 
-                                 container.previousElementSibling.querySelector('.admin-search-input');
-                    if (input) {
-                        input.value = item.name;
-                    }
-                    
-                    if (containerId === 'main-autocomplete') {
-                        displaySearchResults(item.name, [...apps, ...games, ...iosApps], 'all-grid', 'app-card');
-                    } else if (containerId === 'apps-autocomplete') {
-                        displaySearchResults(item.name, apps, 'apps-grid', 'app-card');
-                    } else if (containerId === 'games-autocomplete') {
-                        displaySearchResults(item.name, games, 'games-grid', 'game-card');
-                    } else if (containerId === 'ios-autocomplete') {
-                        displaySearchResults(item.name, iosApps, 'ios-grid', 'ios-card');
-                    } else if (containerId === 'admin-apps-autocomplete') {
-                        displaySearchResults(item.name, apps, 'admin-apps-grid', 'admin-app-card');
-                    } else if (containerId === 'admin-games-autocomplete') {
-                        displaySearchResults(item.name, games, 'admin-games-grid', 'admin-game-card');
-                    } else if (containerId === 'admin-ios-autocomplete') {
-                        displaySearchResults(item.name, iosApps, 'admin-ios-grid', 'admin-ios-card');
-                    }
-                    
-                    container.classList.remove('show');
-                });
-                
-                container.appendChild(itemDiv);
-            });
-            
-            container.classList.add('show');
         }
-        
-        function setupSearchFunctionality() {
-            const mainSearchInput = document.getElementById('main-search');
-            const mainSearchBtn = document.getElementById('main-search-btn');
-            const mainAutocomplete = document.getElementById('main-autocomplete');
-            
-            if (mainSearchInput) {
-                mainSearchInput.addEventListener('input', function() {
-                    showAutocompleteResults(this.value, 'main-autocomplete', [...apps, ...games, ...iosApps]);
-                });
-                
-                mainSearchInput.addEventListener('focus', function() {
-                    if (this.value) {
-                        showAutocompleteResults(this.value, 'main-autocomplete', [...apps, ...games, ...iosApps]);
-                    }
-                });
-                
-                mainSearchInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        const query = this.value;
-                        displaySearchResults(query, [...apps, ...games, ...iosApps], 'all-grid', 'app-card');
-                        mainAutocomplete.classList.remove('show');
-                    }
-                });
+
+        function editApp(id, type) {
+            let item;
+            if (type === 'app') item = apps.find(i => i.id === id);
+            else if (type === 'game') item = games.find(i => i.id === id);
+            else item = iosApps.find(i => i.id === id);
+            if (item) {
+                document.getElementById("edit-form-container").style.display = "block";
+                document.querySelector('.admin-tab[data-tab="add-app"]').click();
+                document.getElementById("edit-app-id").value = id;
+                document.getElementById("edit-app-type").value = type;
+                document.getElementById("edit-app-name").value = item.name || "";
+                document.getElementById("edit-app-description").value = item.description || "";
+                document.getElementById("edit-app-image").value = item.imgurl || "";
+                document.getElementById("edit-app-download").value = item.downloadurl || "";
+                document.getElementById("edit-app-featured").value = item.featured ? "true" : "false";
+                document.getElementById("edit-form-container").scrollIntoView({ behavior: 'smooth' });
             }
-            
-            if (mainSearchBtn) {
-                mainSearchBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const query = mainSearchInput.value;
-                    displaySearchResults(query, [...apps, ...games, ...iosApps], 'all-grid', 'app-card');
-                    mainAutocomplete.classList.remove('show');
-                });
-            }
-            
-            const appsSearchInput = document.getElementById('apps-search');
-            const appsSearchBtn = document.getElementById('apps-search-btn');
-            const appsAutocomplete = document.getElementById('apps-autocomplete');
-            
-            if (appsSearchInput) {
-                appsSearchInput.addEventListener('input', function() {
-                    showAutocompleteResults(this.value, 'apps-autocomplete', apps);
-                });
-                
-                appsSearchInput.addEventListener('focus', function() {
-                    if (this.value) {
-                        showAutocompleteResults(this.value, 'apps-autocomplete', apps);
-                    }
-                });
-                
-                appsSearchInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        const query = this.value;
-                        displaySearchResults(query, apps, 'apps-grid', 'app-card');
-                        appsAutocomplete.classList.remove('show');
-                    }
-                });
-            }
-            
-            if (appsSearchBtn) {
-                appsSearchBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const query = appsSearchInput.value;
-                    displaySearchResults(query, apps, 'apps-grid', 'app-card');
-                    appsAutocomplete.classList.remove('show');
-                });
-            }
-            
-            const gamesSearchInput = document.getElementById('games-search');
-            const gamesSearchBtn = document.getElementById('games-search-btn');
-            const gamesAutocomplete = document.getElementById('games-autocomplete');
-            
-            if (gamesSearchInput) {
-                gamesSearchInput.addEventListener('input', function() {
-                    showAutocompleteResults(this.value, 'games-autocomplete', games);
-                });
-                
-                gamesSearchInput.addEventListener('focus', function() {
-                    if (this.value) {
-                        showAutocompleteResults(this.value, 'games-autocomplete', games);
-                    }
-                });
-                
-                gamesSearchInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        const query = this.value;
-                        displaySearchResults(query, games, 'games-grid', 'game-card');
-                        gamesAutocomplete.classList.remove('show');
-                    }
-                });
-            }
-            
-            if (gamesSearchBtn) {
-                gamesSearchBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const query = gamesSearchInput.value;
-                    displaySearchResults(query, games, 'games-grid', 'game-card');
-                    gamesAutocomplete.classList.remove('show');
-                });
-            }
-            
-            const iosSearchInput = document.getElementById('ios-search');
-            const iosSearchBtn = document.getElementById('ios-search-btn');
-            const iosAutocomplete = document.getElementById('ios-autocomplete');
-            
-            if (iosSearchInput) {
-                iosSearchInput.addEventListener('input', function() {
-                    showAutocompleteResults(this.value, 'ios-autocomplete', iosApps);
-                });
-                
-                iosSearchInput.addEventListener('focus', function() {
-                    if (this.value) {
-                        showAutocompleteResults(this.value, 'ios-autocomplete', iosApps);
-                    }
-                });
-                
-                iosSearchInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        const query = this.value;
-                        displaySearchResults(query, iosApps, 'ios-grid', 'ios-card');
-                        iosAutocomplete.classList.remove('show');
-                    }
-                });
-            }
-            
-            if (iosSearchBtn) {
-                iosSearchBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const query = iosSearchInput.value;
-                    displaySearchResults(query, iosApps, 'ios-grid', 'ios-card');
-                    iosAutocomplete.classList.remove('show');
-                });
-            }
-            
-            const adminAppsSearchInput = document.getElementById('admin-apps-search');
-            const adminAppsSearchBtn = document.getElementById('admin-apps-search-btn');
-            const adminAppsAutocomplete = document.getElementById('admin-apps-autocomplete');
-            
-            if (adminAppsSearchInput && adminAppsSearchBtn) {
-                adminAppsSearchInput.addEventListener('input', function() {
-                    showAutocompleteResults(this.value, 'admin-apps-autocomplete', apps);
-                });
-                
-                adminAppsSearchInput.addEventListener('focus', function() {
-                    if (this.value) {
-                        showAutocompleteResults(this.value, 'admin-apps-autocomplete', apps);
-                    }
-                });
-                
-                adminAppsSearchInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        const query = this.value;
-                        displaySearchResults(query, apps, 'admin-apps-grid', 'admin-app-card');
-                        adminAppsAutocomplete.classList.remove('show');
-                    }
-                });
-                
-                adminAppsSearchBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const query = adminAppsSearchInput.value;
-                    displaySearchResults(query, apps, 'admin-apps-grid', 'admin-app-card');
-                    adminAppsAutocomplete.classList.remove('show');
-                });
-            }
-            
-            const adminGamesSearchInput = document.getElementById('admin-games-search');
-            const adminGamesSearchBtn = document.getElementById('admin-games-search-btn');
-            const adminGamesAutocomplete = document.getElementById('admin-games-autocomplete');
-            
-            if (adminGamesSearchInput && adminGamesSearchBtn) {
-                adminGamesSearchInput.addEventListener('input', function() {
-                    showAutocompleteResults(this.value, 'admin-games-autocomplete', games);
-                });
-                
-                adminGamesSearchInput.addEventListener('focus', function() {
-                    if (this.value) {
-                        showAutocompleteResults(this.value, 'admin-games-autocomplete', games);
-                    }
-                });
-                
-                adminGamesSearchInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        const query = this.value;
-                        displaySearchResults(query, games, 'admin-games-grid', 'admin-game-card');
-                        adminGamesAutocomplete.classList.remove('show');
-                    }
-                });
-                
-                adminGamesSearchBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const query = adminGamesSearchInput.value;
-                    displaySearchResults(query, games, 'admin-games-grid', 'admin-game-card');
-                    adminGamesAutocomplete.classList.remove('show');
-                });
-            }
-            
-            const adminIosSearchInput = document.getElementById('admin-ios-search');
-            const adminIosSearchBtn = document.getElementById('admin-ios-search-btn');
-            const adminIosAutocomplete = document.getElementById('admin-ios-autocomplete');
-            
-            if (adminIosSearchInput && adminIosSearchBtn) {
-                adminIosSearchInput.addEventListener('input', function() {
-                    showAutocompleteResults(this.value, 'admin-ios-autocomplete', iosApps);
-                });
-                
-                adminIosSearchInput.addEventListener('focus', function() {
-                    if (this.value) {
-                        showAutocompleteResults(this.value, 'admin-ios-autocomplete', iosApps);
-                    }
-                });
-                
-                adminIosSearchInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        const query = this.value;
-                        displaySearchResults(query, iosApps, 'admin-ios-grid', 'admin-ios-card');
-                        adminIosAutocomplete.classList.remove('show');
-                    }
-                });
-                
-                adminIosSearchBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const query = adminIosSearchInput.value;
-                    displaySearchResults(query, iosApps, 'admin-ios-grid', 'admin-ios-card');
-                    adminIosAutocomplete.classList.remove('show');
-                });
-            }
-            
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.autocomplete-container')) {
-                    document.querySelectorAll('.autocomplete-results').forEach(container => {
-                        container.classList.remove('show');
-                    });
-                }
-            });
+        }
+
+        function updateApp(id, data) {
+            if (!db) return;
+            db.collection("zhi-zhi").doc(id).update({
+                name: data.name,
+                description: data.description,
+                imgurl: data.image || "",
+                downloadurl: data.downloadLink,
+                featured: data.featured === "true"
+            }).then(() => {
+                showFirebaseAlert("بەرنامە نوێکرایەوە!", true);
+                document.getElementById("edit-form-container").style.display = "none";
+                document.getElementById("edit-app-form").reset();
+                if (data.type === "app") loadApps();
+                else if (data.type === "game") loadGames();
+                else if (data.type === "ios") loadIos();
+            }).catch(error => showFirebaseAlert("هەڵە لە نوێکردنەوە: " + error.message, false));
+        }
+
+        function showFirebaseAlert(msg, isSuccess) {
+            const div = document.createElement('div');
+            div.className = `firebase-alert ${isSuccess ? '' : 'firebase-error'}`;
+            div.innerHTML = `<i class="fas ${isSuccess ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i><span>${msg}</span>`;
+            document.body.appendChild(div);
+            setTimeout(() => { if (div.parentNode) div.parentNode.removeChild(div); }, 5000);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             const savedTheme = localStorage.getItem('zhizhi_theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-                document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-sun"></i>';
-            }
-            
+            if (savedTheme === 'dark') { document.body.classList.add('dark-mode'); document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-sun"></i>'; }
             showPage('home');
             
-            document.querySelectorAll('.nav-link').forEach(link => {
+            document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const page = this.getAttribute('data-page');
-                    
-                    if (page === 'admin-panel' && !isAdminLoggedIn) {
-                        showPage('admin-login');
-                        return;
-                    }
-                    
-                    showPage(page);
-                });
-            });
-            
-            document.querySelectorAll('.mobile-nav-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const page = this.getAttribute('data-page');
-                    
-                    if (page === 'admin-panel' && !isAdminLoggedIn) {
-                        showPage('admin-login');
-                        return;
-                    }
-                    
-                    showPage(page);
+                    if (page === 'admin-panel' && !isAdminLoggedIn) showPage('admin-login');
+                    else showPage(page);
                 });
             });
             
             document.querySelectorAll('.category-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const category = this.getAttribute('data-category');
-                    
-                    document.querySelectorAll('.category-link').forEach(cat => cat.classList.remove('active'));
+                    const cat = this.getAttribute('data-category');
+                    document.querySelectorAll('.category-link').forEach(c => c.classList.remove('active'));
                     this.classList.add('active');
-                    
-                    currentCategory = category;
+                    currentCategory = cat;
                     displayAllItems();
                 });
             });
             
-            const adminLoginForm = document.getElementById('admin-login-form');
-            if (adminLoginForm) {
-                adminLoginForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const username = document.getElementById('username').value;
-                    const password = document.getElementById('password').value;
-                    
-                    adminLogin(username, password);
+            document.getElementById('admin-login-form')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                adminLogin(document.getElementById('username').value, document.getElementById('password').value);
+            });
+            
+            document.getElementById('add-app-form')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const type = document.getElementById('app-type').value;
+                if (!type) { alert("تکایە جۆری بەرنامە هەڵبژێرە!"); return; }
+                const data = {
+                    name: document.getElementById('app-name').value,
+                    description: document.getElementById('app-description').value,
+                    type: type,
+                    image: document.getElementById('app-image').value,
+                    downloadLink: document.getElementById('app-download').value,
+                    featured: document.getElementById('app-featured').checked
+                };
+                db.collection("zhi-zhi").add({
+                    name: data.name, description: data.description, type: data.type,
+                    imgurl: data.image || "", downloadurl: data.downloadLink,
+                    downloads: 0, featured: data.featured || false, createdAt: new Date().toISOString()
+                }).then(() => {
+                    showFirebaseAlert("بەرنامە زیادکرا!", true);
+                    document.getElementById("add-app-form").reset();
+                    if (data.type === "app") loadApps();
+                    else if (data.type === "game") loadGames();
+                    else loadIos();
+                }).catch(error => showFirebaseAlert("هەڵە: " + error.message, false));
+            });
+            
+            document.getElementById('edit-app-form')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                updateApp(document.getElementById('edit-app-id').value, {
+                    name: document.getElementById('edit-app-name').value,
+                    description: document.getElementById('edit-app-description').value,
+                    type: document.getElementById('edit-app-type').value,
+                    image: document.getElementById('edit-app-image').value,
+                    downloadLink: document.getElementById('edit-app-download').value,
+                    featured: document.getElementById('edit-app-featured').value
                 });
-            }
+            });
             
-            const addAppForm = document.getElementById('add-app-form');
-            if (addAppForm) {
-                addAppForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const formData = {
-                        name: document.getElementById('app-name').value,
-                        description: document.getElementById('app-description').value,
-                        type: document.getElementById('app-type').value,
-                        image: document.getElementById('app-image').value,
-                        downloadLink: document.getElementById('app-download').value,
-                        featured: document.getElementById('app-featured').checked
-                    };
-                    
-                    if (!formData.type) {
-                        alert("تکایە جۆری بەرنامە هەڵبژێرە!");
-                        return;
-                    }
-                    
-                    if (!db) {
-                        showFirebaseAlert("پەیوەندی Firebase دروست نیە!", false);
-                        return;
-                    }
-                    
-                    const appToAdd = {
-                        name: formData.name,
-                        description: formData.description,
-                        type: formData.type,
-                        imgurl: formData.image || "",
-                        downloadurl: formData.downloadLink,
-                        downloads: 0,
-                        featured: formData.featured || false,
-                        createdAt: new Date().toISOString()
-                    };
-                    
-                    db.collection("zhi-zhi").add(appToAdd)
-                        .then((docRef) => {
-                            console.log("✅ بەرنامە زیادکرا بە سەرکەوتوویی، ID:", docRef.id);
-                            showFirebaseAlert("بەرنامە زیادکرا بە سەرکەوتوویی!", true);
-                            
-                            document.getElementById("add-app-form").reset();
-                            
-                            if (formData.type === "app") {
-                                loadApps();
-                            } else if (formData.type === "game") {
-                                loadGames();
-                            } else if (formData.type === "ios") {
-                                loadIos();
-                            }
-                            
-                        })
-                        .catch((error) => {
-                            console.error("❌ هەڵە لە زیادکردنی بەرنامە:", error);
-                            showFirebaseAlert("هەڵە لە زیادکردنی بەرنامە: " + error.message, false);
-                        });
-                });
-            }
+            document.getElementById('cancel-edit')?.addEventListener('click', () => {
+                document.getElementById('edit-form-container').style.display = 'none';
+                document.getElementById('edit-app-form').reset();
+            });
             
-            const editAppForm = document.getElementById('edit-app-form');
-            if (editAppForm) {
-                editAppForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const formData = {
-                        name: document.getElementById('edit-app-name').value,
-                        description: document.getElementById('edit-app-description').value,
-                        type: document.getElementById('edit-app-type').value,
-                        image: document.getElementById('edit-app-image').value,
-                        downloadLink: document.getElementById('edit-app-download').value,
-                        featured: document.getElementById('edit-app-featured').value
-                    };
-                    
-                    const appId = document.getElementById('edit-app-id').value;
-                    
-                    updateApp(appId, formData);
-                });
-            }
-            
-            const cancelEditBtn = document.getElementById('cancel-edit');
-            if (cancelEditBtn) {
-                cancelEditBtn.addEventListener('click', function() {
-                    document.getElementById('edit-form-container').style.display = 'none';
-                    document.getElementById('edit-app-form').reset();
-                });
-            }
-            
-            const themeToggle = document.getElementById('theme-toggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', toggleTheme);
-            }
-            
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', openMobileMenu);
-            }
-            
-            const mobileNavClose = document.getElementById('mobile-nav-close');
-            if (mobileNavClose) {
-                mobileNavClose.addEventListener('click', closeMobileMenu);
-            }
-            
-            const mobileOverlay = document.getElementById('mobile-overlay');
-            if (mobileOverlay) {
-                mobileOverlay.addEventListener('click', closeMobileMenu);
-            }
-            
+            document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+            document.getElementById('mobile-menu-btn')?.addEventListener('click', openMobileMenu);
+            document.getElementById('mobile-nav-close')?.addEventListener('click', closeMobileMenu);
+            document.getElementById('mobile-overlay')?.addEventListener('click', closeMobileMenu);
             modalCloseBtn.addEventListener('click', closeModal);
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    closeModal();
-                }
-            });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && modal.classList.contains('active')) {
-                    closeModal();
-                }
-            });
-            
-            setTimeout(() => {
-                setupSearchFunctionality();
-            }, 1000);
-            
-            setTimeout(() => {
-                if (!db) {
-                    showConnectionStatus("Firebase پەیوەندی دروست نەکرا", false);
-                }
-            }, 2000);
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
         });
     </script>
 </body>
