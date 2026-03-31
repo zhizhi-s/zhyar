@@ -1440,7 +1440,7 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <i class="fas fa-gamepad logo-icon"></i>
+                <i class="fas fa-mobile-alt logo-icon"></i>
                 Zhi Zhi
             </div>
             
@@ -1478,7 +1478,7 @@
     <div class="mobile-nav" id="mobile-nav">
         <div class="mobile-nav-header">
             <div class="logo">
-                <i class="fas fa-gamepad logo-icon"></i>
+                <i class="fas fa-mobile-alt logo-icon"></i>
                 Zhi Zhi
             </div>
             <button class="mobile-nav-close" id="mobile-nav-close">
@@ -2205,10 +2205,10 @@
                 typeText = 'یاری';
                 typeClass = 'game-type';
             } else if (item.type === 'ios') {
-                typeText = 'IOS';
+                typeText = 'بەرنامەی IOS';
                 typeClass = 'ios-type';
             }
-            modalTypeBadge.innerHTML = `<div class="type-badge ${typeClass}"><i class="fab ${item.type === 'ios' ? 'fa-apple' : (item.type === 'game' ? 'fa-gamepad' : 'fa-mobile-alt')}"></i> ${typeText}</div>`;
+            modalTypeBadge.innerHTML = `<div class="type-badge ${typeClass}"><i class="fas ${item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' : 'fa-apple'}"></i> ${typeText}</div>`;
             
             modalTitle.textContent = item.name;
             modalDescription.textContent = item.description || 'بێ وەسف';
