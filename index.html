@@ -71,7 +71,10 @@
             flex: 1;
         }
         
+        /* ========== هێدەر - دەستکاری کراوە بۆ چارەسەرکردنی کێشەی وێنە ========== */
         header {
+            position: relative;
+            overflow: hidden; /* ئەمە دەبێتە هۆی شاردردنەوەی هەر شتێک کە لە سنووری هێدەر دەرچێت */
             background: var(--header-bg);
             color: white;
             padding: 0;
@@ -104,13 +107,16 @@
             z-index: 10;
         }
         
+        /* دڵنیابوون لەوەی وێنەکە لە سنووری هێدەر دەرنەچێت */
         .header-center-image img {
             height: 90px;
             width: auto;
             max-width: 280px;
             object-fit: contain;
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+            display: block; /* ڕێگری لە بۆشایی زیادە دەکات */
         }
+        /* ========== کۆتایی دەستکاری هێدەر ========== */
         
         .logo {
             font-size: 22px;
@@ -1335,8 +1341,8 @@
             }
             
             .header-center-image img {
-                height: 75px;
-                max-width: 220px;
+                height: 80px;
+                max-width: 240px;
             }
             
             .logo {
@@ -1403,7 +1409,6 @@
                 grid-template-columns: repeat(3, 1fr);
             }
             
-            /* لە سکرینی گەورە وێنە لادەبرێت */
             .header-center-image {
                 display: none;
             }
@@ -1599,7 +1604,7 @@
             }
             
             .header-center-image img {
-                height: 60px;
+                height: 65px;
                 max-width: 180px;
             }
         }
