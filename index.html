@@ -71,10 +71,9 @@
             flex: 1;
         }
         
-        /* ========== هێدەر - دەستکاری کراوە بۆ چارەسەرکردنی کێشەی وێنە ========== */
         header {
             position: relative;
-            overflow: hidden; /* ئەمە دەبێتە هۆی شاردردنەوەی هەر شتێک کە لە سنووری هێدەر دەرچێت */
+            overflow: hidden;
             background: var(--header-bg);
             color: white;
             padding: 0;
@@ -107,16 +106,14 @@
             z-index: 10;
         }
         
-        /* دڵنیابوون لەوەی وێنەکە لە سنووری هێدەر دەرنەچێت */
         .header-center-image img {
             height: 90px;
             width: auto;
             max-width: 280px;
             object-fit: contain;
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
-            display: block; /* ڕێگری لە بۆشایی زیادە دەکات */
+            display: block;
         }
-        /* ========== کۆتایی دەستکاری هێدەر ========== */
         
         .logo {
             font-size: 22px;
@@ -352,28 +349,6 @@
             margin-right: auto;
             line-height: 1.6;
             font-weight: 400;
-        }
-        
-        .hero-shape {
-            position: absolute;
-            bottom: -50px;
-            left: -50px;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            z-index: 1;
-        }
-        
-        .hero-shape-2 {
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 150px;
-            height: 150px;
-            background: rgba(76, 201, 240, 0.1);
-            border-radius: 50%;
-            z-index: 1;
         }
         
         .search-container {
@@ -1271,9 +1246,49 @@
             font-size: 1.5rem;
             font-weight: 800;
             text-align: center;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             color: var(--text-color);
             line-height: 1.3;
+        }
+        
+        /* ستایلی جۆری ئەپ لە مۆدالدا */
+        .modal-type-badge {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+        
+        .type-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+        }
+        
+        .type-badge i {
+            font-size: 12px;
+        }
+        
+        .type-badge.app {
+            color: #4361ee;
+        }
+        
+        .type-badge.game {
+            color: #f4a261;
+        }
+        
+        .type-badge.ios {
+            color: #000000;
+        }
+        
+        body.dark-mode .type-badge.ios {
+            color: #ffffff;
         }
         
         .modal-description {
@@ -1334,7 +1349,6 @@
             box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
         }
         
-        /* قەبارەی وێنە بەپێی قەبارەی سکرین */
         @media (max-width: 768px) {
             header .container {
                 padding: 0 16px;
@@ -1687,7 +1701,8 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <i class="fas fa-mobile-alt logo-icon"></i>
+                <!-- ئایکۆنی مۆبایل گۆڕدرا بۆ دەستەی یاری (gamepad) -->
+                <i class="fas fa-gamepad logo-icon"></i>
                 Zhi Zhi
             </div>
             
@@ -1725,7 +1740,8 @@
     <div class="mobile-nav" id="mobile-nav">
         <div class="mobile-nav-header">
             <div class="logo">
-                <i class="fas fa-mobile-alt logo-icon"></i>
+                <!-- ئایکۆنی مۆبایل گۆڕدرا بۆ دەستەی یاری (gamepad) لە مۆبایل ناڤیشدا -->
+                <i class="fas fa-gamepad logo-icon"></i>
                 Zhi Zhi
             </div>
             <button class="mobile-nav-close" id="mobile-nav-close">
@@ -2173,6 +2189,8 @@
             <div class="modal-image" id="modalImage">
                 <i class="fas fa-mobile-alt"></i>
             </div>
+            <!-- جۆری ئەپ لە مۆدالدا زیادکرا -->
+            <div class="modal-type-badge" id="modalTypeBadge"></div>
             <h3 class="modal-title" id="modalTitle"></h3>
             <p class="modal-description" id="modalDescription"></p>
             <div class="modal-downloads" id="modalDownloads">
@@ -2506,11 +2524,24 @@
 
         const modal = document.getElementById('itemModal');
         const modalImage = document.getElementById('modalImage');
+        const modalTypeBadge = document.getElementById('modalTypeBadge');
         const modalTitle = document.getElementById('modalTitle');
         const modalDescription = document.getElementById('modalDescription');
         const modalDownloadsCount = document.getElementById('modalDownloadsCount');
         const modalDownloadBtn = document.getElementById('modalDownloadBtn');
         const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+        // فانکشنی نیشاندانی جۆری ئەپ لە مۆدالدا
+        function getTypeBadgeHTML(type) {
+            if (type === 'app') {
+                return '<span class="type-badge app"><i class="fas fa-mobile-alt"></i> ئەپ</span>';
+            } else if (type === 'game') {
+                return '<span class="type-badge game"><i class="fas fa-gamepad"></i> یاری</span>';
+            } else if (type === 'ios') {
+                return '<span class="type-badge ios"><i class="fab fa-apple"></i> IOS</span>';
+            }
+            return '';
+        }
 
         function openModal(item) {
             if (item.imgurl && item.imgurl.trim() !== '') {
@@ -2521,6 +2552,9 @@
                                  'fa-apple';
                 modalImage.innerHTML = `<i class="fas ${iconClass} fa-3x"></i>`;
             }
+            
+            // نیشاندانی جۆری ئەپ
+            modalTypeBadge.innerHTML = getTypeBadgeHTML(item.type);
             
             modalTitle.textContent = item.name;
             modalDescription.textContent = item.description || 'بێ وەسف';
