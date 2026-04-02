@@ -74,7 +74,7 @@
         /* ========== هێدەر - دەستکاری کراوە بۆ چارەسەرکردنی کێشەی وێنە ========== */
         header {
             position: relative;
-            overflow: hidden; /* ئەمە دەبێتە هۆی شاردردنەوەی هەر شتێک کە لە سنووری هێدەر دەرچێت */
+            overflow: hidden;
             background: var(--header-bg);
             color: white;
             padding: 0;
@@ -107,14 +107,13 @@
             z-index: 10;
         }
         
-        /* دڵنیابوون لەوەی وێنەکە لە سنووری هێدەر دەرنەچێت */
         .header-center-image img {
             height: 90px;
             width: auto;
             max-width: 280px;
             object-fit: contain;
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
-            display: block; /* ڕێگری لە بۆشایی زیادە دەکات */
+            display: block;
         }
         /* ========== کۆتایی دەستکاری هێدەر ========== */
         
@@ -1276,6 +1275,7 @@
             line-height: 1.3;
         }
         
+        /* دەستکاری کورتە لە مۆدال بۆ سێ ریز */
         .modal-description {
             font-size: 0.9rem;
             color: var(--text-color);
@@ -1284,6 +1284,12 @@
             margin-bottom: 20px;
             line-height: 1.5;
             padding: 0 5px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 4.5em;
         }
         
         .modal-downloads {
@@ -1687,7 +1693,7 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <i class="fas fa-mobile-alt logo-icon"></i>
+                <i class="fas fa-gamepad logo-icon"></i>
                 Zhi Zhi
             </div>
             
@@ -1725,7 +1731,7 @@
     <div class="mobile-nav" id="mobile-nav">
         <div class="mobile-nav-header">
             <div class="logo">
-                <i class="fas fa-mobile-alt logo-icon"></i>
+                <i class="fas fa-gamepad logo-icon"></i>
                 Zhi Zhi
             </div>
             <button class="mobile-nav-close" id="mobile-nav-close">
