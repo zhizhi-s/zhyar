@@ -2548,6 +2548,7 @@
             document.body.style.overflow = '';
         }
 
+        // ========== فەنکشنی سەرەکی کە دەستکاری کراوە ==========
         function displayAllItems() {
             const allGrid = document.getElementById('all-grid');
             if (!allGrid) return;
@@ -2559,12 +2560,19 @@
             if (currentCategory === 'all') {
                 itemsToShow = [...apps, ...games, ...iosApps];
             } else if (currentCategory === 'apps') {
-                itemsToShow = apps;
+                itemsToShow = [...apps];
             } else if (currentCategory === 'games') {
-                itemsToShow = games;
+                itemsToShow = [...games];
             } else if (currentCategory === 'ios') {
-                itemsToShow = iosApps;
+                itemsToShow = [...iosApps];
             }
+            
+            // ڕیزکردن بەپێی کاتی زیادکردن (نوێترینەکان لە سەرەوە)
+            itemsToShow.sort((a, b) => {
+                const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+                const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+                return dateB - dateA;
+            });
             
             if (itemsToShow.length === 0) {
                 allGrid.innerHTML = '<div class="no-items"><i class="fas fa-inbox fa-2x"></i><br><br>هیچ ئایتمێک بوونی نیە</div>';
@@ -2603,6 +2611,7 @@
                 });
             });
         }
+        // ========== کۆتایی دەستکاری ==========
 
         function displayApps() {
             const appsGrid = document.getElementById('apps-grid');
@@ -2610,12 +2619,18 @@
             
             appsGrid.innerHTML = '';
             
-            if (apps.length === 0) {
+            const sortedApps = [...apps].sort((a, b) => {
+                const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+                const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+                return dateB - dateA;
+            });
+            
+            if (sortedApps.length === 0) {
                 appsGrid.innerHTML = '<div class="no-items"><i class="fas fa-mobile-alt fa-2x"></i><br><br>هیچ ئەپێک بوونی نیە</div>';
                 return;
             }
             
-            apps.forEach(app => {
+            sortedApps.forEach(app => {
                 const appCard = document.createElement('div');
                 appCard.className = 'app-card';
                 
@@ -2642,12 +2657,18 @@
             
             gamesGrid.innerHTML = '';
             
-            if (games.length === 0) {
+            const sortedGames = [...games].sort((a, b) => {
+                const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+                const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+                return dateB - dateA;
+            });
+            
+            if (sortedGames.length === 0) {
                 gamesGrid.innerHTML = '<div class="no-items"><i class="fas fa-gamepad fa-2x"></i><br><br>هیچ یارییەک بوونی نیە</div>';
                 return;
             }
             
-            games.forEach(game => {
+            sortedGames.forEach(game => {
                 const gameCard = document.createElement('div');
                 gameCard.className = 'game-card';
                 
@@ -2674,12 +2695,18 @@
             
             iosGrid.innerHTML = '';
             
-            if (iosApps.length === 0) {
+            const sortedIos = [...iosApps].sort((a, b) => {
+                const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+                const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+                return dateB - dateA;
+            });
+            
+            if (sortedIos.length === 0) {
                 iosGrid.innerHTML = '<div class="no-items"><i class="fab fa-apple fa-2x"></i><br><br>هیچ بەرنامەیەکی IOS بوونی نیە</div>';
                 return;
             }
             
-            iosApps.forEach(ios => {
+            sortedIos.forEach(ios => {
                 const iosCard = document.createElement('div');
                 iosCard.className = 'ios-card';
                 
@@ -3255,9 +3282,15 @@
             
             const filteredItems = searchItems(query, itemsToSearch);
             
+            const sortedItems = [...filteredItems].sort((a, b) => {
+                const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+                const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+                return dateB - dateA;
+            });
+            
             grid.innerHTML = '';
             
-            if (filteredItems.length === 0) {
+            if (sortedItems.length === 0) {
                 grid.innerHTML = `
                     <div class="no-items" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
                         <i class="fas fa-search fa-2x"></i><br><br>
@@ -3268,7 +3301,7 @@
                 return;
             }
             
-            filteredItems.forEach(item => {
+            sortedItems.forEach(item => {
                 const card = document.createElement('div');
                 card.className = cardType;
                 
