@@ -7,6 +7,11 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+        /* ===== HIDE CONNECTION STATUS ===== */
+        .connection-status {
+            display: none !important;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -372,11 +377,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, 
-                rgba(15, 23, 42, 0.80) 0%, 
-                rgba(16, 185, 129, 0.20) 50%,
-                rgba(15, 23, 42, 0.65) 100%
-            );
+            background: linear-gradient(135deg,
+                    rgba(15, 23, 42, 0.80) 0%,
+                    rgba(16, 185, 129, 0.20) 50%,
+                    rgba(15, 23, 42, 0.65) 100%);
             display: flex;
             align-items: center;
             padding: 16px 28px;
@@ -411,7 +415,7 @@
             line-height: 1.1;
             margin-bottom: 6px;
             color: #fff;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.12);
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.12);
         }
 
         .hero-banner-content h1 span {
@@ -423,7 +427,7 @@
 
         .hero-banner-content p {
             font-size: clamp(12px, 1vw, 15px);
-            color: rgba(255,255,255,0.8);
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 12px;
             font-weight: 450;
             line-height: 1.4;
@@ -444,15 +448,15 @@
 
         .hero-stats span {
             font-size: 11px;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             display: flex;
             align-items: center;
             gap: 5px;
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(8px);
             padding: 3px 12px;
             border-radius: 9999px;
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .hero-stats i {
@@ -685,6 +689,11 @@
             color: var(--green-dark);
             transform: scale(1.1);
             background: rgba(255, 255, 255, 1);
+        }
+
+        .card-bookmark.saved {
+            color: var(--green-dark);
+            background: rgba(16, 185, 129, 0.15);
         }
 
         .card-body {
@@ -1253,6 +1262,175 @@
             background: #0f172a;
         }
 
+        /* ===== BOOKMARK PAGE STYLES ===== */
+        .bookmark-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .bookmark-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--green-bg);
+            color: var(--green-dark);
+            border: 1px solid var(--green-light);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .bookmark-back-btn:hover {
+            background: var(--green-light);
+            transform: translateX(5px);
+        }
+
+        .bookmark-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 18px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+            transition: var(--transition);
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+        }
+
+        .bookmark-item:hover {
+            border-color: var(--green);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .bookmark-item-img {
+            width: 70px;
+            height: 70px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            flex-shrink: 0;
+            background: var(--green-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .bookmark-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bookmark-item-img i {
+            font-size: 32px;
+            color: var(--green);
+            opacity: 0.6;
+        }
+
+        .bookmark-item-info {
+            flex: 1;
+            text-align: right;
+            min-width: 0;
+        }
+
+        .bookmark-item-name {
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .bookmark-item-type {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bookmark-item-type i {
+            font-size: 14px;
+        }
+
+        .bookmark-item-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+        }
+
+        .bookmark-item-actions button {
+            padding: 8px 18px;
+            border: none;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bookmark-item-actions .bm-download {
+            background: var(--green-dark);
+            color: #fff;
+        }
+
+        .bookmark-item-actions .bm-download:hover {
+            background: #047857;
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+        }
+
+        .bookmark-item-actions .bm-remove {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .bookmark-item-actions .bm-remove:hover {
+            background: #fee2e2;
+            transform: scale(1.05);
+        }
+
+        .bookmark-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 2px dashed var(--border);
+        }
+
+        .bookmark-empty i {
+            font-size: 56px;
+            opacity: 0.3;
+            display: block;
+            margin-bottom: 16px;
+            color: var(--green);
+        }
+
+        .bookmark-empty p {
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        .bookmark-empty .sub-text {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
         /* ===== FOOTER ===== */
         footer {
             background: #fff;
@@ -1407,27 +1585,6 @@
             box-shadow: var(--shadow-hover);
         }
 
-        .connection-status {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            background: var(--green-dark);
-            color: #fff;
-            padding: 10px 18px;
-            border-radius: var(--radius-full);
-            font-size: 13px;
-            font-weight: 600;
-            box-shadow: var(--shadow);
-            z-index: 500;
-            display: none;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .connection-status.error {
-            background: #dc2626;
-        }
-
         /* ===== RESPONSIVE ===== */
         @media (min-width: 600px) {
             .grid {
@@ -1459,33 +1616,61 @@
             .hero-banner-image {
                 padding-top: 40%;
             }
-            
+
             .hero-banner-overlay {
                 padding: 14px 20px;
                 align-items: flex-end;
             }
-            
+
             .hero-banner-content h1 {
                 font-size: clamp(20px, 4vw, 26px);
             }
-            
+
             .hero-stats {
                 gap: 8px;
             }
-            
+
             .hero-stats span {
                 font-size: 10px;
                 padding: 2px 10px;
             }
-            
+
             .hero-cta {
                 padding: 8px 18px;
                 font-size: 12px;
             }
-            
+
             .hero-badge {
                 font-size: 9px;
                 padding: 2px 12px;
+            }
+
+            .bookmark-item {
+                flex-wrap: wrap;
+                padding: 12px 14px;
+            }
+
+            .bookmark-item-img {
+                width: 56px;
+                height: 56px;
+            }
+
+            .bookmark-item-img i {
+                font-size: 24px;
+            }
+
+            .bookmark-item-name {
+                font-size: 15px;
+            }
+
+            .bookmark-item-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .bookmark-item-actions button {
+                font-size: 12px;
+                padding: 6px 14px;
             }
         }
 
@@ -1515,25 +1700,25 @@
             .hero-banner-image {
                 padding-top: 50%;
             }
-            
+
             .hero-banner-overlay {
                 padding: 12px 16px;
             }
-            
+
             .hero-banner-content h1 {
                 font-size: 18px;
             }
-            
+
             .hero-banner-content p {
                 font-size: 11px;
                 margin-bottom: 8px;
             }
-            
+
             .hero-stats span {
                 font-size: 9px;
                 padding: 2px 8px;
             }
-            
+
             .hero-cta {
                 padding: 6px 16px;
                 font-size: 11px;
@@ -1558,6 +1743,24 @@
 
             .card-img .image-wrapper {
                 padding: 12%;
+            }
+
+            .bookmark-item-img {
+                width: 48px;
+                height: 48px;
+            }
+
+            .bookmark-item-img i {
+                font-size: 20px;
+            }
+
+            .bookmark-item-name {
+                font-size: 14px;
+            }
+
+            .bookmark-item-actions button {
+                font-size: 11px;
+                padding: 5px 12px;
             }
         }
 
@@ -1600,11 +1803,10 @@
         }
 
         body.dark-mode .hero-banner-overlay {
-            background: linear-gradient(135deg, 
-                rgba(15, 23, 42, 0.88) 0%, 
-                rgba(16, 185, 129, 0.15) 50%,
-                rgba(15, 23, 42, 0.75) 100%
-            );
+            background: linear-gradient(135deg,
+                    rgba(15, 23, 42, 0.88) 0%,
+                    rgba(16, 185, 129, 0.15) 50%,
+                    rgba(15, 23, 42, 0.75) 100%);
         }
 
         body.dark-mode .hero-banner {
@@ -1694,6 +1896,49 @@
             background: #334155;
             color: var(--green);
         }
+
+        body.dark-mode .bookmark-item {
+            border-color: #334155;
+        }
+
+        body.dark-mode .bookmark-item:hover {
+            background: #334155;
+            border-color: var(--green);
+        }
+
+        body.dark-mode .bookmark-item-actions .bm-download {
+            background: #064e3b;
+            color: #34d399;
+        }
+
+        body.dark-mode .bookmark-item-actions .bm-download:hover {
+            background: #065f46;
+            color: #fff;
+        }
+
+        body.dark-mode .bookmark-item-actions .bm-remove {
+            background: #450a0a;
+            color: #f87171;
+            border-color: #7f1d1d;
+        }
+
+        body.dark-mode .bookmark-item-actions .bm-remove:hover {
+            background: #7f1d1d;
+        }
+
+        body.dark-mode .bookmark-empty {
+            border-color: #334155;
+        }
+
+        body.dark-mode .bookmark-back-btn {
+            background: #064e3b;
+            color: #34d399;
+            border-color: #065f46;
+        }
+
+        body.dark-mode .bookmark-back-btn:hover {
+            background: #065f46;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -1703,7 +1948,7 @@
         <i class="fas fa-moon"></i>
     </button>
 
-    <!-- ===== CONNECTION STATUS ===== -->
+    <!-- ===== CONNECTION STATUS (HIDDEN) ===== -->
     <div class="connection-status" id="connection-status">
         <i class="fas fa-wifi"></i>
         <span>پەیوەندی دروست کرا</span>
@@ -1750,6 +1995,7 @@
             <a class="sidenav-link" data-page="apps"><i class="fas fa-mobile-alt"></i> ئەپەکان</a>
             <a class="sidenav-link" data-page="games"><i class="fas fa-gamepad"></i> یاریەکان</a>
             <a class="sidenav-link" data-page="ios"><i class="fab fa-apple"></i> IOS</a>
+            <a class="sidenav-link" data-page="bookmarks"><i class="fas fa-bookmark"></i> پاشەکەوتکراوەکان</a>
             <a class="sidenav-link" data-page="admin-login"><i class="fas fa-user-shield"></i> ئەدمین</a>
             <a class="sidenav-link" id="adminPanelNavLink" style="display:none;" data-page="admin-panel"><i class="fas fa-cogs"></i> بەڕێوەبەری</a>
         </div>
@@ -1816,6 +2062,21 @@
         <section id="ios-page" class="content-section">
             <div class="section-title"><i class="fab fa-apple"></i> هەموو بەرنامەکانی IOS</div>
             <div class="grid" id="ios-grid">
+                <div class="loading"><i class="fas fa-spinner"></i> بار دەکرێن...</div>
+            </div>
+        </section>
+
+        <!-- ===== BOOKMARKS PAGE ===== -->
+        <section id="bookmarks-page" class="content-section">
+            <div class="section-title"><i class="fas fa-bookmark"></i> پاشەکەوتکراوەکان</div>
+
+            <div class="bookmark-header-actions">
+                <button class="bookmark-back-btn" id="bookmarkBackBtn">
+                    <i class="fas fa-arrow-right"></i> گەڕانەوە بۆ سەرەکی
+                </button>
+            </div>
+
+            <div id="bookmarkListContainer">
                 <div class="loading"><i class="fas fa-spinner"></i> بار دەکرێن...</div>
             </div>
         </section>
@@ -1970,7 +2231,7 @@
         </section>
     </main>
 
-    <!-- ===== MODAL ===== -->
+    <!-- ===== MODAL (Item Detail) ===== -->
     <div class="modal" id="itemModal">
         <div class="modal-content">
             <button class="modal-close" id="modalCloseBtn"><i class="fas fa-times"></i></button>
@@ -2001,6 +2262,7 @@
                         <li><a href="#" data-page="apps"><i class="fas fa-mobile-alt"></i> ئەپەکان</a></li>
                         <li><a href="#" data-page="games"><i class="fas fa-gamepad"></i> یاریەکان</a></li>
                         <li><a href="#" data-page="ios"><i class="fab fa-apple"></i> IOS</a></li>
+                        <li><a href="#" data-page="bookmarks"><i class="fas fa-bookmark"></i> پاشەکەوتکراوەکان</a></li>
                         <li><a href="#" data-page="admin-login"><i class="fas fa-user-shield"></i> ئەدمین</a></li>
                     </ul>
                 </div>
@@ -2010,8 +2272,10 @@
     </footer>
 
     <!-- ===== FIREBASE ===== -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js">
+    </script>
 
     <script>
         // ===== FIREBASE CONFIG =====
@@ -2030,11 +2294,10 @@
             app = firebase.initializeApp(firebaseConfig);
             db = firebase.firestore();
             console.log("✅ Firebase initialized");
-            showConnectionStatus("پەیوەندی بە Firebase دروست کرا", true);
+            // Connection status is hidden via CSS
             testFirebaseConnection();
         } catch (error) {
             console.error("❌ Firebase error:", error);
-            showConnectionStatus("هەڵە لە پەیوەندی Firebase", false);
         }
 
         // ===== STATE =====
@@ -2043,7 +2306,7 @@
             iosApps = [];
         let currentCategory = 'all';
         let isAdminLoggedIn = false;
-        let bookmarkCount = 0;
+        let bookmarkItems = [];
         let unsubscribeApps = null,
             unsubscribeGames = null,
             unsubscribeIos = null;
@@ -2056,25 +2319,154 @@
         const adminAppsGrid = document.getElementById('admin-apps-grid');
         const adminGamesGrid = document.getElementById('admin-games-grid');
         const adminIosGrid = document.getElementById('admin-ios-grid');
+        const bookmarkBadge = document.getElementById('bookmarkBadge');
+        const bookmarkListContainer = document.getElementById('bookmarkListContainer');
 
-        // ===== CONNECTION =====
-        function showConnectionStatus(msg, ok) {
-            const el = document.getElementById('connection-status');
-            if (!el) return;
-            el.innerHTML = `<i class="fas ${ok ? 'fa-wifi' : 'fa-exclamation-triangle'}"></i> ${msg}`;
-            el.style.display = 'flex';
-            el.className = `connection-status ${ok ? '' : 'error'}`;
-            if (ok) setTimeout(() => el.style.display = 'none', 3000);
+        // ===== BOOKMARK FUNCTIONS =====
+        function loadBookmarks() {
+            try {
+                const stored = localStorage.getItem('zhizhi_bookmarks');
+                bookmarkItems = stored ? JSON.parse(stored) : [];
+                updateBookmarkBadge();
+                renderBookmarkPage();
+            } catch (e) {
+                bookmarkItems = [];
+            }
         }
 
+        function saveBookmarks() {
+            try {
+                localStorage.setItem('zhizhi_bookmarks', JSON.stringify(bookmarkItems));
+                updateBookmarkBadge();
+                renderBookmarkPage();
+            } catch (e) {}
+        }
+
+        function updateBookmarkBadge() {
+            bookmarkBadge.textContent = bookmarkItems.length;
+        }
+
+        function toggleBookmark(item) {
+            const index = bookmarkItems.findIndex(b => b.id === item.id);
+            if (index > -1) {
+                bookmarkItems.splice(index, 1);
+                saveBookmarks();
+                return false;
+            } else {
+                bookmarkItems.push({
+                    id: item.id,
+                    name: item.name,
+                    type: item.type,
+                    imgurl: item.imgurl || '',
+                    downloadurl: item.downloadurl || '#',
+                    description: item.description || ''
+                });
+                saveBookmarks();
+                return true;
+            }
+        }
+
+        function isBookmarked(id) {
+            return bookmarkItems.some(b => b.id === id);
+        }
+
+        function renderBookmarkPage() {
+            if (!bookmarkListContainer) return;
+
+            if (bookmarkItems.length === 0) {
+                bookmarkListContainer.innerHTML = `
+                    <div class="bookmark-empty">
+                        <i class="fas fa-inbox"></i>
+                        <p>هیچ بەرنامەیەک پاشەکەوت نەکراوە</p>
+                        <div class="sub-text">تۆ دەتوانیت بە کلیک لە دوگمەی <i class="fas fa-plus" style="color:var(--green-dark);"></i> لەسەر هەر کارتێک، بەرنامەکان پاشەکەوت بکەیت</div>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '<div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;">';
+            bookmarkItems.forEach(item => {
+                const icon = item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' :
+                    'fa-apple';
+                const typeName = item.type === 'app' ? 'ئەپ' : item.type === 'game' ? 'یاری' : 'IOS';
+                const typeIcon = item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' :
+                    'fa-apple';
+                html += `
+                    <div class="bookmark-item" data-id="${item.id}">
+                        <div class="bookmark-item-img">
+                            ${item.imgurl ? `<img src="${item.imgurl}" alt="${item.name}">` : `<i class="fas ${icon}"></i>`}
+                        </div>
+                        <div class="bookmark-item-info">
+                            <div class="bookmark-item-name">${item.name}</div>
+                            <div class="bookmark-item-type">
+                                <i class="fas ${typeIcon}"></i> ${typeName}
+                            </div>
+                        </div>
+                        <div class="bookmark-item-actions">
+                            <button class="bm-download" data-url="${item.downloadurl}"><i class="fas fa-download"></i> داگرتن</button>
+                            <button class="bm-remove" data-id="${item.id}"><i class="fas fa-trash"></i> سڕینەوە</button>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            bookmarkListContainer.innerHTML = html;
+
+            // Event listeners for download buttons
+            bookmarkListContainer.querySelectorAll('.bm-download').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const url = this.dataset.url;
+                    if (url && url !== '#') {
+                        window.open(url, '_blank');
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-check"></i> داگیرا';
+                        this.style.background = 'var(--green)';
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.style.background = '';
+                        }, 2000);
+                    } else {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-times"></i> هەڵە';
+                        this.style.background = '#dc2626';
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.style.background = '';
+                        }, 2000);
+                    }
+                });
+            });
+
+            bookmarkListContainer.querySelectorAll('.bm-remove').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const id = this.dataset.id;
+                    const index = bookmarkItems.findIndex(b => b.id === id);
+                    if (index > -1) {
+                        bookmarkItems.splice(index, 1);
+                        saveBookmarks();
+                        renderBookmarkPage();
+                        document.querySelectorAll('.card-bookmark').forEach(el => {
+                            const cardId = el.dataset.id;
+                            if (cardId === id) {
+                                el.classList.remove('saved');
+                                el.innerHTML = '<i class="fas fa-plus"></i>';
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        // ===== CONNECTION =====
         function testFirebaseConnection() {
             if (!db) return;
             db.collection("zhi-zhi").limit(1).get()
                 .then(() => { console.log("✅ Firebase connected");
                     loadAllData();
                     setupRealtimeListeners(); })
-                .catch(e => { console.error("❌ Firebase connection error:", e);
-                    showConnectionStatus("هەڵە لە پەیوەندی Firebase", false); });
+                .catch(e => { console.error("❌ Firebase connection error:", e); });
         }
 
         // ===== LOAD DATA =====
@@ -2169,21 +2561,21 @@
         function renderApps() {
             appsGrid.innerHTML = '';
             if (apps.length === 0) { appsGrid.innerHTML =
-                '<div class="no-items"><i class="fas fa-mobile-alt"></i> هیچ ئەپێک بوونی نیە</div>'; return; }
+                    '<div class="no-items"><i class="fas fa-mobile-alt"></i> هیچ ئەپێک بوونی نیە</div>'; return; }
             apps.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(item => renderCard(appsGrid, item));
         }
 
         function renderGames() {
             gamesGrid.innerHTML = '';
             if (games.length === 0) { gamesGrid.innerHTML =
-                '<div class="no-items"><i class="fas fa-gamepad"></i> هیچ یارییەک بوونی نیە</div>'; return; }
+                    '<div class="no-items"><i class="fas fa-gamepad"></i> هیچ یارییەک بوونی نیە</div>'; return; }
             games.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(item => renderCard(gamesGrid, item));
         }
 
         function renderIos() {
             iosGrid.innerHTML = '';
             if (iosApps.length === 0) { iosGrid.innerHTML =
-                '<div class="no-items"><i class="fab fa-apple"></i> هیچ بەرنامەیەکی IOS بوونی نیە</div>'; return; }
+                    '<div class="no-items"><i class="fab fa-apple"></i> هیچ بەرنامەیەکی IOS بوونی نیە</div>'; return; }
             iosApps.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(item => renderCard(iosGrid, item));
         }
 
@@ -2205,6 +2597,8 @@
             const platformIcon = item.type === 'ios' ? 'fab fa-apple' : 'fab fa-android';
             const version = item.version || '1.0.0';
 
+            const saved = isBookmarked(item.id);
+
             card.innerHTML = `
                 <div class="card-img">
                     <div class="image-wrapper">
@@ -2213,7 +2607,9 @@
                         </div>
                     </div>
                     ${badgeHTML}
-                    <button class="card-bookmark" data-id="${item.id}"><i class="fas fa-plus"></i></button>
+                    <button class="card-bookmark ${saved ? 'saved' : ''}" data-id="${item.id}">
+                        <i class="fas ${saved ? 'fa-check' : 'fa-plus'}"></i>
+                    </button>
                 </div>
                 <div class="card-body">
                     <div class="card-title">${item.name}</div>
@@ -2229,31 +2625,32 @@
                 </div>
             `;
 
-            // Click card -> open modal
             card.addEventListener('click', (e) => {
                 if (e.target.closest('.card-bookmark') || e.target.closest('.card-download-btn')) return;
                 openModal(item);
             });
 
-            // Bookmark
             card.querySelector('.card-bookmark').addEventListener('click', (e) => {
                 e.stopPropagation();
-                bookmarkCount++;
-                document.getElementById('bookmarkBadge').textContent = bookmarkCount;
-                const icon = e.currentTarget.querySelector('i');
-                icon.className = 'fas fa-check';
-                icon.style.color = 'var(--green-dark)';
-                setTimeout(() => {
-                    icon.className = 'fas fa-plus';
-                    icon.style.color = '';
-                }, 800);
+                const btn = e.currentTarget;
+                const id = btn.dataset.id;
+                const fullItem = getAllItems().find(i => i.id === id);
+                if (!fullItem) return;
+                const nowSaved = toggleBookmark(fullItem);
+                if (nowSaved) {
+                    btn.classList.add('saved');
+                    btn.innerHTML = '<i class="fas fa-check"></i>';
+                } else {
+                    btn.classList.remove('saved');
+                    btn.innerHTML = '<i class="fas fa-plus"></i>';
+                }
+                updateBookmarkBadge();
+                renderBookmarkPage();
             });
 
-            // Download button -> open modal + download
             card.querySelector('.card-download-btn').addEventListener('click', (e) => {
                 e.stopPropagation();
                 openModal(item);
-                // Also increment downloads in Firebase
                 if (db && item.id) {
                     db.collection("zhi-zhi").doc(item.id).update({
                         downloads: (item.downloads || 0) + 1
@@ -2264,7 +2661,7 @@
             container.appendChild(card);
         }
 
-        // ===== MODAL =====
+        // ===== MODAL (Item Detail) =====
         const modal = document.getElementById('itemModal');
         const modalImage = document.getElementById('modalImage');
         const modalTitle = document.getElementById('modalTitle');
@@ -2301,6 +2698,16 @@
         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
+        // ===== BOOKMARK HEADER BUTTON =====
+        document.getElementById('bookmarkBtn').addEventListener('click', () => {
+            showPage('bookmarks');
+        });
+
+        // ===== BOOKMARK BACK BUTTON =====
+        document.getElementById('bookmarkBackBtn').addEventListener('click', () => {
+            showPage('home');
+        });
+
         // ===== ADMIN =====
         function adminLogin(username, password) {
             if (username === "zhs12" && password === "zhizhisun") {
@@ -2318,21 +2725,21 @@
         function renderAdminApps() {
             adminAppsGrid.innerHTML = '';
             if (apps.length === 0) { adminAppsGrid.innerHTML =
-                '<div class="no-items"><i class="fas fa-mobile-alt"></i> هیچ ئەپێک بوونی نیە</div>'; return; }
+                    '<div class="no-items"><i class="fas fa-mobile-alt"></i> هیچ ئەپێک بوونی نیە</div>'; return; }
             apps.forEach(app => renderAdminCard(adminAppsGrid, app, 'app'));
         }
 
         function renderAdminGames() {
             adminGamesGrid.innerHTML = '';
             if (games.length === 0) { adminGamesGrid.innerHTML =
-                '<div class="no-items"><i class="fas fa-gamepad"></i> هیچ یارییەک بوونی نیە</div>'; return; }
+                    '<div class="no-items"><i class="fas fa-gamepad"></i> هیچ یارییەک بوونی نیە</div>'; return; }
             games.forEach(game => renderAdminCard(adminGamesGrid, game, 'game'));
         }
 
         function renderAdminIos() {
             adminIosGrid.innerHTML = '';
             if (iosApps.length === 0) { adminIosGrid.innerHTML =
-                '<div class="no-items"><i class="fab fa-apple"></i> هیچ بەرنامەیەکی IOS بوونی نیە</div>'; return; }
+                    '<div class="no-items"><i class="fab fa-apple"></i> هیچ بەرنامەیەکی IOS بوونی نیە</div>'; return; }
             iosApps.forEach(ios => renderAdminCard(adminIosGrid, ios, 'ios'));
         }
 
@@ -2395,7 +2802,6 @@
             if (!db) return;
             db.collection("zhi-zhi").doc(id).delete()
                 .then(() => {
-                    showConnectionStatus("بەرنامە سڕایەوە", true);
                     loadAllData();
                 })
                 .catch(e => console.error("❌ delete error:", e));
@@ -2423,6 +2829,11 @@
             const link = document.querySelector(`.sidenav-link[data-page="${pageId}"]`);
             if (link) link.classList.add('active');
             closeSidenav();
+
+            if (pageId === 'bookmarks') {
+                renderBookmarkPage();
+            }
+
             if (pageId === 'admin-panel' && isAdminLoggedIn) {
                 renderAdminApps();
                 renderAdminGames();
@@ -2440,7 +2851,6 @@
             });
         });
 
-        // Footer links
         document.querySelectorAll('.footer-links a[data-page]').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -2450,7 +2860,6 @@
             });
         });
 
-        // Category tabs
         document.querySelectorAll('.category-tab').forEach(tab => {
             tab.addEventListener('click', () => {
                 document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
@@ -2504,7 +2913,6 @@
                 featured,
                 createdAt: new Date().toISOString()
             }).then(() => {
-                showConnectionStatus("بەرنامە زیادکرا", true);
                 document.getElementById('add-app-form').reset();
                 loadAllData();
             }).catch(e => console.error("❌ add error:", e));
@@ -2523,7 +2931,6 @@
             if (!db) return;
             db.collection("zhi-zhi").doc(id).update({ name, description, imgurl: imgurl || '', downloadurl, featured })
                 .then(() => {
-                    showConnectionStatus("بەرنامە نوێکرایەوە", true);
                     document.getElementById('edit-form-container').style.display = 'none';
                     document.getElementById('edit-app-form').reset();
                     loadAllData();
@@ -2549,7 +2956,6 @@
             }
         });
 
-        // Restore theme
         if (localStorage.getItem('zhizhi_theme') === 'dark') {
             document.body.classList.add('dark-mode');
             document.getElementById('theme-toggle').querySelector('i').className = 'fas fa-sun';
@@ -2569,12 +2975,9 @@
             filtered.forEach(item => renderCard(allGrid, item));
         });
 
-        // ===== BOOKMARK BADGE INIT =====
-        document.getElementById('bookmarkBadge').textContent = bookmarkCount;
-
         // ===== INIT =====
+        loadBookmarks();
         showPage('home');
-        setTimeout(() => { if (!db) showConnectionStatus("Firebase پەیوەندی دروست نەکرا", false); }, 2000);
     </script>
 </body>
 </html>
