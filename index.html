@@ -325,28 +325,171 @@
 
         /* ===== HERO ===== */
         .hero {
-            padding: 32px 0 20px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 26px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: var(--text-primary);
+            padding: 0 0 16px;
             margin-bottom: 6px;
         }
 
-        .hero h1 span {
-            color: var(--green-dark);
+        .hero-banner {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.10);
+            transition: var(--transition);
         }
 
-        .hero p {
-            color: var(--text-secondary);
-            font-size: 15px;
+        .hero-banner:hover {
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.18);
+            transform: translateY(-2px);
+        }
+
+        .hero-banner-image {
+            position: relative;
+            width: 100%;
+            padding-top: 28%;
+            background: var(--green-dark);
+            overflow: hidden;
+        }
+
+        .hero-banner-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: brightness(0.7) saturate(1.1);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-banner:hover .hero-banner-image img {
+            transform: scale(1.03);
+        }
+
+        .hero-banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.80) 0%, 
+                rgba(16, 185, 129, 0.20) 50%,
+                rgba(15, 23, 42, 0.65) 100%
+            );
+            display: flex;
+            align-items: center;
+            padding: 16px 28px;
+        }
+
+        .hero-banner-content {
+            max-width: 520px;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 3px 14px;
+            border-radius: 9999px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+        }
+
+        .hero-banner-content h1 {
+            font-size: clamp(22px, 3.5vw, 36px);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+            margin-bottom: 6px;
+            color: #fff;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.12);
+        }
+
+        .hero-banner-content h1 span {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-banner-content p {
+            font-size: clamp(12px, 1vw, 15px);
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 12px;
             font-weight: 450;
-            max-width: 360px;
-            margin: 0 auto 20px;
+            line-height: 1.4;
+            max-width: 400px;
+        }
+
+        .hero-banner-content p span {
+            color: #34d399;
+            font-weight: 700;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+
+        .hero-stats span {
+            font-size: 11px;
+            color: rgba(255,255,255,0.75);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(8px);
+            padding: 3px 12px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .hero-stats i {
+            color: #34d399;
+            font-size: 11px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 24px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 13px;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 18px rgba(16, 185, 129, 0.30);
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(16, 185, 129, 0.40);
+            color: #fff;
+        }
+
+        .hero-cta i {
+            transition: transform 0.3s ease;
+            font-size: 12px;
+        }
+
+        .hero-cta:hover i {
+            transform: translateX(-5px);
         }
 
         /* ===== CATEGORY TABS ===== */
@@ -418,7 +561,6 @@
             border-color: rgba(16, 185, 129, 0.2);
         }
 
-        /* ===== SQUARE ICON WITH ROUNDED CORNERS ON ALL FOUR SIDES ===== */
         .card-img {
             width: 100%;
             padding-top: 100%;
@@ -1304,16 +1446,46 @@
                 padding: 0 32px;
             }
 
-            .hero h1 {
-                font-size: 34px;
-            }
-
             .section-title {
                 font-size: 24px;
             }
 
             .admin-form-row {
                 grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner-image {
+                padding-top: 40%;
+            }
+            
+            .hero-banner-overlay {
+                padding: 14px 20px;
+                align-items: flex-end;
+            }
+            
+            .hero-banner-content h1 {
+                font-size: clamp(20px, 4vw, 26px);
+            }
+            
+            .hero-stats {
+                gap: 8px;
+            }
+            
+            .hero-stats span {
+                font-size: 10px;
+                padding: 2px 10px;
+            }
+            
+            .hero-cta {
+                padding: 8px 18px;
+                font-size: 12px;
+            }
+            
+            .hero-badge {
+                font-size: 9px;
+                padding: 2px 12px;
             }
         }
 
@@ -1340,12 +1512,31 @@
                 font-size: 9px;
             }
 
-            .hero h1 {
-                font-size: 21px;
+            .hero-banner-image {
+                padding-top: 50%;
             }
-
-            .hero p {
-                font-size: 14px;
+            
+            .hero-banner-overlay {
+                padding: 12px 16px;
+            }
+            
+            .hero-banner-content h1 {
+                font-size: 18px;
+            }
+            
+            .hero-banner-content p {
+                font-size: 11px;
+                margin-bottom: 8px;
+            }
+            
+            .hero-stats span {
+                font-size: 9px;
+                padding: 2px 8px;
+            }
+            
+            .hero-cta {
+                padding: 6px 16px;
+                font-size: 11px;
             }
 
             .card-title {
@@ -1406,6 +1597,18 @@
             --green-light: #065f46;
             --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
             --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .hero-banner-overlay {
+            background: linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.88) 0%, 
+                rgba(16, 185, 129, 0.15) 50%,
+                rgba(15, 23, 42, 0.75) 100%
+            );
+        }
+
+        body.dark-mode .hero-banner {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         body.dark-mode header {
@@ -1558,8 +1761,24 @@
         <!-- ===== HOME ===== -->
         <section id="home-page" class="content-section active">
             <div class="hero">
-                <h1>بەخێربێیت بۆ <span>ZhiZhi</span></h1>
-                <p>باشترین یاری و ئەپەکان بەشێوەیەکی نوێ و خێرا دابەزێنە.</p>
+                <div class="hero-banner">
+                    <div class="hero-banner-image">
+                        <img src="https://i.ibb.co/bRLDZDHS/xx.png" alt="ZhiZhi Banner">
+                        <div class="hero-banner-overlay">
+                            <div class="hero-banner-content">
+                                <span class="hero-badge">🔥 پێشکەش بە تۆ</span>
+                                <h1>گەنجینەی <span>یاری و ئەپ</span>ەکان</h1>
+                                <p>ئەمڕۆ بە خێراترین ڕێگا دابەزێنە، هەموو شتێک <span>خۆڕایی</span> و بە بێ سنوور!</p>
+                                <div class="hero-stats">
+                                    <span><i class="fas fa-download"></i> ٢٥٠٠+ دابەزاندن</span>
+                                    <span><i class="fas fa-star"></i> ٤.٨ ستارە</span>
+                                    <span><i class="fas fa-clock"></i> نوێکراوەتەوە</span>
+                                </div>
+                                <a href="#all-grid" class="hero-cta">دەستپێبکە <i class="fas fa-arrow-left"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="category-tabs" id="categoryTabs">
