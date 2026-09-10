@@ -1889,77 +1889,76 @@
         footer {
             background: #fff;
             border-top: 1px solid var(--border);
-            padding: 32px 0 20px;
+            padding: 40px 0 24px;
             margin-top: 20px;
         }
 
         .footer-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            padding-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 20px;
+            padding-bottom: 24px;
             border-bottom: 1px solid var(--border);
         }
 
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
         .footer-section h3 {
-            font-size: 16px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 800;
             margin-bottom: 10px;
             color: var(--text-primary);
             text-align: center;
+            letter-spacing: -0.3px;
         }
 
-        .footer-section p, .footer-section li {
+        .footer-section h3 span {
+            color: var(--green-dark);
+        }
+
+        .footer-section p {
             font-size: 14px;
             color: var(--text-secondary);
             font-weight: 450;
             text-align: center;
+            line-height: 1.7;
         }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            align-items: center;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .footer-links a:hover { color: var(--green-dark); }
 
         .footer-social {
             display: flex;
-            gap: 12px;
-            margin-top: 12px;
+            gap: 14px;
+            margin-top: 16px;
             justify-content: center;
         }
 
         .footer-social a {
-            width: 40px;
-            height: 40px;
+            width: 46px;
+            height: 46px;
             border-radius: var(--radius-sm);
             background: var(--green-bg);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--green-dark);
-            font-size: 18px;
+            font-size: 20px;
             transition: var(--transition);
             text-decoration: none;
         }
 
         .footer-social a:hover {
             background: var(--green-light);
-            transform: scale(1.06);
+            transform: scale(1.08) translateY(-2px);
         }
 
         .copyright {
@@ -1967,6 +1966,7 @@
             font-size: 13px;
             color: var(--text-muted);
             padding-top: 20px;
+            width: 100%;
         }
 
         /* ===== UTILITY ===== */
@@ -2121,6 +2121,10 @@
             .dl-steps { padding: 8px 12px; }
             .dl-step { font-size: 11px; padding: 3px 6px; }
             .dl-step .num { width: 20px; height: 20px; font-size: 10px; }
+
+            footer { padding: 30px 0 20px; }
+            .footer-section h3 { font-size: 19px; }
+            .footer-social a { width: 42px; height: 42px; font-size: 18px; }
         }
 
         @media (max-width: 380px) {
@@ -2183,10 +2187,7 @@
             background: #0f172a;
             border-top-color: #334155;
         }
-        body.dark-mode .footer-section p,
-        body.dark-mode .footer-section li,
-        body.dark-mode .footer-links a { color: #94a3b8; }
-        body.dark-mode .footer-links a:hover { color: var(--green); }
+        body.dark-mode .footer-section p { color: #94a3b8; }
         body.dark-mode .footer-social a { background: #1e293b; color: #94a3b8; }
         body.dark-mode .footer-social a:hover { background: #334155; color: var(--green); }
         body.dark-mode .bookmark-item { border-color: #334155; }
@@ -2745,7 +2746,7 @@
         </section>
     </main>
 
-    <!-- ===== MODAL (Item Detail) - Description REMOVED ===== -->
+    <!-- ===== MODAL (Item Detail) ===== -->
     <div class="modal" id="itemModal">
         <div class="modal-content">
             <button class="modal-close" id="modalCloseBtn"><i class="fas fa-times"></i></button>
@@ -2756,28 +2757,17 @@
         </div>
     </div>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ===== FOOTER (Links removed, centered) ===== -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>ZhiZhi</h3>
+                    <h3>Zhi<span>Zhi</span></h3>
                     <p>وێبسایتێکە بۆ دابەزاندنی یاری و ئەپەکان. هەموو مافەکان پارێزراون.</p>
                     <div class="footer-social">
                         <a href="https://t.me/ZhiZhimod" target="_blank"><i class="fab fa-telegram"></i></a>
                         <a href="https://www.tiktok.com/@zhizhimod" target="_blank"><i class="fab fa-tiktok"></i></a>
                     </div>
-                </div>
-                <div class="footer-section">
-                    <h3>بەستەرەکان</h3>
-                    <ul class="footer-links">
-                        <li><a href="#" data-page="home"><i class="fas fa-home"></i> سەرەکی</a></li>
-                        <li><a href="#" data-page="apps"><i class="fas fa-mobile-alt"></i> ئەپەکان</a></li>
-                        <li><a href="#" data-page="games"><i class="fas fa-gamepad"></i> یاریەکان</a></li>
-                        <li><a href="#" data-page="ios"><i class="fab fa-apple"></i> IOS</a></li>
-                        <li><a href="#" data-page="bookmarks"><i class="fas fa-bookmark"></i> پاشەکەوتکراوەکان</a></li>
-                        <li><a href="#" data-page="admin-login"><i class="fas fa-user-shield"></i> ئەدمین</a></li>
-                    </ul>
                 </div>
             </div>
             <div class="copyright">&copy; 2025 ZhiZhi. هەموو مافەکان پارێزراون.</div>
@@ -3072,7 +3062,7 @@
             iosApps.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(item => renderCard(iosGrid, item));
         }
 
-        // ===== RENDER CARD (download button removed) =====
+        // ===== RENDER CARD =====
         function renderCard(container, item) {
             const card = document.createElement('div');
             card.className = 'card';
@@ -3113,13 +3103,11 @@
                 </div>
             `;
 
-            // Click on card opens modal
             card.addEventListener('click', (e) => {
                 if (e.target.closest('.card-bookmark')) return;
                 openModal(item);
             });
 
-            // Bookmark button
             card.querySelector('.card-bookmark').addEventListener('click', (e) => {
                 e.stopPropagation();
                 const btn = e.currentTarget;
@@ -3221,7 +3209,6 @@
             document.getElementById('dl1-info').textContent = item.info || 'زانیاری بەردەست نییە';
             document.getElementById('dl1-desc').textContent = item.descriptionLong || item.description || 'Description بەردەست نییە';
 
-            // Show first button, hide second button
             const inlineAction = document.getElementById('dl1-inline-action');
             const btn2 = document.getElementById('dl1-btn2');
             const hint = document.getElementById('dl1-hint');
@@ -3493,15 +3480,6 @@
         }
 
         document.querySelectorAll('.sidenav-link[data-page]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const page = link.dataset.page;
-                if (page === 'admin-panel' && !isAdminLoggedIn) { showPage('admin-login'); return; }
-                showPage(page);
-            });
-        });
-
-        document.querySelectorAll('.footer-links a[data-page]').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const page = link.dataset.page;
