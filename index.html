@@ -418,13 +418,6 @@
             text-shadow: 0 2px 20px rgba(0, 0, 0, 0.12);
         }
 
-        .hero-banner-content h1 span {
-            background: linear-gradient(135deg, #10b981, #34d399);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
         .hero-banner-content p {
             font-size: clamp(12px, 1vw, 15px);
             color: rgba(255, 255, 255, 0.8);
@@ -432,11 +425,6 @@
             font-weight: 450;
             line-height: 1.4;
             max-width: 400px;
-        }
-
-        .hero-banner-content p span {
-            color: #34d399;
-            font-weight: 700;
         }
 
         .hero-stats {
@@ -485,15 +473,6 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 28px rgba(16, 185, 129, 0.40);
             color: #fff;
-        }
-
-        .hero-cta i {
-            transition: transform 0.3s ease;
-            font-size: 12px;
-        }
-
-        .hero-cta:hover i {
-            transform: translateX(-5px);
         }
 
         /* ===== CATEGORY TABS ===== */
@@ -602,10 +581,6 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            image-rendering: auto;
-            -webkit-font-smoothing: antialiased;
-            backface-visibility: hidden;
-            will-change: transform;
             border-radius: calc(var(--radius) + 4px);
         }
 
@@ -617,17 +592,10 @@
             font-size: 40px;
             color: var(--green);
             opacity: 0.3;
-            transition: var(--transition);
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            border-radius: calc(var(--radius) + 4px);
-        }
-
-        .card:hover .placeholder-icon {
-            transform: translate(-50%, -50%) scale(1.08);
-            opacity: 0.5;
         }
 
         .card-badge {
@@ -639,29 +607,16 @@
             font-size: 9px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
             color: var(--text-secondary);
             z-index: 2;
         }
 
-        .card-badge.free {
-            color: var(--green-dark);
-            background: rgba(236, 253, 245, 0.95);
-        }
-
-        .card-badge.mod {
-            color: #8b5cf6;
-            background: rgba(245, 243, 255, 0.95);
-        }
-
-        .card-badge.pro {
-            color: #f59e0b;
-            background: rgba(255, 251, 235, 0.95);
-        }
+        .card-badge.free { color: var(--green-dark); background: rgba(236, 253, 245, 0.95); }
+        .card-badge.mod { color: #8b5cf6; background: rgba(245, 243, 255, 0.95); }
+        .card-badge.pro { color: #f59e0b; background: rgba(255, 251, 235, 0.95); }
 
         .card-bookmark {
             position: absolute;
@@ -673,7 +628,6 @@
             border: none;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
             display: flex;
             align-items: center;
@@ -688,7 +642,6 @@
         .card-bookmark:hover {
             color: var(--green-dark);
             transform: scale(1.1);
-            background: rgba(255, 255, 255, 1);
         }
 
         .card-bookmark.saved {
@@ -715,7 +668,6 @@
             -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            text-align: center;
         }
 
         .card-meta {
@@ -742,10 +694,6 @@
             display: flex;
             align-items: center;
             gap: 4px;
-        }
-
-        .card-platform i {
-            font-size: 11px;
         }
 
         .card-version {
@@ -797,7 +745,6 @@
         .section-title {
             font-size: 20px;
             font-weight: 800;
-            letter-spacing: -0.3px;
             color: var(--text-primary);
             padding: 20px 0 10px;
             display: flex;
@@ -821,14 +768,8 @@
         }
 
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ===== ADMIN LOGIN ===== */
@@ -853,13 +794,9 @@
             gap: 10px;
         }
 
-        .admin-login-box h2 i {
-            color: var(--green-dark);
-        }
+        .admin-login-box h2 i { color: var(--green-dark); }
 
-        .form-group {
-            margin-bottom: 16px;
-        }
+        .form-group { margin-bottom: 16px; }
 
         .form-group label {
             display: block;
@@ -924,9 +861,7 @@
             gap: 8px;
         }
 
-        .alert.show {
-            display: flex;
-        }
+        .alert.show { display: flex; }
 
         /* ===== ADMIN PANEL ===== */
         .admin-tabs {
@@ -937,9 +872,7 @@
             scrollbar-width: none;
         }
 
-        .admin-tabs::-webkit-scrollbar {
-            display: none;
-        }
+        .admin-tabs::-webkit-scrollbar { display: none; }
 
         .admin-tab {
             flex-shrink: 0;
@@ -955,9 +888,7 @@
             white-space: nowrap;
         }
 
-        .admin-tab:hover {
-            border-color: var(--green);
-        }
+        .admin-tab:hover { border-color: var(--green); }
 
         .admin-tab.active {
             background: var(--green-dark);
@@ -970,9 +901,7 @@
             animation: fadeUp 0.3s ease;
         }
 
-        .admin-tab-content.active {
-            display: block;
-        }
+        .admin-tab-content.active { display: block; }
 
         .admin-form-container {
             background: var(--card-bg);
@@ -993,9 +922,7 @@
             justify-content: center;
         }
 
-        .admin-form-title i {
-            color: var(--green-dark);
-        }
+        .admin-form-title i { color: var(--green-dark); }
 
         .admin-form-row {
             display: grid;
@@ -1003,9 +930,7 @@
             gap: 16px;
         }
 
-        .admin-form-group.full-width {
-            grid-column: 1 / -1;
-        }
+        .admin-form-group.full-width { grid-column: 1 / -1; }
 
         .form-select {
             width: 100%;
@@ -1062,16 +987,8 @@
             gap: 8px;
         }
 
-        .admin-btn-primary {
-            background: var(--green-dark);
-            color: #fff;
-        }
-
-        .admin-btn-primary:hover {
-            background: #047857;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
-        }
+        .admin-btn-primary { background: var(--green-dark); color: #fff; }
+        .admin-btn-primary:hover { background: #047857; transform: translateY(-2px); }
 
         .admin-btn-secondary {
             background: var(--bg);
@@ -1079,9 +996,7 @@
             border: 1px solid var(--border);
         }
 
-        .admin-btn-secondary:hover {
-            background: var(--border);
-        }
+        .admin-btn-secondary:hover { background: var(--border); }
 
         .admin-action-btn {
             padding: 6px 14px;
@@ -1096,27 +1011,13 @@
             gap: 4px;
         }
 
-        .admin-action-btn.edit {
-            background: var(--green-bg);
-            color: var(--green-dark);
-        }
+        .admin-action-btn.edit { background: var(--green-bg); color: var(--green-dark); }
+        .admin-action-btn.edit:hover { background: var(--green-light); }
 
-        .admin-action-btn.edit:hover {
-            background: var(--green-light);
-        }
+        .admin-action-btn.delete { background: #fef2f2; color: #dc2626; }
+        .admin-action-btn.delete:hover { background: #fee2e2; }
 
-        .admin-action-btn.delete {
-            background: #fef2f2;
-            color: #dc2626;
-        }
-
-        .admin-action-btn.delete:hover {
-            background: #fee2e2;
-        }
-
-        .admin-app-actions,
-        .admin-game-actions,
-        .admin-ios-actions {
+        .admin-app-actions {
             position: absolute;
             top: 8px;
             left: 8px;
@@ -1132,16 +1033,13 @@
             inset: 0;
             background: rgba(15, 23, 42, 0.5);
             backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
             z-index: 3000;
             justify-content: center;
             align-items: center;
             padding: 24px;
         }
 
-        .modal.active {
-            display: flex;
-        }
+        .modal.active { display: flex; }
 
         .modal-content {
             background: #fff;
@@ -1156,14 +1054,8 @@
         }
 
         @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: scale(0.94) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+            from { opacity: 0; transform: scale(0.94) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .modal-close {
@@ -1184,9 +1076,7 @@
             transition: var(--transition);
         }
 
-        .modal-close:hover {
-            background: var(--border);
-        }
+        .modal-close:hover { background: var(--border); }
 
         .modal-image {
             width: 100px;
@@ -1201,18 +1091,8 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
-        .modal-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: calc(var(--radius) + 4px);
-        }
-
-        .modal-image i {
-            font-size: 40px;
-            color: var(--green);
-            opacity: 0.5;
-        }
+        .modal-image img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-image i { font-size: 40px; color: var(--green); opacity: 0.5; }
 
         .modal-title {
             font-size: 20px;
@@ -1263,12 +1143,636 @@
             box-shadow: 0 8px 24px rgba(16, 185, 129, 0.25);
         }
 
-        .modal-download-btn.ios {
-            background: #1e293b;
+        .modal-download-btn.ios { background: #1e293b; }
+        .modal-download-btn.ios:hover { background: #0f172a; }
+
+        /* ============================================
+           ===== DOWNLOAD PAGES - NEW MODERN DESIGN =====
+           ============================================ */
+
+        .dl-page-wrap {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 24px 0 80px;
+            position: relative;
         }
 
-        .modal-download-btn.ios:hover {
-            background: #0f172a;
+        /* Background decorative gradient */
+        .dl-page-wrap::before {
+            content: '';
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            height: 380px;
+            background: radial-gradient(ellipse at top, rgba(16, 185, 129, 0.13), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .dl-page-wrap > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Breadcrumb / Step indicator */
+        .dl-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            padding: 12px 20px;
+            background: var(--card-bg);
+            border-radius: var(--radius-full);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .dl-step {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+        }
+
+        .dl-step .num {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .dl-step.active {
+            color: var(--green-dark);
+            background: var(--green-bg);
+        }
+
+        .dl-step.active .num {
+            background: var(--green-dark);
+            color: #fff;
+            border-color: var(--green-dark);
+        }
+
+        .dl-step.done {
+            color: var(--green-dark);
+        }
+
+        .dl-step.done .num {
+            background: var(--green);
+            color: #fff;
+            border-color: var(--green);
+        }
+
+        .dl-step-divider {
+            flex: 0 0 24px;
+            height: 2px;
+            background: var(--border);
+            border-radius: 2px;
+        }
+
+        /* App Card - Modern */
+        .dl-app-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.10);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .dl-app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(135deg, var(--green-dark), var(--green));
+            opacity: 0.9;
+            z-index: 0;
+        }
+
+        .dl-app-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .dl-app-img-wrap {
+            padding: 28px 0 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .dl-app-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 28px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18), 0 0 0 5px rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .dl-app-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .dl-app-img i {
+            font-size: 56px;
+            color: var(--green-dark);
+            opacity: 0.4;
+        }
+
+        /* Verified badge */
+        .dl-verified {
+            position: absolute;
+            bottom: -8px;
+            right: -8px;
+            width: 36px;
+            height: 36px;
+            background: var(--green-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 15px;
+            border: 3px solid var(--card-bg);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+        }
+
+        .dl-app-body {
+            padding: 20px 24px 24px;
+            text-align: center;
+        }
+
+        .dl-app-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .dl-app-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            font-weight: 500;
+        }
+
+        .dl-app-subtitle i {
+            color: var(--green-dark);
+            margin-left: 4px;
+        }
+
+        /* Stats row */
+        .dl-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .dl-stat {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px 8px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .dl-stat:hover {
+            background: var(--green-bg);
+            border-color: var(--green-light);
+        }
+
+        .dl-stat i {
+            display: block;
+            font-size: 16px;
+            color: var(--green-dark);
+            margin-bottom: 4px;
+        }
+
+        .dl-stat .lbl {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            display: block;
+        }
+
+        .dl-stat .val {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* Info box */
+        .dl-info-box {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            padding: 22px 24px;
+            margin-bottom: 16px;
+            transition: var(--transition);
+        }
+
+        .dl-info-box:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .dl-info-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dl-info-head .icon-circle {
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+            background: var(--green-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green-dark);
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .dl-info-head h3 {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.2px;
+        }
+
+        .dl-info-box p {
+            font-size: 14.5px;
+            color: var(--text-secondary);
+            line-height: 1.85;
+            white-space: pre-wrap;
+            font-weight: 500;
+        }
+
+        .dl-info-box p.desc-text {
+            color: var(--text-secondary);
+        }
+
+        /* Download button area */
+        .dl-action-area {
+            text-align: center;
+            padding: 14px 0 0;
+        }
+
+        .dl-main-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 17px 48px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: #fff;
+            border: none;
+            font-weight: 800;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.35);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.2px;
+        }
+
+        .dl-main-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .dl-main-btn:hover::before {
+            left: 100%;
+        }
+
+        .dl-main-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(16, 185, 129, 0.45);
+        }
+
+        .dl-main-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .dl-main-btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        .dl-main-btn i {
+            font-size: 17px;
+        }
+
+        /* Pulsing dot */
+        .dl-pulse-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            position: relative;
+            margin-left: 4px;
+        }
+
+        .dl-pulse-dot::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            animation: pulseRing 1.5s ease-out infinite;
+        }
+
+        @keyframes pulseRing {
+            0% { transform: scale(0.7); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        /* Second button (revealed after scroll) */
+        .dl-hidden-btn {
+            display: none;
+            margin-top: 24px;
+            animation: revealBtn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dl-hidden-btn.show {
+            display: inline-flex;
+        }
+
+        @keyframes revealBtn {
+            from { opacity: 0; transform: translateY(16px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Scroll hint */
+        .dl-scroll-hint {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.7;
+            animation: bounceHint 2s infinite;
+        }
+
+        .dl-scroll-hint i {
+            font-size: 16px;
+            color: var(--green-dark);
+        }
+
+        @keyframes bounceHint {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+
+        /* ===== LOADING SECTION - MODERN ===== */
+        .dl-loading-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            padding: 32px 24px;
+            margin-bottom: 16px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dl-loading-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green), var(--green-dark), var(--green));
+            background-size: 200% 100%;
+            animation: loadingBar 2s linear infinite;
+        }
+
+        @keyframes loadingBar {
+            0% { background-position: 0% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .dl-spinner-wrap {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px;
+        }
+
+        .dl-spinner-svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .dl-spinner-svg circle {
+            fill: none;
+            stroke-width: 6;
+            stroke-linecap: round;
+        }
+
+        .dl-spinner-svg .bg-circle {
+            stroke: var(--green-light);
+        }
+
+        .dl-spinner-svg .progress-circle {
+            stroke: var(--green-dark);
+            stroke-dasharray: 251.2;
+            stroke-dashoffset: 251.2;
+            transition: stroke-dashoffset 1s linear;
+            filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.5));
+        }
+
+        .dl-spinner-count {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dl-spinner-count .num {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--green-dark);
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .dl-spinner-count .unit {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        .dl-loading-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .dl-loading-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 18px;
+        }
+
+        .dl-loading-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 340px;
+            margin: 0 auto;
+            text-align: right;
+        }
+
+        .dl-loading-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 14px;
+            border-radius: var(--radius-sm);
+            background: var(--bg);
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .dl-loading-step .dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: #fff;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .dl-loading-step.active {
+            background: var(--green-bg);
+            color: var(--green-dark);
+        }
+
+        .dl-loading-step.active .dot {
+            background: var(--green-dark);
+        }
+
+        .dl-loading-step.done {
+            background: var(--green-bg);
+            color: var(--green-dark);
+        }
+
+        .dl-loading-step.done .dot {
+            background: var(--green);
+        }
+
+        /* Success state */
+        .dl-success-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: var(--green-bg);
+            color: var(--green-dark);
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            border: 1px solid var(--green-light);
+        }
+
+        .dl-success-badge i {
+            font-size: 15px;
+            animation: popIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* Ready indicator */
+        .dl-ready-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(5, 150, 105, 0.08));
+            border: 1px solid var(--green-light);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 18px;
+        }
+
+        .dl-ready-indicator i {
+            color: var(--green-dark);
         }
 
         /* ===== BOOKMARK PAGE STYLES ===== */
@@ -1334,17 +1838,8 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
         }
 
-        .bookmark-item-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .bookmark-item-img i {
-            font-size: 32px;
-            color: var(--green);
-            opacity: 0.6;
-        }
+        .bookmark-item-img img { width: 100%; height: 100%; object-fit: cover; }
+        .bookmark-item-img i { font-size: 32px; color: var(--green); opacity: 0.6; }
 
         .bookmark-item-info {
             flex: 1;
@@ -1357,7 +1852,6 @@
             font-size: 17px;
             color: var(--text-primary);
             margin-bottom: 2px;
-            text-align: center;
         }
 
         .bookmark-item-type {
@@ -1367,10 +1861,6 @@
             align-items: center;
             gap: 6px;
             justify-content: center;
-        }
-
-        .bookmark-item-type i {
-            font-size: 14px;
         }
 
         .bookmark-item-actions {
@@ -1402,7 +1892,6 @@
         .bookmark-item-actions .bm-download:hover {
             background: #047857;
             transform: scale(1.05);
-            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
         }
 
         .bookmark-item-actions .bm-remove {
@@ -1468,8 +1957,7 @@
             text-align: center;
         }
 
-        .footer-section p,
-        .footer-section li {
+        .footer-section p, .footer-section li {
             font-size: 14px;
             color: var(--text-secondary);
             font-weight: 450;
@@ -1494,9 +1982,7 @@
             gap: 6px;
         }
 
-        .footer-links a:hover {
-            color: var(--green-dark);
-        }
+        .footer-links a:hover { color: var(--green-dark); }
 
         .footer-social {
             display: flex;
@@ -1532,9 +2018,7 @@
         }
 
         /* ===== UTILITY ===== */
-        .hidden {
-            display: none !important;
-        }
+        .hidden { display: none !important; }
 
         .loading {
             grid-column: 1 / -1;
@@ -1553,12 +2037,8 @@
         }
 
         @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .no-items {
@@ -1615,195 +2095,89 @@
                 grid-template-columns: repeat(4, 1fr);
                 gap: 24px;
             }
-
-            .container {
-                padding: 0 32px;
-            }
-
-            .section-title {
-                font-size: 24px;
-            }
-
-            .admin-form-row {
-                grid-template-columns: 1fr 1fr;
-            }
+            .container { padding: 0 32px; }
+            .section-title { font-size: 24px; }
         }
 
         @media (max-width: 768px) {
-            .hero-banner-image {
-                padding-top: 40%;
-            }
-
-            .hero-banner-overlay {
-                padding: 14px 20px;
-                align-items: flex-end;
-            }
-
-            .hero-banner-content h1 {
-                font-size: clamp(20px, 4vw, 26px);
-            }
-
-            .hero-stats {
-                gap: 8px;
-            }
-
-            .hero-stats span {
-                font-size: 10px;
-                padding: 2px 10px;
-            }
-
-            .hero-cta {
-                padding: 8px 18px;
-                font-size: 12px;
-            }
-
-            .hero-badge {
-                font-size: 9px;
-                padding: 2px 12px;
-            }
+            .hero-banner-image { padding-top: 40%; }
+            .hero-banner-overlay { padding: 14px 20px; align-items: flex-end; }
+            .hero-banner-content h1 { font-size: clamp(20px, 4vw, 26px); }
+            .hero-stats { gap: 8px; }
+            .hero-stats span { font-size: 10px; padding: 2px 10px; }
+            .hero-cta { padding: 8px 18px; font-size: 12px; }
+            .hero-badge { font-size: 9px; padding: 2px 12px; }
 
             .bookmark-item {
                 flex-wrap: wrap;
                 padding: 12px 14px;
                 justify-content: center;
             }
+            .bookmark-item-img { width: 56px; height: 56px; }
+            .bookmark-item-img i { font-size: 24px; }
+            .bookmark-item-name { font-size: 15px; }
+            .bookmark-item-actions { width: 100%; justify-content: center; }
+            .bookmark-item-actions button { font-size: 12px; padding: 6px 14px; }
 
-            .bookmark-item-img {
-                width: 56px;
-                height: 56px;
-            }
-
-            .bookmark-item-img i {
-                font-size: 24px;
-            }
-
-            .bookmark-item-name {
-                font-size: 15px;
-            }
-
-            .bookmark-item-actions {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .bookmark-item-actions button {
-                font-size: 12px;
-                padding: 6px 14px;
-            }
+            .dl-app-img { width: 110px; height: 110px; border-radius: 24px; }
+            .dl-app-title { font-size: 22px; }
+            .dl-app-body { padding: 16px 18px 20px; }
+            .dl-info-box { padding: 18px 18px; }
+            .dl-main-btn { padding: 15px 36px; font-size: 15px; }
         }
 
         @media (max-width: 480px) {
-            .header-content {
-                height: 56px;
-                padding: 8px 0;
-            }
+            .header-content { height: 56px; padding: 8px 0; }
+            .header-logo { font-size: 17px; }
+            .hamburger, .header-bookmark { width: 36px; height: 36px; font-size: 16px; }
+            .header-bookmark .badge { width: 18px; height: 18px; font-size: 9px; }
 
-            .header-logo {
-                font-size: 17px;
-            }
+            .hero-banner-image { padding-top: 50%; }
+            .hero-banner-overlay { padding: 12px 16px; }
+            .hero-banner-content h1 { font-size: 18px; }
+            .hero-banner-content p { font-size: 11px; margin-bottom: 8px; }
+            .hero-stats span { font-size: 9px; padding: 2px 8px; }
+            .hero-cta { padding: 6px 16px; font-size: 11px; }
 
-            .hamburger,
-            .header-bookmark {
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
-            }
+            .card-title { font-size: 14px; }
+            .card-body { padding: 10px 12px 12px; }
+            .card-download-btn { padding: 4px 12px; font-size: 10px; }
+            .modal-content { padding: 24px 16px 28px; }
+            .card-img .image-wrapper { padding: 12%; }
 
-            .header-bookmark .badge {
-                width: 18px;
-                height: 18px;
-                font-size: 9px;
-            }
+            .bookmark-item-img { width: 48px; height: 48px; }
+            .bookmark-item-img i { font-size: 20px; }
+            .bookmark-item-name { font-size: 14px; }
+            .bookmark-item-actions button { font-size: 11px; padding: 5px 12px; }
 
-            .hero-banner-image {
-                padding-top: 50%;
-            }
-
-            .hero-banner-overlay {
-                padding: 12px 16px;
-            }
-
-            .hero-banner-content h1 {
-                font-size: 18px;
-            }
-
-            .hero-banner-content p {
-                font-size: 11px;
-                margin-bottom: 8px;
-            }
-
-            .hero-stats span {
-                font-size: 9px;
-                padding: 2px 8px;
-            }
-
-            .hero-cta {
-                padding: 6px 16px;
-                font-size: 11px;
-            }
-
-            .card-title {
-                font-size: 14px;
-            }
-
-            .card-body {
-                padding: 10px 12px 12px;
-            }
-
-            .card-download-btn {
-                padding: 4px 12px;
-                font-size: 10px;
-            }
-
-            .modal-content {
-                padding: 24px 16px 28px;
-            }
-
-            .card-img .image-wrapper {
-                padding: 12%;
-            }
-
-            .bookmark-item-img {
-                width: 48px;
-                height: 48px;
-            }
-
-            .bookmark-item-img i {
-                font-size: 20px;
-            }
-
-            .bookmark-item-name {
-                font-size: 14px;
-            }
-
-            .bookmark-item-actions button {
-                font-size: 11px;
-                padding: 5px 12px;
-            }
+            .dl-app-img { width: 90px; height: 90px; border-radius: 22px; }
+            .dl-app-img i { font-size: 40px; }
+            .dl-app-title { font-size: 19px; }
+            .dl-app-subtitle { font-size: 11px; }
+            .dl-app-body { padding: 14px 16px 18px; }
+            .dl-stats { gap: 6px; }
+            .dl-stat { padding: 10px 4px; }
+            .dl-stat i { font-size: 14px; }
+            .dl-stat .val { font-size: 12px; }
+            .dl-stat .lbl { font-size: 9px; }
+            .dl-info-box { padding: 16px 16px; border-radius: 16px; }
+            .dl-info-head h3 { font-size: 14px; }
+            .dl-info-box p { font-size: 13.5px; }
+            .dl-main-btn { padding: 14px 28px; font-size: 14px; }
+            .dl-spinner-wrap { width: 76px; height: 76px; }
+            .dl-spinner-count .num { font-size: 22px; }
+            .dl-loading-title { font-size: 15px; }
+            .dl-steps { padding: 8px 12px; }
+            .dl-step { font-size: 11px; padding: 3px 6px; }
+            .dl-step .num { width: 20px; height: 20px; font-size: 10px; }
         }
 
         @media (max-width: 380px) {
-            .grid {
-                gap: 12px;
-            }
-
-            .card-body {
-                padding: 8px 10px 10px;
-            }
-
-            .card-title {
-                font-size: 13px;
-            }
-
-            .card-category,
-            .card-platform,
-            .card-version {
-                font-size: 9px;
-            }
-
-            .card-img .image-wrapper {
-                padding: 10%;
-            }
+            .grid { gap: 12px; }
+            .card-body { padding: 8px 10px 10px; }
+            .card-title { font-size: 13px; }
+            .card-category, .card-platform, .card-version { font-size: 9px; }
+            .card-img .image-wrapper { padding: 10%; }
         }
 
         /* ===== DARK MODE ===== */
@@ -1827,135 +2201,113 @@
                     rgba(15, 23, 42, 0.75) 100%);
         }
 
-        body.dark-mode .hero-banner {
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
+        body.dark-mode .hero-banner { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
         body.dark-mode header {
             background: rgba(15, 23, 42, 0.85);
             border-bottom-color: rgba(16, 185, 129, 0.15);
         }
-
-        body.dark-mode .sidenav {
-            background: #1e293b;
-        }
-
-        body.dark-mode .sidenav-search {
-            background: #0f172a;
-        }
-
-        body.dark-mode .sidenav-search input {
-            color: #f1f5f9;
-        }
-
-        body.dark-mode .sidenav-link:hover {
-            background: #334155;
-        }
-
-        body.dark-mode .sidenav-link.active {
-            background: #334155;
-        }
-
+        body.dark-mode .sidenav { background: #1e293b; }
+        body.dark-mode .sidenav-search { background: #0f172a; }
+        body.dark-mode .sidenav-search input { color: #f1f5f9; }
+        body.dark-mode .sidenav-link:hover { background: #334155; }
+        body.dark-mode .sidenav-link.active { background: #334155; }
         body.dark-mode .category-tab {
             background: #1e293b;
             border-color: #334155;
             color: #cbd5e1;
         }
-
         body.dark-mode .category-tab.active {
             background: var(--green-dark);
             color: #fff;
         }
-
-        body.dark-mode .modal-content {
-            background: #1e293b;
-        }
-
-        body.dark-mode .modal-close {
-            background: #0f172a;
-            color: #cbd5e1;
-        }
-
-        body.dark-mode .admin-form-container {
-            background: #1e293b;
-        }
-
-        body.dark-mode .admin-login-box {
-            background: #1e293b;
-        }
-
-        body.dark-mode .form-control,
-        body.dark-mode .form-select {
+        body.dark-mode .modal-content { background: #1e293b; }
+        body.dark-mode .modal-close { background: #0f172a; color: #cbd5e1; }
+        body.dark-mode .admin-form-container { background: #1e293b; }
+        body.dark-mode .admin-login-box { background: #1e293b; }
+        body.dark-mode .form-control, body.dark-mode .form-select {
             background: #0f172a;
             color: #f1f5f9;
         }
-
         body.dark-mode footer {
             background: #0f172a;
             border-top-color: #334155;
         }
-
         body.dark-mode .footer-section p,
         body.dark-mode .footer-section li,
-        body.dark-mode .footer-links a {
-            color: #94a3b8;
-        }
+        body.dark-mode .footer-links a { color: #94a3b8; }
+        body.dark-mode .footer-links a:hover { color: var(--green); }
+        body.dark-mode .footer-social a { background: #1e293b; color: #94a3b8; }
+        body.dark-mode .footer-social a:hover { background: #334155; color: var(--green); }
+        body.dark-mode .bookmark-item { border-color: #334155; }
+        body.dark-mode .bookmark-item:hover { background: #334155; border-color: var(--green); }
+        body.dark-mode .bookmark-item-actions .bm-download { background: #064e3b; color: #34d399; }
+        body.dark-mode .bookmark-item-actions .bm-download:hover { background: #065f46; color: #fff; }
+        body.dark-mode .bookmark-item-actions .bm-remove { background: #450a0a; color: #f87171; border-color: #7f1d1d; }
+        body.dark-mode .bookmark-item-actions .bm-remove:hover { background: #7f1d1d; }
+        body.dark-mode .bookmark-empty { border-color: #334155; }
+        body.dark-mode .bookmark-back-btn { background: #064e3b; color: #34d399; border-color: #065f46; }
+        body.dark-mode .bookmark-back-btn:hover { background: #065f46; }
 
-        body.dark-mode .footer-links a:hover {
-            color: var(--green);
-        }
-
-        body.dark-mode .footer-social a {
+        body.dark-mode .dl-app-card,
+        body.dark-mode .dl-info-box,
+        body.dark-mode .dl-loading-card,
+        body.dark-mode .dl-steps {
             background: #1e293b;
-            color: #94a3b8;
         }
-
-        body.dark-mode .footer-social a:hover {
-            background: #334155;
-            color: var(--green);
+        body.dark-mode .dl-app-card::before {
+            background: linear-gradient(135deg, #064e3b, #059669);
         }
-
-        body.dark-mode .bookmark-item {
+        body.dark-mode .dl-app-img {
+            background: #0f172a;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 0 0 5px rgba(16, 185, 129, 0.15);
+        }
+        body.dark-mode .dl-verified {
+            border-color: #1e293b;
+        }
+        body.dark-mode .dl-stat {
+            background: #0f172a;
             border-color: #334155;
         }
-
-        body.dark-mode .bookmark-item:hover {
-            background: #334155;
-            border-color: var(--green);
-        }
-
-        body.dark-mode .bookmark-item-actions .bm-download {
+        body.dark-mode .dl-stat:hover {
             background: #064e3b;
-            color: #34d399;
-        }
-
-        body.dark-mode .bookmark-item-actions .bm-download:hover {
-            background: #065f46;
-            color: #fff;
-        }
-
-        body.dark-mode .bookmark-item-actions .bm-remove {
-            background: #450a0a;
-            color: #f87171;
-            border-color: #7f1d1d;
-        }
-
-        body.dark-mode .bookmark-item-actions .bm-remove:hover {
-            background: #7f1d1d;
-        }
-
-        body.dark-mode .bookmark-empty {
-            border-color: #334155;
-        }
-
-        body.dark-mode .bookmark-back-btn {
-            background: #064e3b;
-            color: #34d399;
             border-color: #065f46;
         }
-
-        body.dark-mode .bookmark-back-btn:hover {
-            background: #065f46;
+        body.dark-mode .dl-loading-step {
+            background: #0f172a;
+        }
+        body.dark-mode .dl-loading-step.active,
+        body.dark-mode .dl-loading-step.done {
+            background: #064e3b;
+            color: #34d399;
+        }
+        body.dark-mode .dl-loading-step.active .dot,
+        body.dark-mode .dl-loading-step.done .dot {
+            background: var(--green-dark);
+        }
+        body.dark-mode .dl-step.active {
+            background: #064e3b;
+            color: #34d399;
+        }
+        body.dark-mode .dl-step.active .num {
+            background: var(--green-dark);
+            color: #fff;
+        }
+        body.dark-mode .dl-step.done {
+            color: #34d399;
+        }
+        body.dark-mode .dl-step.done .num {
+            background: var(--green);
+        }
+        body.dark-mode .dl-step .num {
+            background: #0f172a;
+            border-color: #334155;
+        }
+        body.dark-mode .dl-spinner-svg .bg-circle {
+            stroke: #064e3b;
+        }
+        body.dark-mode .dl-info-head .icon-circle {
+            background: #064e3b;
+            color: #34d399;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -2084,6 +2436,171 @@
             </div>
         </section>
 
+        <!-- ===== DOWNLOAD PAGE STEP 1 ===== -->
+        <section id="download-page" class="content-section">
+            <div class="dl-page-wrap">
+                <!-- Step indicator -->
+                <div class="dl-steps">
+                    <div class="dl-step active" id="dl1-step1">
+                        <span class="num">1</span>
+                        <span>زانیاری</span>
+                    </div>
+                    <div class="dl-step-divider"></div>
+                    <div class="dl-step" id="dl1-step2">
+                        <span class="num">2</span>
+                        <span>دابەزاندن</span>
+                    </div>
+                </div>
+
+                <!-- App Card -->
+                <div class="dl-app-card">
+                    <div class="dl-app-img-wrap">
+                        <div class="dl-app-img" id="dl1-img">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div class="dl-verified"><i class="fas fa-check"></i></div>
+                        </div>
+                    </div>
+                    <div class="dl-app-body">
+                        <div class="dl-app-title" id="dl1-title">-</div>
+                        <div class="dl-app-subtitle">
+                            <i class="fas fa-shield-alt"></i> پارێزراو و دڵنیاکراوە
+                        </div>
+                        <div class="dl-stats" id="dl1-meta"></div>
+                    </div>
+                </div>
+
+                <!-- Info Box -->
+                <div class="dl-info-box">
+                    <div class="dl-info-head">
+                        <div class="icon-circle"><i class="fas fa-info-circle"></i></div>
+                        <h3>زانیارییەکانی یاری</h3>
+                    </div>
+                    <p id="dl1-info">-</p>
+                </div>
+
+                <!-- Description Box -->
+                <div class="dl-info-box">
+                    <div class="dl-info-head">
+                        <div class="icon-circle"><i class="fas fa-align-right"></i></div>
+                        <h3>Description</h3>
+                    </div>
+                    <p class="desc-text" id="dl1-desc">-</p>
+                </div>
+
+                <!-- Download Button -->
+                <div class="dl-action-area">
+                    <button class="dl-main-btn" id="dl1-btn">
+                        <i class="fas fa-download"></i>
+                        دابەزاندن
+                        <span class="dl-pulse-dot"></span>
+                    </button>
+                    <button class="dl-main-btn dl-hidden-btn" id="dl1-btn2">
+                        <i class="fas fa-cloud-download-alt"></i>
+                        بەردەوامبە بۆ دابەزاندن
+                    </button>
+                    <div class="dl-scroll-hint" id="dl1-hint">
+                        <i class="fas fa-arrow-down"></i>
+                        <span>بۆ دابەزاندن کلیک بکە</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== DOWNLOAD PAGE STEP 2 ===== -->
+        <section id="download2-page" class="content-section">
+            <div class="dl-page-wrap">
+                <!-- Step indicator -->
+                <div class="dl-steps">
+                    <div class="dl-step done">
+                        <span class="num"><i class="fas fa-check" style="font-size:9px;"></i></span>
+                        <span>زانیاری</span>
+                    </div>
+                    <div class="dl-step-divider"></div>
+                    <div class="dl-step active">
+                        <span class="num">2</span>
+                        <span>دابەزاندن</span>
+                    </div>
+                </div>
+
+                <!-- App Card -->
+                <div class="dl-app-card">
+                    <div class="dl-app-img-wrap">
+                        <div class="dl-app-img" id="dl2-img">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div class="dl-verified"><i class="fas fa-check"></i></div>
+                        </div>
+                    </div>
+                    <div class="dl-app-body">
+                        <div class="dl-app-title" id="dl2-title">-</div>
+                        <div class="dl-app-subtitle">
+                            <i class="fas fa-shield-alt"></i> پارێزراو و دڵنیاکراوە
+                        </div>
+                        <div class="dl-stats" id="dl2-meta"></div>
+                    </div>
+                </div>
+
+                <!-- Info Box -->
+                <div class="dl-info-box">
+                    <div class="dl-info-head">
+                        <div class="icon-circle"><i class="fas fa-info-circle"></i></div>
+                        <h3>زانیارییەکانی یاری</h3>
+                    </div>
+                    <p id="dl2-info">-</p>
+                </div>
+
+                <!-- Description Box -->
+                <div class="dl-info-box">
+                    <div class="dl-info-head">
+                        <div class="icon-circle"><i class="fas fa-align-right"></i></div>
+                        <h3>Description</h3>
+                    </div>
+                    <p class="desc-text" id="dl2-desc">-</p>
+                </div>
+
+                <!-- Loading Card -->
+                <div class="dl-loading-card" id="dl2-loading-box">
+                    <div class="dl-spinner-wrap">
+                        <svg class="dl-spinner-svg" viewBox="0 0 90 90">
+                            <circle class="bg-circle" cx="45" cy="45" r="40"></circle>
+                            <circle class="progress-circle" id="dl2-progress-circle" cx="45" cy="45" r="40"></circle>
+                        </svg>
+                        <div class="dl-spinner-count">
+                            <span class="num" id="dl2-countdown">10</span>
+                            <span class="unit">چرکە</span>
+                        </div>
+                    </div>
+                    <div class="dl-loading-title">ئامادەکاری بۆ دابەزاندن</div>
+                    <div class="dl-loading-sub">تکایە چاوەڕوان بە، لینکی دابەزاندن ئامادە دەکرێت...</div>
+                    <div class="dl-loading-steps">
+                        <div class="dl-loading-step active" id="dl2-loadstep-1">
+                            <span class="dot"><i class="fas fa-check"></i></span>
+                            <span>پەیوەندی بە سێرڤەرەوە</span>
+                        </div>
+                        <div class="dl-loading-step" id="dl2-loadstep-2">
+                            <span class="dot"><i class="fas fa-check"></i></span>
+                            <span>پشکنینی فایلەکان</span>
+                        </div>
+                        <div class="dl-loading-step" id="dl2-loadstep-3">
+                            <span class="dot"><i class="fas fa-check"></i></span>
+                            <span>ئامادەکردنی لینکی دابەزاندن</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Download Button -->
+                <div class="dl-action-area">
+                    <div class="dl-ready-indicator hidden" id="dl2-ready-indicator">
+                        <i class="fas fa-check-circle"></i>
+                        <span>لینکی دابەزاندن ئامادەیە!</span>
+                    </div>
+                    <button class="dl-main-btn hidden" id="dl2-btn" disabled>
+                        <i class="fas fa-download"></i>
+                        دابەزاندنی ئێستا
+                    </button>
+                </div>
+            </div>
+        </section>
+
         <!-- ===== BOOKMARKS PAGE ===== -->
         <section id="bookmarks-page" class="content-section">
             <div class="section-title"><i class="fas fa-bookmark"></i> پاشەکەوتکراوەکان</div>
@@ -2156,6 +2673,18 @@
                             </div>
                         </div>
                         <div class="admin-form-row">
+                            <div class="admin-form-group full-width">
+                                <label>Description (تەواو)</label>
+                                <textarea id="app-description-long" class="form-control" rows="4" placeholder="Description ی تەواو بۆ پەڕەی داگرتن..."></textarea>
+                            </div>
+                        </div>
+                        <div class="admin-form-row">
+                            <div class="admin-form-group full-width">
+                                <label>زانیارییەکان (Info)</label>
+                                <textarea id="app-info" class="form-control" rows="3" placeholder="زانیارییەکانی یاری وەک: وەشان، قەبارە، پێداویستی..."></textarea>
+                            </div>
+                        </div>
+                        <div class="admin-form-row">
                             <div class="admin-form-group">
                                 <label>لینکی وێنە</label>
                                 <input type="url" id="app-image" class="form-control" placeholder="https://example.com/image.png">
@@ -2203,6 +2732,18 @@
                             <div class="admin-form-group full-width">
                                 <label>کورتە</label>
                                 <input type="text" id="edit-app-description" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="admin-form-row">
+                            <div class="admin-form-group full-width">
+                                <label>Description (تەواو)</label>
+                                <textarea id="edit-app-description-long" class="form-control" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="admin-form-row">
+                            <div class="admin-form-group full-width">
+                                <label>زانیارییەکان (Info)</label>
+                                <textarea id="edit-app-info" class="form-control" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="admin-form-row">
@@ -2257,7 +2798,7 @@
             <div class="modal-title" id="modalTitle"></div>
             <div class="modal-description" id="modalDescription"></div>
             <div class="modal-downloads"><i class="fas fa-download"></i> <span id="modalDownloadsCount">0</span> داگرتن</div>
-            <a href="#" id="modalDownloadBtn" class="modal-download-btn" target="_blank"><i class="fas fa-download"></i> دابەزاندن</a>
+            <a href="#" id="modalDownloadBtn" class="modal-download-btn"><i class="fas fa-download"></i> دابەزاندن</a>
         </div>
     </div>
 
@@ -2318,15 +2859,11 @@
         }
 
         // ===== STATE =====
-        let apps = [],
-            games = [],
-            iosApps = [];
+        let apps = [], games = [], iosApps = [];
         let currentCategory = 'all';
         let isAdminLoggedIn = false;
         let bookmarkItems = [];
-        let unsubscribeApps = null,
-            unsubscribeGames = null,
-            unsubscribeIos = null;
+        let unsubscribeApps = null, unsubscribeGames = null, unsubscribeIos = null;
 
         // ===== DOM REFS =====
         const allGrid = document.getElementById('all-grid');
@@ -2346,9 +2883,7 @@
                 bookmarkItems = stored ? JSON.parse(stored) : [];
                 updateBookmarkBadge();
                 renderBookmarkPage();
-            } catch (e) {
-                bookmarkItems = [];
-            }
+            } catch (e) { bookmarkItems = []; }
         }
 
         function saveBookmarks() {
@@ -2371,11 +2906,8 @@
                 return false;
             } else {
                 bookmarkItems.push({
-                    id: item.id,
-                    name: item.name,
-                    type: item.type,
-                    imgurl: item.imgurl || '',
-                    downloadurl: item.downloadurl || '#',
+                    id: item.id, name: item.name, type: item.type,
+                    imgurl: item.imgurl || '', downloadurl: item.downloadurl || '#',
                     description: item.description || ''
                 });
                 saveBookmarks();
@@ -2389,7 +2921,6 @@
 
         function renderBookmarkPage() {
             if (!bookmarkListContainer) return;
-
             if (bookmarkItems.length === 0) {
                 bookmarkListContainer.innerHTML = `
                     <div class="bookmark-empty">
@@ -2400,14 +2931,11 @@
                 `;
                 return;
             }
-
             let html = '<div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;">';
             bookmarkItems.forEach(item => {
-                const icon = item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' :
-                    'fa-apple';
+                const icon = item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' : 'fa-apple';
                 const typeName = item.type === 'app' ? 'ئەپ' : item.type === 'game' ? 'یاری' : 'IOS';
-                const typeIcon = item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' :
-                    'fa-apple';
+                const typeIcon = item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' : 'fa-apple';
                 html += `
                     <div class="bookmark-item" data-id="${item.id}">
                         <div class="bookmark-item-img">
@@ -2486,9 +3014,7 @@
         }
 
         // ===== LOAD DATA =====
-        function loadAllData() { if (db) { loadApps();
-                loadGames();
-                loadIos(); } }
+        function loadAllData() { if (db) { loadApps(); loadGames(); loadIos(); } }
 
         function loadApps() {
             if (!db) return;
@@ -2498,11 +3024,11 @@
                     snap.forEach(doc => {
                         const d = doc.data();
                         apps.push({ id: doc.id, ...d, name: d.name || "بێ ناو", description: d.description || "",
+                            descriptionLong: d.descriptionLong || "", info: d.info || "",
                             imgurl: d.imgurl || "", downloadurl: d.downloadurl || "#", downloads: d.downloads || 0,
                             featured: d.featured || false, createdAt: d.createdAt || new Date().toISOString() });
                     });
-                    renderAll();
-                    renderApps();
+                    renderAll(); renderApps();
                     if (isAdminLoggedIn) renderAdminApps();
                 })
                 .catch(e => console.error("❌ loadApps error:", e));
@@ -2516,11 +3042,11 @@
                     snap.forEach(doc => {
                         const d = doc.data();
                         games.push({ id: doc.id, ...d, name: d.name || "بێ ناو", description: d.description || "",
+                            descriptionLong: d.descriptionLong || "", info: d.info || "",
                             imgurl: d.imgurl || "", downloadurl: d.downloadurl || "#", downloads: d.downloads || 0,
                             featured: d.featured || false, createdAt: d.createdAt || new Date().toISOString() });
                     });
-                    renderAll();
-                    renderGames();
+                    renderAll(); renderGames();
                     if (isAdminLoggedIn) renderAdminGames();
                 })
                 .catch(e => console.error("❌ loadGames error:", e));
@@ -2534,11 +3060,11 @@
                     snap.forEach(doc => {
                         const d = doc.data();
                         iosApps.push({ id: doc.id, ...d, name: d.name || "بێ ناو", description: d.description || "",
+                            descriptionLong: d.descriptionLong || "", info: d.info || "",
                             imgurl: d.imgurl || "", downloadurl: d.downloadurl || "#", downloads: d.downloads || 0,
                             featured: d.featured || false, createdAt: d.createdAt || new Date().toISOString() });
                     });
-                    renderAll();
-                    renderIos();
+                    renderAll(); renderIos();
                     if (isAdminLoggedIn) renderAdminIos();
                 })
                 .catch(e => console.error("❌ loadIos error:", e));
@@ -2576,22 +3102,19 @@
 
         function renderApps() {
             appsGrid.innerHTML = '';
-            if (apps.length === 0) { appsGrid.innerHTML =
-                    '<div class="no-items"><i class="fas fa-mobile-alt"></i> هیچ ئەپێک بوونی نیە</div>'; return; }
+            if (apps.length === 0) { appsGrid.innerHTML = '<div class="no-items"><i class="fas fa-mobile-alt"></i> هیچ ئەپێک بوونی نیە</div>'; return; }
             apps.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(item => renderCard(appsGrid, item));
         }
 
         function renderGames() {
             gamesGrid.innerHTML = '';
-            if (games.length === 0) { gamesGrid.innerHTML =
-                    '<div class="no-items"><i class="fas fa-gamepad"></i> هیچ یارییەک بوونی نیە</div>'; return; }
+            if (games.length === 0) { gamesGrid.innerHTML = '<div class="no-items"><i class="fas fa-gamepad"></i> هیچ یارییەک بوونی نیە</div>'; return; }
             games.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(item => renderCard(gamesGrid, item));
         }
 
         function renderIos() {
             iosGrid.innerHTML = '';
-            if (iosApps.length === 0) { iosGrid.innerHTML =
-                    '<div class="no-items"><i class="fab fa-apple"></i> هیچ بەرنامەیەکی IOS بوونی نیە</div>'; return; }
+            if (iosApps.length === 0) { iosGrid.innerHTML = '<div class="no-items"><i class="fab fa-apple"></i> هیچ بەرنامەیەکی IOS بوونی نیە</div>'; return; }
             iosApps.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(item => renderCard(iosGrid, item));
         }
 
@@ -2602,17 +3125,12 @@
             const badgeMap = { free: 'FREE', mod: 'MOD', pro: 'PRO' };
             const badgeKey = item.badge || 'free';
             const badgeLabel = badgeMap[badgeKey] || 'FREE';
-
             let badgeHTML = '';
-            if (item.badge) {
-                badgeHTML =
-                    `<span class="card-badge ${badgeKey}">${badgeLabel}</span>`;
-            }
+            if (item.badge) badgeHTML = `<span class="card-badge ${badgeKey}">${badgeLabel}</span>`;
 
             const icon = item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' : 'fa-apple';
             const platformIcon = item.type === 'ios' ? 'fab fa-apple' : 'fab fa-android';
             const version = item.version || '1.0.0';
-
             const saved = isBookmarked(item.id);
 
             card.innerHTML = `
@@ -2677,7 +3195,7 @@
             container.appendChild(card);
         }
 
-        // ===== MODAL (Item Detail) =====
+        // ===== MODAL =====
         const modal = document.getElementById('itemModal');
         const modalImage = document.getElementById('modalImage');
         const modalTitle = document.getElementById('modalTitle');
@@ -2695,12 +3213,10 @@
             modalTitle.textContent = item.name;
             modalDescription.textContent = item.description || 'بێ وەسف';
             modalDownloadsCount.textContent = item.downloads || 0;
-            modalDownloadBtn.href = item.downloadurl || '#';
-            if (item.type === 'ios') {
-                modalDownloadBtn.classList.add('ios');
-            } else {
-                modalDownloadBtn.classList.remove('ios');
-            }
+            modalDownloadBtn.href = '#';
+            if (item.type === 'ios') modalDownloadBtn.classList.add('ios');
+            else modalDownloadBtn.classList.remove('ios');
+            modalDownloadBtn.dataset.id = item.id;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -2714,12 +3230,197 @@
         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
+        // ===== DOWNLOAD FLOW =====
+        let currentDownloadItem = null;
+        let downloadStep2Timer = null;
+
+        modalDownloadBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const id = this.dataset.id;
+            if (!id) return;
+            const item = getAllItems().find(i => i.id === id);
+            if (!item) return;
+            closeModal();
+            openDownloadPage1(item);
+        });
+
+        function openDownloadPage1(item) {
+            currentDownloadItem = item;
+            const imgWrap = document.getElementById('dl1-img');
+            const existingBadge = imgWrap.querySelector('.dl-verified');
+            if (item.imgurl) {
+                imgWrap.innerHTML = `<img src="${item.imgurl}" alt="${item.name}"><div class="dl-verified"><i class="fas fa-check"></i></div>`;
+            } else {
+                const icon = item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' : 'fa-apple';
+                imgWrap.innerHTML = `<i class="fas ${icon}"></i><div class="dl-verified"><i class="fas fa-check"></i></div>`;
+            }
+            document.getElementById('dl1-title').textContent = item.name;
+
+            const typeName = item.type === 'app' ? 'ئەپ' : item.type === 'game' ? 'یاری' : 'IOS';
+            const platformName = item.type === 'ios' ? 'iOS' : 'Android';
+            document.getElementById('dl1-meta').innerHTML = `
+                <div class="dl-stat">
+                    <i class="fas fa-tag"></i>
+                    <span class="lbl">جۆر</span>
+                    <span class="val">${typeName}</span>
+                </div>
+                <div class="dl-stat">
+                    <i class="${item.type === 'ios' ? 'fab fa-apple' : 'fab fa-android'}"></i>
+                    <span class="lbl">پلاتفۆرم</span>
+                    <span class="val">${platformName}</span>
+                </div>
+                <div class="dl-stat">
+                    <i class="fas fa-download"></i>
+                    <span class="lbl">داگرتن</span>
+                    <span class="val">${item.downloads || 0}</span>
+                </div>
+            `;
+            document.getElementById('dl1-info').textContent = item.info || 'زانیاری بەردەست نییە';
+            document.getElementById('dl1-desc').textContent = item.descriptionLong || item.description || 'Description بەردەست نییە';
+
+            const btn1 = document.getElementById('dl1-btn');
+            const btn2 = document.getElementById('dl1-btn2');
+            const hint = document.getElementById('dl1-hint');
+            btn1.style.display = '';
+            btn2.classList.remove('show');
+            if (hint) hint.style.display = 'flex';
+
+            showPage('download');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.getElementById('dl1-btn').addEventListener('click', function() {
+            const btn2 = document.getElementById('dl1-btn2');
+            const hint = document.getElementById('dl1-hint');
+            const step2 = document.getElementById('dl1-step2');
+            btn2.classList.add('show');
+            if (hint) hint.style.display = 'none';
+            if (step2) step2.classList.add('active');
+            setTimeout(() => {
+                btn2.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 150);
+        });
+
+        document.getElementById('dl1-btn2').addEventListener('click', function() {
+            if (!currentDownloadItem) return;
+            openDownloadPage2(currentDownloadItem);
+        });
+
+        function openDownloadPage2(item) {
+            currentDownloadItem = item;
+            const imgWrap = document.getElementById('dl2-img');
+            if (item.imgurl) {
+                imgWrap.innerHTML = `<img src="${item.imgurl}" alt="${item.name}"><div class="dl-verified"><i class="fas fa-check"></i></div>`;
+            } else {
+                const icon = item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' : 'fa-apple';
+                imgWrap.innerHTML = `<i class="fas ${icon}"></i><div class="dl-verified"><i class="fas fa-check"></i></div>`;
+            }
+            document.getElementById('dl2-title').textContent = item.name;
+
+            const typeName = item.type === 'app' ? 'ئەپ' : item.type === 'game' ? 'یاری' : 'IOS';
+            const platformName = item.type === 'ios' ? 'iOS' : 'Android';
+            document.getElementById('dl2-meta').innerHTML = `
+                <div class="dl-stat">
+                    <i class="fas fa-tag"></i>
+                    <span class="lbl">جۆر</span>
+                    <span class="val">${typeName}</span>
+                </div>
+                <div class="dl-stat">
+                    <i class="${item.type === 'ios' ? 'fab fa-apple' : 'fab fa-android'}"></i>
+                    <span class="lbl">پلاتفۆرم</span>
+                    <span class="val">${platformName}</span>
+                </div>
+                <div class="dl-stat">
+                    <i class="fas fa-download"></i>
+                    <span class="lbl">داگرتن</span>
+                    <span class="val">${item.downloads || 0}</span>
+                </div>
+            `;
+            document.getElementById('dl2-info').textContent = item.info || 'زانیاری بەردەست نییە';
+            document.getElementById('dl2-desc').textContent = item.descriptionLong || item.description || 'Description بەردەست نییە';
+
+            const loadingBox = document.getElementById('dl2-loading-box');
+            const countdownEl = document.getElementById('dl2-countdown');
+            const circle = document.getElementById('dl2-progress-circle');
+            const dlBtn = document.getElementById('dl2-btn');
+            const readyInd = document.getElementById('dl2-ready-indicator');
+            const step1 = document.getElementById('dl2-loadstep-1');
+            const step2 = document.getElementById('dl2-loadstep-2');
+            const step3 = document.getElementById('dl2-loadstep-3');
+
+            loadingBox.classList.remove('hidden');
+            dlBtn.classList.add('hidden');
+            dlBtn.disabled = true;
+            readyInd.classList.add('hidden');
+            countdownEl.textContent = '10';
+            circle.style.strokeDashoffset = 251.2;
+
+            // Reset steps
+            [step1, step2, step3].forEach(s => { s.classList.remove('active', 'done'); });
+            step1.classList.add('active');
+
+            showPage('download2');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (downloadStep2Timer) {
+                clearInterval(downloadStep2Timer);
+                downloadStep2Timer = null;
+            }
+
+            let remaining = 10;
+            const total = 10;
+            const circumference = 251.2;
+
+            setTimeout(() => {
+                circle.style.strokeDashoffset = '0';
+            }, 50);
+
+            downloadStep2Timer = setInterval(() => {
+                remaining--;
+                countdownEl.textContent = remaining;
+                // Update steps
+                if (remaining === 7) {
+                    step1.classList.remove('active'); step1.classList.add('done');
+                    step2.classList.add('active');
+                }
+                if (remaining === 3) {
+                    step2.classList.remove('active'); step2.classList.add('done');
+                    step3.classList.add('active');
+                }
+                if (remaining <= 0) {
+                    clearInterval(downloadStep2Timer);
+                    downloadStep2Timer = null;
+                    step3.classList.remove('active'); step3.classList.add('done');
+                    loadingBox.classList.add('hidden');
+                    dlBtn.classList.remove('hidden');
+                    dlBtn.disabled = false;
+                    readyInd.classList.remove('hidden');
+                    // Smooth scroll to button
+                    setTimeout(() => {
+                        dlBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 200);
+                }
+            }, 1000);
+        }
+
+        document.getElementById('dl2-btn').addEventListener('click', function() {
+            if (!currentDownloadItem) return;
+            const url = currentDownloadItem.downloadurl;
+            if (url && url !== '#') {
+                if (db && currentDownloadItem.id) {
+                    db.collection("zhi-zhi").doc(currentDownloadItem.id).update({
+                        downloads: (currentDownloadItem.downloads || 0) + 1
+                    }).catch(() => {});
+                }
+                window.open(url, '_blank');
+            }
+        });
+
         // ===== BOOKMARK HEADER BUTTON =====
         document.getElementById('bookmarkBtn').addEventListener('click', () => {
             showPage('bookmarks');
         });
 
-        // ===== BOOKMARK BACK BUTTON =====
         document.getElementById('bookmarkBackBtn').addEventListener('click', () => {
             showPage('home');
         });
@@ -2740,22 +3441,19 @@
 
         function renderAdminApps() {
             adminAppsGrid.innerHTML = '';
-            if (apps.length === 0) { adminAppsGrid.innerHTML =
-                    '<div class="no-items"><i class="fas fa-mobile-alt"></i> هیچ ئەپێک بوونی نیە</div>'; return; }
+            if (apps.length === 0) { adminAppsGrid.innerHTML = '<div class="no-items"><i class="fas fa-mobile-alt"></i> هیچ ئەپێک بوونی نیە</div>'; return; }
             apps.forEach(app => renderAdminCard(adminAppsGrid, app, 'app'));
         }
 
         function renderAdminGames() {
             adminGamesGrid.innerHTML = '';
-            if (games.length === 0) { adminGamesGrid.innerHTML =
-                    '<div class="no-items"><i class="fas fa-gamepad"></i> هیچ یارییەک بوونی نیە</div>'; return; }
+            if (games.length === 0) { adminGamesGrid.innerHTML = '<div class="no-items"><i class="fas fa-gamepad"></i> هیچ یارییەک بوونی نیە</div>'; return; }
             games.forEach(game => renderAdminCard(adminGamesGrid, game, 'game'));
         }
 
         function renderAdminIos() {
             adminIosGrid.innerHTML = '';
-            if (iosApps.length === 0) { adminIosGrid.innerHTML =
-                    '<div class="no-items"><i class="fab fa-apple"></i> هیچ بەرنامەیەکی IOS بوونی نیە</div>'; return; }
+            if (iosApps.length === 0) { adminIosGrid.innerHTML = '<div class="no-items"><i class="fab fa-apple"></i> هیچ بەرنامەیەکی IOS بوونی نیە</div>'; return; }
             iosApps.forEach(ios => renderAdminCard(adminIosGrid, ios, 'ios'));
         }
 
@@ -2785,14 +3483,8 @@
             `;
             container.appendChild(card);
 
-            card.querySelector('.edit').addEventListener('click', (e) => {
-                e.stopPropagation();
-                editItem(item.id, type);
-            });
-            card.querySelector('.delete').addEventListener('click', (e) => {
-                e.stopPropagation();
-                deleteItem(item.id, type);
-            });
+            card.querySelector('.edit').addEventListener('click', (e) => { e.stopPropagation(); editItem(item.id, type); });
+            card.querySelector('.delete').addEventListener('click', (e) => { e.stopPropagation(); deleteItem(item.id, type); });
         }
 
         function editItem(id, type) {
@@ -2807,6 +3499,8 @@
             document.getElementById('edit-app-type').value = type;
             document.getElementById('edit-app-name').value = item.name || '';
             document.getElementById('edit-app-description').value = item.description || '';
+            document.getElementById('edit-app-description-long').value = item.descriptionLong || '';
+            document.getElementById('edit-app-info').value = item.info || '';
             document.getElementById('edit-app-image').value = item.imgurl || '';
             document.getElementById('edit-app-download').value = item.downloadurl || '';
             document.getElementById('edit-app-featured').value = item.featured ? 'true' : 'false';
@@ -2817,21 +3511,21 @@
             if (!confirm('دڵنیایت دەتەوێت ئەم بەرنامەەی بسڕیتەوە؟')) return;
             if (!db) return;
             db.collection("zhi-zhi").doc(id).delete()
-                .then(() => {
-                    loadAllData();
-                })
+                .then(() => { loadAllData(); })
                 .catch(e => console.error("❌ delete error:", e));
         }
 
         // ===== SIDENAV =====
-        function openSidenav() { document.getElementById('sidenav').classList.add('open');
+        function openSidenav() {
+            document.getElementById('sidenav').classList.add('open');
             document.getElementById('sidenavOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden'; }
-
-        function closeSidenav() { document.getElementById('sidenav').classList.remove('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeSidenav() {
+            document.getElementById('sidenav').classList.remove('open');
             document.getElementById('sidenavOverlay').classList.remove('active');
-            document.body.style.overflow = ''; }
-
+            document.body.style.overflow = '';
+        }
         document.getElementById('hamburgerBtn').addEventListener('click', openSidenav);
         document.getElementById('sidenavClose').addEventListener('click', closeSidenav);
         document.getElementById('sidenavOverlay').addEventListener('click', closeSidenav);
@@ -2846,15 +3540,9 @@
             if (link) link.classList.add('active');
             closeSidenav();
 
-            if (pageId === 'bookmarks') {
-                renderBookmarkPage();
-            }
-
+            if (pageId === 'bookmarks') renderBookmarkPage();
             if (pageId === 'admin-panel' && isAdminLoggedIn) {
-                renderAdminApps();
-                renderAdminGames();
-                renderAdminIos();
-                setupAdminTabs();
+                renderAdminApps(); renderAdminGames(); renderAdminIos(); setupAdminTabs();
             }
         }
 
@@ -2893,7 +3581,6 @@
             adminLogin(u, p);
         });
 
-        // ===== ADMIN TABS =====
         function setupAdminTabs() {
             document.querySelectorAll('.admin-tab').forEach(tab => {
                 tab.addEventListener('click', () => {
@@ -2914,19 +3601,17 @@
             const type = document.getElementById('app-type').value;
             const name = document.getElementById('app-name').value;
             const description = document.getElementById('app-description').value;
+            const descriptionLong = document.getElementById('app-description-long').value;
+            const info = document.getElementById('app-info').value;
             const imgurl = document.getElementById('app-image').value;
             const downloadurl = document.getElementById('app-download').value;
             const featured = document.getElementById('app-featured').checked;
             if (!type || !name || !downloadurl) { alert('تکایە هەموو خانە پێویستەکان پڕ بکەرەوە'); return; }
             if (!db) return;
             db.collection("zhi-zhi").add({
-                type,
-                name,
-                description: description || '',
-                imgurl: imgurl || '',
-                downloadurl,
-                downloads: 0,
-                featured,
+                type, name, description: description || '',
+                descriptionLong: descriptionLong || '', info: info || '',
+                imgurl: imgurl || '', downloadurl, downloads: 0, featured,
                 createdAt: new Date().toISOString()
             }).then(() => {
                 document.getElementById('add-app-form').reset();
@@ -2938,20 +3623,25 @@
         document.getElementById('edit-app-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const id = document.getElementById('edit-app-id').value;
-            const type = document.getElementById('edit-app-type').value;
             const name = document.getElementById('edit-app-name').value;
             const description = document.getElementById('edit-app-description').value;
+            const descriptionLong = document.getElementById('edit-app-description-long').value;
+            const info = document.getElementById('edit-app-info').value;
             const imgurl = document.getElementById('edit-app-image').value;
             const downloadurl = document.getElementById('edit-app-download').value;
             const featured = document.getElementById('edit-app-featured').value === 'true';
             if (!db) return;
-            db.collection("zhi-zhi").doc(id).update({ name, description, imgurl: imgurl || '', downloadurl, featured })
-                .then(() => {
-                    document.getElementById('edit-form-container').style.display = 'none';
-                    document.getElementById('edit-app-form').reset();
-                    loadAllData();
-                })
-                .catch(e => console.error("❌ update error:", e));
+            db.collection("zhi-zhi").doc(id).update({
+                name, description,
+                descriptionLong: descriptionLong || '',
+                info: info || '',
+                imgurl: imgurl || '',
+                downloadurl, featured
+            }).then(() => {
+                document.getElementById('edit-form-container').style.display = 'none';
+                document.getElementById('edit-app-form').reset();
+                loadAllData();
+            }).catch(e => console.error("❌ update error:", e));
         });
 
         document.getElementById('cancel-edit').addEventListener('click', () => {
@@ -2981,8 +3671,7 @@
         document.getElementById('sidenavSearch').addEventListener('input', function() {
             const q = this.value.toLowerCase().trim();
             const items = getAllItems();
-            const filtered = q ? items.filter(i => i.name.toLowerCase().includes(q) || i.description.toLowerCase().includes(
-                q)) : items;
+            const filtered = q ? items.filter(i => i.name.toLowerCase().includes(q) || i.description.toLowerCase().includes(q)) : items;
             allGrid.innerHTML = '';
             if (filtered.length === 0) {
                 allGrid.innerHTML = '<div class="no-items"><i class="fas fa-search"></i> هیچ ئەنجامێک نەدۆزرایەوە</div>';
