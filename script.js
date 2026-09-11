@@ -107,7 +107,6 @@ function renderBookmarkPage() {
                     </div>
                 </div>
                 <div class="bookmark-item-actions">
-                    <button class="bm-download" data-url="${item.downloadurl}"><i class="fas fa-download"></i> داگرتن</button>
                     <button class="bm-remove" data-id="${item.id}"><i class="fas fa-trash"></i> سڕینەوە</button>
                 </div>
             </div>
@@ -115,31 +114,6 @@ function renderBookmarkPage() {
     });
     html += '</div>';
     bookmarkListContainer.innerHTML = html;
-
-    bookmarkListContainer.querySelectorAll('.bm-download').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const url = this.dataset.url;
-            if (url && url !== '#') {
-                window.open(url, '_blank');
-                const originalText = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-check"></i> داگیرا';
-                this.style.background = 'var(--green)';
-                setTimeout(() => {
-                    this.innerHTML = originalText;
-                    this.style.background = '';
-                }, 2000);
-            } else {
-                const originalText = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-times"></i> هەڵە';
-                this.style.background = '#dc2626';
-                setTimeout(() => {
-                    this.innerHTML = originalText;
-                    this.style.background = '';
-                }, 2000);
-            }
-        });
-    });
 
     bookmarkListContainer.querySelectorAll('.bm-remove').forEach(btn => {
         btn.addEventListener('click', function(e) {
@@ -240,12 +214,20 @@ function setupRealtimeListeners() {
     unsubscribeIos = db.collection("zhi-zhi").where("type", "==", "ios").onSnapshot(() => loadIos());
 }
 
+function sortFeaturedFirst(arr) {
+    return arr.sort((a, b) => {
+        if (a.featured && !b.featured) return -1;
+        if (!a.featured && b.featured) return 1;
+        return new Date(b.createdAt) - new Date(a.createdAt);
+    });
+}
+
 function getAllItems() {
     let all = [...apps, ...games, ...iosApps];
     if (currentCategory === 'apps') all = apps;
     else if (currentCategory === 'games') all = games;
     else if (currentCategory === 'ios') all = iosApps;
-    return all.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    return sortFeaturedFirst(all);
 }
 
 function renderAll() {
@@ -261,19 +243,19 @@ function renderAll() {
 function renderApps() {
     appsGrid.innerHTML = '';
     if (apps.length === 0) { appsGrid.innerHTML = '<div class="no-items"><i class="fas fa-mobile-alt"></i> هیچ ئەپێک بوونی نیە</div>'; return; }
-    apps.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(item => renderCard(appsGrid, item));
+    sortFeaturedFirst(apps).forEach(item => renderCard(appsGrid, item));
 }
 
 function renderGames() {
     gamesGrid.innerHTML = '';
     if (games.length === 0) { gamesGrid.innerHTML = '<div class="no-items"><i class="fas fa-gamepad"></i> هیچ یارییەک بوونی نیە</div>'; return; }
-    games.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(item => renderCard(gamesGrid, item));
+    sortFeaturedFirst(games).forEach(item => renderCard(gamesGrid, item));
 }
 
 function renderIos() {
     iosGrid.innerHTML = '';
     if (iosApps.length === 0) { iosGrid.innerHTML = '<div class="no-items"><i class="fab fa-apple"></i> هیچ بەرنامەیەکی IOS بوونی نیە</div>'; return; }
-    iosApps.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(item => renderCard(iosGrid, item));
+    sortFeaturedFirst(iosApps).forEach(item => renderCard(iosGrid, item));
 }
 
 function renderCard(container, item) {
@@ -285,6 +267,11 @@ function renderCard(container, item) {
     const badgeLabel = badgeMap[badgeKey] || 'FREE';
     let badgeHTML = '';
     if (item.badge) badgeHTML = `<span class="card-badge ${badgeKey}">${badgeLabel}</span>`;
+
+    let pinHTML = '';
+    if (item.featured) {
+        pinHTML = `<div class="pin-badge"><i class="fas fa-thumbtack"></i></div>`;
+    }
 
     const icon = item.type === 'app' ? 'fa-mobile-alt' : item.type === 'game' ? 'fa-gamepad' : 'fa-apple';
     const version = item.version || '1.0.0';
@@ -300,6 +287,7 @@ function renderCard(container, item) {
                 </div>
             </div>
             ${badgeHTML}
+            ${pinHTML}
             <button class="card-bookmark ${saved ? 'saved' : ''}" data-id="${item.id}">
                 <i class="fas ${saved ? 'fa-check' : 'fa-plus'}"></i>
             </button>
@@ -586,6 +574,9 @@ function closeSidenav() {
     document.getElementById('sidenavOverlay').classList.remove('active');
     document.body.style.overflow = '';
     hideSearchDropdown();
+    if (sidenavSearchInput) {
+        sidenavSearchInput.value = '';
+    }
 }
 document.getElementById('hamburgerBtn').addEventListener('click', openSidenav);
 document.getElementById('sidenavClose').addEventListener('click', closeSidenav);
@@ -774,6 +765,7 @@ sidenavSearchInput.addEventListener('keydown', function(e) {
         }
     } else if (e.key === 'Escape') {
         hideSearchDropdown();
+        this.value = '';
         this.blur();
     }
 });
@@ -781,20 +773,10 @@ sidenavSearchInput.addEventListener('keydown', function(e) {
 document.addEventListener('click', function(e) {
     if (!e.target.closest('.sidenav-search')) {
         hideSearchDropdown();
+        if (sidenavSearchInput && sidenavSearchInput.value.trim()) {
+            sidenavSearchInput.value = '';
+        }
     }
-});
-
-// ===== OLD SEARCH (filter grid) =====
-sidenavSearchInput.addEventListener('input', function() {
-    const q = this.value.toLowerCase().trim();
-    const items = getAllItems();
-    const filtered = q ? items.filter(i => i.name.toLowerCase().includes(q) || (i.description || '').toLowerCase().includes(q)) : items;
-    allGrid.innerHTML = '';
-    if (filtered.length === 0) {
-        allGrid.innerHTML = '<div class="no-items"><i class="fas fa-search"></i> هیچ ئەنجامێک نەدۆزرایەوە</div>';
-        return;
-    }
-    filtered.forEach(item => renderCard(allGrid, item));
 });
 
 loadBookmarks();
