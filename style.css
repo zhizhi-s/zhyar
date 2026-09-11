@@ -267,7 +267,6 @@ header {
     font-size: 16px;
 }
 
-/* ===== SMART SEARCH DROPDOWN ===== */
 .search-dropdown {
     position: absolute;
     top: calc(100% + 6px);
@@ -760,6 +759,38 @@ body.dark-mode .search-dropdown-item-name mark {
 .card-badge.free { color: var(--green-dark); background: rgba(236, 253, 245, 0.95); }
 .card-badge.mod { color: #8b5cf6; background: rgba(245, 243, 255, 0.95); }
 .card-badge.pro { color: #f59e0b; background: rgba(255, 251, 235, 0.95); }
+
+.pin-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 13px;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+    z-index: 3;
+    animation: pinPulse 2s ease-in-out infinite;
+}
+
+.pin-badge i {
+    transform: rotate(-45deg);
+}
+
+@keyframes pinPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4); }
+    50% { transform: scale(1.08); box-shadow: 0 6px 18px rgba(245, 158, 11, 0.6); }
+}
+
+body.dark-mode .pin-badge {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.5);
+}
 
 .card-bookmark {
     position: absolute;
@@ -1709,16 +1740,6 @@ body.dark-mode .search-dropdown-item-name mark {
     gap: 6px;
 }
 
-.bookmark-item-actions .bm-download {
-    background: var(--green-dark);
-    color: #fff;
-}
-
-.bookmark-item-actions .bm-download:hover {
-    background: #047857;
-    transform: scale(1.05);
-}
-
 .bookmark-item-actions .bm-remove {
     background: #fef2f2;
     color: #dc2626;
@@ -2055,8 +2076,6 @@ body.dark-mode .footer-social a { background: #1e293b; color: #94a3b8; }
 body.dark-mode .footer-social a:hover { background: #334155; color: var(--green); }
 body.dark-mode .bookmark-item { border-color: #334155; }
 body.dark-mode .bookmark-item:hover { background: #334155; border-color: var(--green); }
-body.dark-mode .bookmark-item-actions .bm-download { background: #064e3b; color: #34d399; }
-body.dark-mode .bookmark-item-actions .bm-download:hover { background: #065f46; color: #fff; }
 body.dark-mode .bookmark-item-actions .bm-remove { background: #450a0a; color: #f87171; border-color: #7f1d1d; }
 body.dark-mode .bookmark-item-actions .bm-remove:hover { background: #7f1d1d; }
 body.dark-mode .bookmark-empty { border-color: #334155; }
