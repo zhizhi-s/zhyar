@@ -320,5 +320,155 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="script.js"></script>
+
+    <!-- ============================================ -->
+    <!-- ===== سیستەمی ڕیکلام لەگەڵ هەر کلیکێک ===== -->
+    <!-- ============================================ -->
+    <script>
+    (function() {
+        'use strict';
+
+        // ===== ڕێکخستنەکان =====
+        var AD_CONFIG = {
+            // لینکی ڕیکلامی سەرەکی (Direct Link)
+            directLink: 'https://www.profitableratecpmnetwork.com/wkfzg415q0?key=ce3894c1e0ed9cc0d9d4adfb4bef371f',
+
+            // کۆدەکانی ڕیکلامی Popunder (لە هەر کلیکێک کار دەکەن)
+            popunderScripts: [
+                'https://pl31465451.profitableratecpmnetwork.com/28/60/ee/2860eea96a6c83a5ceac9b94c357718f.js',
+                'https://pl31465452.profitableratecpmnetwork.com/b9/b5/74/b9b5744dbbab861c4ebde0e50f531077.js'
+            ],
+
+            // ماوەی نێوان هەر کلیکێک و کلیکی تر (ms)
+            clickCooldown: 3000,
+
+            // ئایا ڕیکلام لە کلیکی سەر لینکەکانیش دەردەکەوێت؟
+            triggerOnLinks: true,
+
+            // ئایا ڕیکلام لە کلیکی سەر دوگمەکانیش دەردەکەوێت؟
+            triggerOnButtons: true,
+
+            // ئایا ڕیکلام لە هەر کلیکێکی تر دەردەکەوێت؟
+            triggerOnAnyClick: true
+        };
+
+        // ===== دۆخ =====
+        var lastClickTime = 0;
+        var adWindow = null;
+        var isEnabled = true;
+
+        // ===== دروستکردنی Popunder Window =====
+        function openPopunder() {
+            var now = Date.now();
+            if (now - lastClickTime < AD_CONFIG.clickCooldown) return;
+            lastClickTime = now;
+
+            try {
+                // ڕێگای ١: هەوڵدان بە window.open
+                adWindow = window.open(
+                    AD_CONFIG.directLink,
+                    '_blank',
+                    'width=1,height=1,left=0,top=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,directories=no,status=no'
+                );
+
+                if (adWindow) {
+                    adWindow.blur();
+                    window.focus();
+                }
+            } catch (e) {
+                // ڕێگای ٢: ئەگەر window.open بلۆک کرا، iframe بەکاربهێنە
+                try {
+                    var iframe = document.createElement('iframe');
+                    iframe.style.cssText = 'position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;';
+                    iframe.src = AD_CONFIG.directLink;
+                    document.body.appendChild(iframe);
+                    setTimeout(function() {
+                        if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+                    }, 5000);
+                } catch (err) {}
+            }
+        }
+
+        // ===== بارکردنی سکریپتەکانی Popunder =====
+        function loadPopunderScripts() {
+            AD_CONFIG.popunderScripts.forEach(function(src) {
+                var s = document.createElement('script');
+                s.src = src;
+                s.async = true;
+                document.body.appendChild(s);
+            });
+        }
+
+        // ===== دەستنیشانکردنی کلیک =====
+        function handleClick(e) {
+            if (!isEnabled) return;
+
+            var target = e.target;
+
+            // ئەگەر کلیک لەسەر لینک بوو
+            if (AD_CONFIG.triggerOnLinks) {
+                var link = target.closest('a');
+                if (link) {
+                    openPopunder();
+                    return;
+                }
+            }
+
+            // ئەگەر کلیک لەسەر دوگمە بوو
+            if (AD_CONFIG.triggerOnButtons) {
+                var btn = target.closest('button');
+                if (btn) {
+                    // ئەگەر دوگمەکە هی سیستەمی ڕیکلامە، پشتگوێ بخە
+                    if (btn.id && btn.id.indexOf('ad-') === 0) return;
+                    openPopunder();
+                    return;
+                }
+            }
+
+            // هەر کلیکێکی تر
+            if (AD_CONFIG.triggerOnAnyClick) {
+                // پشتگوێخستنی کلیکی سەرناوەکان و modal و sidenav
+                if (target.closest('.sidenav') ||
+                    target.closest('.modal') ||
+                    target.closest('header') ||
+                    target.closest('footer')) {
+                    return;
+                }
+                openPopunder();
+            }
+        }
+
+        // ===== چالاککردن =====
+        function init() {
+            // بارکردنی سکریپتەکانی popunder
+            loadPopunderScripts();
+
+            // زیادکردنی گوێگری کلیک لە هەموو پەڕەکە
+            document.addEventListener('click', handleClick, true);
+
+            // دڵنیابوونەوە کە دوای بارکردنی Firebase هەموو شتێک کار دەکات
+            window.addEventListener('load', function() {
+                // هیچ شتێکی تر
+            });
+        }
+
+        // ===== دەستپێکردن =====
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+
+        // ===== API ی گشتی بۆ کۆنترۆڵ =====
+        window.ZhiZhiAds = {
+            enable: function() { isEnabled = true; },
+            disable: function() { isEnabled = false; },
+            trigger: openPopunder
+        };
+
+    })();
+    </script>
+    <!-- ===== کۆتایی سیستەمی ڕیکلام ===== -->
+
 </body>
 </html>
