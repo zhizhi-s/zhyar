@@ -6,7 +6,7 @@
     font-display: swap;
 }
 
-/* ===== GLOBAL TAP HIGHLIGHT REMOVAL & MODERN INTERACTION ===== */
+/* ===== GLOBAL TAP HIGHLIGHT REMOVAL & MODERN GREEN INTERACTION ===== */
 * {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
@@ -38,7 +38,7 @@ a:focus, button:focus, [role="button"]:focus {
 }
 
 a:focus-visible, button:focus-visible, [role="button"]:focus-visible {
-    outline: 2px solid rgba(139, 92, 246, 0.6);
+    outline: 2px solid rgba(16, 185, 129, 0.6);
     outline-offset: 2px;
 }
 
@@ -54,42 +54,42 @@ a:active, button:active, .category-tab:active, .sidenav-link:active,
     transform: scale(0.96);
 }
 
-/* Soft glow ripple on tap for primary buttons */
+/* Soft green glow ripple on tap for primary buttons */
 .dl-main-btn:active,
 .hero-cta:active,
 .modal-download-btn:active {
-    box-shadow: 0 0 0 6px rgba(139, 92, 246, 0.18),
-                0 0 24px rgba(139, 92, 246, 0.35) !important;
-    background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.18),
+                0 0 24px rgba(16, 185, 129, 0.35) !important;
+    background: linear-gradient(135deg, #10b981, #059669) !important;
 }
 
-/* Purple glow for cards and rows */
+/* Green glow for cards and rows */
 .card:active,
 .bookmark-item:active {
-    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.35),
-                0 0 20px rgba(139, 92, 246, 0.25) !important;
-    background: rgba(139, 92, 246, 0.06) !important;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.35),
+                0 0 20px rgba(16, 185, 129, 0.25) !important;
+    background: rgba(16, 185, 129, 0.06) !important;
 }
 
-/* Tabs and nav links - brighter bg + subtle purple glow */
+/* Tabs and nav links - brighter bg + subtle green glow */
 .category-tab:active,
 .sidenav-link:active,
 .search-dropdown-item:active {
-    background: rgba(139, 92, 246, 0.14) !important;
-    box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.25),
-                0 0 14px rgba(139, 92, 246, 0.22) !important;
+    background: rgba(16, 185, 129, 0.14) !important;
+    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.25),
+                0 0 14px rgba(16, 185, 129, 0.22) !important;
 }
 
-/* Icon buttons - soft purple halo */
+/* Icon buttons - soft green halo */
 .hamburger:active,
 .header-bookmark:active,
 .card-bookmark:active,
 .sidenav-close:active,
 .modal-close:active,
 .theme-toggle:active {
-    background: rgba(139, 92, 246, 0.18) !important;
-    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12),
-                0 0 16px rgba(139, 92, 246, 0.28) !important;
+    background: rgba(16, 185, 129, 0.18) !important;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12),
+                0 0 16px rgba(16, 185, 129, 0.28) !important;
 }
 
 /* Remove tap highlight on images inside cards */
@@ -100,6 +100,40 @@ a:active, button:active, .category-tab:active, .sidenav-link:active,
     -webkit-tap-highlight-color: transparent;
     -webkit-user-drag: none;
     user-select: none;
+}
+
+/* Dark mode green glow adjustments */
+body.dark-mode .dl-main-btn:active,
+body.dark-mode .hero-cta:active,
+body.dark-mode .modal-download-btn:active {
+    box-shadow: 0 0 0 6px rgba(52, 211, 153, 0.22),
+                0 0 28px rgba(52, 211, 153, 0.45) !important;
+}
+
+body.dark-mode .card:active,
+body.dark-mode .bookmark-item:active {
+    box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.45),
+                0 0 24px rgba(52, 211, 153, 0.35) !important;
+    background: rgba(52, 211, 153, 0.10) !important;
+}
+
+body.dark-mode .category-tab:active,
+body.dark-mode .sidenav-link:active,
+body.dark-mode .search-dropdown-item:active {
+    background: rgba(52, 211, 153, 0.18) !important;
+    box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.35),
+                0 0 18px rgba(52, 211, 153, 0.30) !important;
+}
+
+body.dark-mode .hamburger:active,
+body.dark-mode .header-bookmark:active,
+body.dark-mode .card-bookmark:active,
+body.dark-mode .sidenav-close:active,
+body.dark-mode .modal-close:active,
+body.dark-mode .theme-toggle:active {
+    background: rgba(52, 211, 153, 0.22) !important;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.18),
+                0 0 18px rgba(52, 211, 153, 0.38) !important;
 }
 /* ===== END TAP HIGHLIGHT IMPROVEMENTS ===== */
 
