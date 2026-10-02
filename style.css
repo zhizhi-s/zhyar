@@ -6,6 +6,103 @@
     font-display: swap;
 }
 
+/* ===== GLOBAL TAP HIGHLIGHT REMOVAL & MODERN INTERACTION ===== */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+html {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Modern tap/press effect for all interactive elements */
+a, button, .category-tab, .sidenav-link, .card, .card-bookmark,
+.header-bookmark, .hamburger, .sidenav-close, .modal-close,
+.dl-main-btn, .hero-cta, .bookmark-item, .bookmark-item-actions button,
+.bookmark-back-btn, .theme-toggle, .search-dropdown-item,
+.footer-social a, .modal-download-btn, .dl-hidden-btn,
+.dl-main-btn, [role="button"], input[type="submit"], input[type="button"] {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.18s ease,
+                border-color 0.18s ease,
+                color 0.18s ease;
+}
+
+/* Remove focus outline but keep accessibility via focus-visible */
+a:focus, button:focus, [role="button"]:focus {
+    outline: none;
+}
+
+a:focus-visible, button:focus-visible, [role="button"]:focus-visible {
+    outline: 2px solid rgba(139, 92, 246, 0.6);
+    outline-offset: 2px;
+}
+
+/* Subtle press effect - scale down slightly */
+a:active, button:active, .category-tab:active, .sidenav-link:active,
+.card:active, .card-bookmark:active, .header-bookmark:active,
+.hamburger:active, .sidenav-close:active, .modal-close:active,
+.dl-main-btn:active, .hero-cta:active, .bookmark-item:active,
+.bookmark-item-actions button:active, .bookmark-back-btn:active,
+.theme-toggle:active, .search-dropdown-item:active,
+.footer-social a:active, .modal-download-btn:active,
+.dl-hidden-btn:active {
+    transform: scale(0.96);
+}
+
+/* Soft glow ripple on tap for primary buttons */
+.dl-main-btn:active,
+.hero-cta:active,
+.modal-download-btn:active {
+    box-shadow: 0 0 0 6px rgba(139, 92, 246, 0.18),
+                0 0 24px rgba(139, 92, 246, 0.35) !important;
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
+}
+
+/* Purple glow for cards and rows */
+.card:active,
+.bookmark-item:active {
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.35),
+                0 0 20px rgba(139, 92, 246, 0.25) !important;
+    background: rgba(139, 92, 246, 0.06) !important;
+}
+
+/* Tabs and nav links - brighter bg + subtle purple glow */
+.category-tab:active,
+.sidenav-link:active,
+.search-dropdown-item:active {
+    background: rgba(139, 92, 246, 0.14) !important;
+    box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.25),
+                0 0 14px rgba(139, 92, 246, 0.22) !important;
+}
+
+/* Icon buttons - soft purple halo */
+.hamburger:active,
+.header-bookmark:active,
+.card-bookmark:active,
+.sidenav-close:active,
+.modal-close:active,
+.theme-toggle:active {
+    background: rgba(139, 92, 246, 0.18) !important;
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12),
+                0 0 16px rgba(139, 92, 246, 0.28) !important;
+}
+
+/* Remove tap highlight on images inside cards */
+.card img,
+.bookmark-item img,
+.dl-app-img img,
+.search-dropdown-item-img img {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+/* ===== END TAP HIGHLIGHT IMPROVEMENTS ===== */
+
 .connection-status {
     display: none !important;
 }
